@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ArtGalleryOnline.Migrations
 {
-    public partial class ArtGallery : Migration
+    public partial class Artgallerty : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

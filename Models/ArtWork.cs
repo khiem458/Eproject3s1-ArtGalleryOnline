@@ -5,9 +5,9 @@ namespace ArtGalleryOnline.Models
 {
     public enum Type
     {
-        Scriptures,
-        Painting,
-        Model
+        Scriptures = 0,
+        Painting = 1,
+        Model = 2,
     }
     public class ArtWork
     {

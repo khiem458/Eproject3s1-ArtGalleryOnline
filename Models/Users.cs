@@ -1,18 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
 namespace ArtGalleryOnline.Models
 {
     public enum Gender
     {
-        Male,
-        Female
+        Male = 0,
+        Female = 1
     }
     public enum UserRole
     {
-        admin,
-        user,
-        author
+        admin = 0,
+        user = 1,
+        author = 2
     }
     public class Users
     {

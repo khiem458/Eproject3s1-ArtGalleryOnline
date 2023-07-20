@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h2>welcome to your Page or you can <a href="/Account/Logout">Loout</a> </h2>
+}
+else
+{
+    <h2>Please go to the <a href="/Account/Login">Login page</a></h2>
+}

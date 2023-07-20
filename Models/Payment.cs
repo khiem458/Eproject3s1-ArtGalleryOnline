@@ -5,8 +5,8 @@ namespace ArtGalleryOnline.Models
 {
     public enum PaymentType
     {
-        Cash,
-        OnlinePay
+        Cash = 1,
+        OnlinePay = 2
     }
     public class Payment
     {
