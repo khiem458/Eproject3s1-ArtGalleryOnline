@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGalleryOnline.Migrations
 {
     [DbContext(typeof(ArtgalleryDbContext))]
-    [Migration("20230720074941_ArtGallery")]
-    partial class ArtGallery
+    [Migration("20230720083359_Artgallerty")]
+    partial class Artgallerty
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

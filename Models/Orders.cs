@@ -7,9 +7,9 @@ namespace ArtGalleryOnline.Models
     // Mô tả trạng thái yêu cầu (request status) dưới dạng enum
     public enum RequestStatus
     {
-        Pending,
-        Approved,
-        Rejected
+        Pending = 0,
+        Approved = 1,
+        Rejected = 2
     }
 
     public class Orders
@@ -19,13 +19,13 @@ namespace ArtGalleryOnline.Models
         public int OrderId { get; set; }
 
         // Thuộc tính OrderDate đại diện cho ngày đặt hàng, được yêu cầu và không thể null
-        
+
         public DateTime OrderDate { get; set; }
 
         // Thuộc tính RequestStatus đại diện cho trạng thái yêu cầu, có kiểu enum RequestStatus
         // Theo mô tả của bạn, trạng thái yêu cầu có thể là "Pending", "Approved", hoặc "Rejected"
         public RequestStatus RequestStatus { get; set; }
-        
+
         public decimal TotalAmount { get; set; }
 
         // Thuộc tính UserId đại diện cho khóa ngoại liên kết với bảng "Users"

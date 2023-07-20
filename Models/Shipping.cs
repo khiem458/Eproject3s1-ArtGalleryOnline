@@ -5,9 +5,9 @@ namespace ArtGalleryOnline.Models
 {
     public enum ShippingStatus
     {
-        Pending,
-        Approved,
-        Rejected
+        Pending = 0,
+        Approved = 1,
+        Rejected = 2
     }
     public class Shipping
     {
