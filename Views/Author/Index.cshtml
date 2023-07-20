@@ -5,38 +5,48 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Artist)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AuthDesciption)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Artist)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthDesciption)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AuthId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AuthId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AuthId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="card mb-4">
+    <div class="card-header">
+        <h1 class="card-title text-center">Index</h1>
+        <div class="text-right">
+            <p>
+                <a asp-action="Create" class="btn btn-primary">Create New</a>
+            </p>
+        </div>
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple" class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Artist)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AuthDesciption)
+                    </th>
+                    <th>
+                        Feature
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Artist)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AuthDesciption)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.AuthId" class="btn btn-sm btn-primary">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.AuthId" class="btn btn-sm btn-info">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.AuthId" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
