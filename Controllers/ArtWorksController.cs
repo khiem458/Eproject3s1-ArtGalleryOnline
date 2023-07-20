@@ -114,7 +114,7 @@ namespace ArtGalleryOnline.Controllers
             {
                 try
                 {
-                    if (artImage != null)
+                    if ( artWork != null)
                     {
                         string fileName = Path.GetFileName(artImage.FileName);
                         string file_path = Path.Combine(Directory.GetCurrentDirectory(),
@@ -125,6 +125,7 @@ namespace ArtGalleryOnline.Controllers
                         }
                         artWork.ArtImage = "Images/" + fileName;
                     }
+                    
 
                     _context.Update(artWork);
                     await _context.SaveChangesAsync();
