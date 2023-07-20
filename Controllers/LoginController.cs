@@ -75,7 +75,7 @@ namespace ArtGalleryOnline.Controllers
                 // Redirect based on UserRole
                 if (_user.UserRole == UserRole.admin)
                 {
-                    return RedirectToAction("Index", "Dashboard");
+                    return RedirectToAction("Index", "Login");
                 }
                 else
                 {
