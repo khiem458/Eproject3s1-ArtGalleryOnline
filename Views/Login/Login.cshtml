@@ -2,33 +2,147 @@
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_Login.cshtml";
 }
+
 @model ArtGalleryOnline.Models.Users
 
-@using (Html.BeginForm("Login", "Login", FormMethod.Post))
-{
-    @if (ViewBag.LoginStatus != null && ViewBag.LoginStatus == 0)
-    {
-        <div style="color:red">
-            <p>
-                Invalid Username or Password, please try again.
-            </p>
-        </div>
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<div class="login-container">
+    <div class="login-box">
+        @if (ViewBag.LoginStatus != null && ViewBag.LoginStatus == 0)
+        {
+            <div class="error-message">
+                <p>
+                    Invalid Username or Password, please try again.
+                </p>
+            </div>
+        }
+
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "login-form" }))
+        {
+            <h3>Login Here</h3>
+
+            <div class="form-group">
+                <label for="UserEmail"><b>Username</b></label>
+                @Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control", @placeholder = "Email or Phone" })
+            </div>
+
+            <div class="form-group">
+                <label for="UserPassword"><b>Password</b></label>
+                @Html.PasswordFor(m => m.UserPassword, new { @class = "form-control", @placeholder = "Password" })
+            </div>
+
+            <button type="submit" class="login-button">Log In</button>
+            @*<div class="social">
+                <div class="go"><i class="fab fa-google"></i> Google</div>
+                <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
+            </div>*@
+        }
+    </div>
+</div>
+
+<!-- Additional CSS styles for the login form -->
+<style>
+    /* Your existing styles */
+
+    /* Custom styles for the login form */
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
     }
-    <div class="container">
-        <label for="UserEmail"><b>Username</b></label>
-        @Html.TextBoxFor(m => m.UserEmail, new { @placeholder = "Enter Username" })
 
-        <label for="UserPassword"><b>Password</b></label>
-        @Html.PasswordFor(m => m.UserPassword, new { @placeholder = "Enter Password" })
+    .login-box {
+        background-color: rgba(255, 255, 255, 0.13);
+        padding: 50px 35px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+        max-width: 400px;
+        width: 100%;
+    }
 
-        <button type="submit">Login</button>
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
-    </div>
+    .form-group {
+        margin-bottom: 15px;
+    }
 
-    <div class="container" style="background-color:#f1f1f1">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-}
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        outline: none;
+        background-color: rgba(255, 255, 255, 0.07);
+        color: #e5e5e5;
+    }
+
+    ::placeholder {
+        color: #e5e5e5;
+    }
+
+    .login-button {
+        width: 100%;
+        padding: 15px 0;
+        background-color: #ffffff;
+        color: #080710;
+        font-size: 18px;
+        font-weight: 600;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .login-button:hover {
+            background-color: #080710;
+            color: #ffffff;
+        }
+
+    .remember-me {
+        font-size: 14px;
+        display: block;
+        margin-top: 10px;
+        color: #555;
+    }
+
+    .error-message {
+        color: #f44336;
+        margin-bottom: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .background {
+        width: 430px;
+        height: 520px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+    }
+
+        .background .shape {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            border-radius: 50%;
+        }
+
+    .shape:first-child {
+        background: linear-gradient(#1845ad, #23a2f6);
+        left: -80px;
+        top: -80px;
+    }
+
+    .shape:last-child {
+        background: linear-gradient(to right, #ff512f, #f09819);
+        right: -30px;
+        bottom: -80px;
+    }
+
+    /* You can add more custom styles as needed */
+</style>
