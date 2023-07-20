@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ArtGalleryOnline.Models;
+using System.Drawing;
 
 namespace ArtGalleryOnline.Controllers
 {
@@ -114,7 +115,7 @@ namespace ArtGalleryOnline.Controllers
             {
                 try
                 {
-                    if ( artWork != null)
+                    if ( artImage != null)
                     {
                         string fileName = Path.GetFileName(artImage.FileName);
                         string file_path = Path.Combine(Directory.GetCurrentDirectory(),
@@ -125,7 +126,12 @@ namespace ArtGalleryOnline.Controllers
                         }
                         artWork.ArtImage = "Images/" + fileName;
                     }
-                    
+                    else
+                    {
+                        // Nếu người dùng không chọn hình ảnh mới, giữ nguyên ảnh cũ
+                        var existingArtWork = await _context.ArtWork.AsNoTracking().FirstOrDefaultAsync(a => a.ArtId == id);
+                        artWork.ArtImage = existingArtWork.ArtImage;
+                    }
 
                     _context.Update(artWork);
                     await _context.SaveChangesAsync();
