@@ -8,6 +8,12 @@ namespace ArtGalleryOnline.Models
         Male,
         Female
     }
+    public enum UserRole
+    {
+        admin,
+        user,
+        author
+    }
     public class Users
     {
         [Key]
@@ -35,7 +41,7 @@ namespace ArtGalleryOnline.Models
         [Required]
         [StringLength(20)]
         public string? UserPassword { get; set; }
-        public string? UserRole { get; set; }
+        public UserRole UserRole { get; set; } = UserRole.user;
 
         public ICollection<Orders>? Orders { get; set; }
         public ICollection<UserNotification>? UserNotifications { get; set; }

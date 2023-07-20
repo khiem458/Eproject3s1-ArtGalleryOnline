@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGalleryOnline.Migrations
 {
     [DbContext(typeof(ArtgalleryDbContext))]
-    [Migration("20230720073754_Admin")]
-    partial class Admin
+    [Migration("20230720074941_ArtGallery")]
+    partial class ArtGallery
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -357,8 +357,8 @@ namespace ArtGalleryOnline.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("UserRole")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("UserRole")
+                        .HasColumnType("int");
 
                     b.HasKey("UserId");
 

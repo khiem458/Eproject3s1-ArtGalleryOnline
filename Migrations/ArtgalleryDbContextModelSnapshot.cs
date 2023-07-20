@@ -355,8 +355,8 @@ namespace ArtGalleryOnline.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("UserRole")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("UserRole")
+                        .HasColumnType("int");
 
                     b.HasKey("UserId");
 
