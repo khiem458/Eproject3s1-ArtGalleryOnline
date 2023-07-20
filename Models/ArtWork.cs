@@ -20,10 +20,11 @@ namespace ArtGalleryOnline.Models
         [Required]
         [StringLength(50)]
         public string? ArtDescription { get; set; }
-        [Required]
+       
         [StringLength(50)]
         public string? ArtImage { get; set; }
-        [Required]
+        [Required(ErrorMessage = "ArtPrice is required.")]
+        [Range(0, double.MaxValue, ErrorMessage = "ArtPrice must be a positive number.")]
         public decimal ArtPrice { get; set; }
         //lien ket voi User
         public int AuthId { get; set; }

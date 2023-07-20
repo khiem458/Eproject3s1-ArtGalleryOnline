@@ -1,0 +1,53 @@
+﻿@model ArtGalleryOnline.Models.ArtWork
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Create</h1>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h4 class="card-title">ArtWork</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="ArtName" class="control-label">Art Name</label>
+                        <input asp-for="ArtName" class="form-control" />
+                        <span asp-validation-for="ArtName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ArtDescription" class="control-label">Art Description</label>
+                        <input asp-for="ArtDescription" class="form-control" />
+                        <span asp-validation-for="ArtDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ArtImage" class="control-label">Art Image</label>
+                        <input asp-for="ArtImage" type="file" class="form-control" />
+                        <span asp-validation-for="ArtImage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ArtPrice" class="control-label">Art Price</label>
+                        <input asp-for="ArtPrice" class="form-control" />
+                        <span asp-validation-for="ArtPrice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AuthId" class="control-label">Author ID</label>
+                        <select asp-for="AuthId" class="form-control" asp-items="ViewBag.AuthId"></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
