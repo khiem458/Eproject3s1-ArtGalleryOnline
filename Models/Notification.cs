@@ -12,5 +12,6 @@ namespace ArtGalleryOnline.Models
         public string? Message { get; set; }
         [Required]
         public DateTime NotifiDate { get; set; }
+        public ICollection<UserNotification>? UserNotifications { get; set; }
     }
 }

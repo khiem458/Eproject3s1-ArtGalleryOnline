@@ -13,14 +13,17 @@ namespace ArtGalleryOnline.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PaymentId { get; set; }
-
-        public int UserId { get; set; }
-        [ForeignKey("UserId")]
-        public Users User { get; set; }
-
-        public PaymentType PaymentType { get; set; }
-        public int Amount { get; set; }
+        [Required]
+        public string? PaymentMethod { get; set; }
+        [Required]
+        public decimal Amount { get; set; }
+        [Required]
         public DateTime PaymentDate { get; set; }
+
+        ///lien ket voi oder
+        public int OrderId { get; set; }
+        [ForeignKey("OrderId")]
+        public Orders? Orders { get; set; }
 
 
 

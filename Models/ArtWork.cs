@@ -15,17 +15,23 @@ namespace ArtGalleryOnline.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ArtId { get; set; }
         [Required]
-        public string ArtName { get; set; }
+        [StringLength(50)]
+        public string? ArtName { get; set; }
         [Required]
-        public string Detail { get; set; }
+        [StringLength(50)]
+        public string? ArtDescription { get; set; }
         [Required]
-        public Decimal? Price { get; set; }
+        [StringLength(50)]
+        public string? ArtImage { get; set; }
         [Required]
-        public int? Quantity { get; set; }
-        [Required]
-        public Type Type { get; set; }
-        [Required]
-        public bool AdminApproval { get; set; }
+        public decimal ArtPrice { get; set; }
+        //lien ket voi User
+        public int AuthId { get; set; }
+        [ForeignKey("AuthId")]
+        public AuthorArtWork? AuthorArtWork { get; set; }
 
+
+        public ICollection<Interest>? Interests { get; set; }
+        public ICollection<OrderDetail>? OrderDetails { get; set; }
     }
 }

@@ -8,15 +8,11 @@ namespace ArtGalleryOnline.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AuthId { get; set; }
-
-        public int ArtId { get; set; }
-
-        [ForeignKey("ArtId")] // Khóa phụ liên kết với khóa chính của ArtWork
-        public ArtWork ArtWork { get; set; }
-
         [Required]
-        public string Artist { get; set; }
+        public string? Artist { get; set; }
         [Required]
-        public string AuthDesciption { get; set; }
+        public string? AuthDesciption { get; set; }
+        public ICollection<ArtWork>? ArtWorks { get; set; }
+        public ICollection<Blog>? Blogs { get; set; }
     }
 }

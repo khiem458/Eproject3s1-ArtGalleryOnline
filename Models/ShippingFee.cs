@@ -10,8 +10,6 @@ namespace ArtGalleryOnline.Models
         public int ShipFeeId { get; set; }
         [Required]
         public decimal FeeAmount { get; set; }
-        public int ShippingId { get; set; }
-        [ForeignKey("ShippingId")]
-        public Shipping shipping { get; set; }
+        
     }
 }

@@ -14,22 +14,32 @@ namespace ArtGalleryOnline.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         [Required]
+        [StringLength(50)]
         public string? UserName { get; set; }
         [Required]
-        public string? FullName { get; set; }
+        [StringLength(50)]
+        public string? UserFullName { get; set; }
         [Required]
-        public string? Email { get; set; }
+        [StringLength(50)]
+        public string? UserEmail { get; set; }
         [Required]
-        public Gender Gender { get; set; }
+        public Gender UserGender { get; set; }
         [Required]
-        public int? Age { get; set; }
+        public int? UserAge { get; set; }
         [Required]
-        public string? PhoneNum { get; set; }
+        [StringLength(20)]
+        public string? UserPhoneNum { get; set; }
         [Required]
-        public string? Address { get; set; }
+        [StringLength(50)]
+        public string? UserAddress { get; set; }
         [Required]
-        public string? Password { get; set; }
+        [StringLength(20)]
+        public string? UserPassword { get; set; }
+        public string? UserRole { get; set; }
 
+        public ICollection<Orders>? Orders { get; set; }
+        public ICollection<UserNotification>? UserNotifications { get; set; }
+        public ICollection<Interest>? Interests { get; set; }
 
 
     }

@@ -15,8 +15,9 @@ namespace ArtGalleryOnline.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ShippingId { get; set; }
         public ShippingStatus ShippingStatus { get; set; }
+        //lien ket voi order
         public int OrderId { get; set; }
         [ForeignKey("OrderId")]
-        public Orders Orders { get; set; }
+        public Orders? Orders { get; set; }
     }
 }
