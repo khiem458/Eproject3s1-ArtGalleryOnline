@@ -29,8 +29,8 @@ namespace ArtGalleryOnline.Models
         public string? Address { get; set; }
         [Required]
         public string? Password { get; set; }
-        [Required]
-        public string? UserEmail { get; set; }
+
+
 
     }
 }
