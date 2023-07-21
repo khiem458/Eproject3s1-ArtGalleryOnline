@@ -36,7 +36,6 @@ namespace ArtGalleryOnline.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ArtImage")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -51,9 +50,14 @@ namespace ArtGalleryOnline.Migrations
                     b.Property<int>("AuthId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("ArtId");
 
                     b.HasIndex("AuthId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("ArtWork");
                 });
@@ -118,6 +122,27 @@ namespace ArtGalleryOnline.Migrations
                     b.HasIndex("AuthId");
 
                     b.ToTable("Blog");
+                });
+
+            modelBuilder.Entity("ArtGalleryOnline.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
+
+                    b.Property<string>("CategoryDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.Interest", b =>
@@ -371,7 +396,15 @@ namespace ArtGalleryOnline.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ArtGalleryOnline.Models.Category", "Category")
+                        .WithMany("ArtWorks")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AuthorArtWork");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.Blog", b =>
@@ -487,6 +520,11 @@ namespace ArtGalleryOnline.Migrations
                     b.Navigation("ArtWorks");
 
                     b.Navigation("Blogs");
+                });
+
+            modelBuilder.Entity("ArtGalleryOnline.Models.Category", b =>
+                {
+                    b.Navigation("ArtWorks");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.Notification", b =>

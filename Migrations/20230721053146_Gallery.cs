@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ArtGalleryOnline.Migrations
 {
-    public partial class Artgallerty : Migration
+    public partial class Gallery : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,6 +21,20 @@ namespace ArtGalleryOnline.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AuthorArtWork", x => x.AuthId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,29 +86,6 @@ namespace ArtGalleryOnline.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ArtWork",
-                columns: table => new
-                {
-                    ArtId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ArtName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ArtDescription = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ArtImage = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ArtPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AuthId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ArtWork", x => x.ArtId);
-                    table.ForeignKey(
-                        name: "FK_ArtWork_AuthorArtWork_AuthId",
-                        column: x => x.AuthId,
-                        principalTable: "AuthorArtWork",
-                        principalColumn: "AuthId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Blog",
                 columns: table => new
                 {
@@ -115,6 +106,36 @@ namespace ArtGalleryOnline.Migrations
                         column: x => x.AuthId,
                         principalTable: "AuthorArtWork",
                         principalColumn: "AuthId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ArtWork",
+                columns: table => new
+                {
+                    ArtId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ArtName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ArtDescription = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ArtImage = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    ArtPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AuthId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ArtWork", x => x.ArtId);
+                    table.ForeignKey(
+                        name: "FK_ArtWork_AuthorArtWork_AuthId",
+                        column: x => x.AuthId,
+                        principalTable: "AuthorArtWork",
+                        principalColumn: "AuthId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ArtWork_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -269,6 +290,11 @@ namespace ArtGalleryOnline.Migrations
                 column: "AuthId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ArtWork_CategoryId",
+                table: "ArtWork",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Blog_AuthId",
                 table: "Blog",
                 column: "AuthId");
@@ -353,6 +379,9 @@ namespace ArtGalleryOnline.Migrations
 
             migrationBuilder.DropTable(
                 name: "AuthorArtWork");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Users");
