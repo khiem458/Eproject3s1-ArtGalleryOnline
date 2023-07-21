@@ -1,0 +1,19 @@
+﻿@model IEnumerable<ArtGalleryOnline.Models.Category>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="alime-projects-menu">
+    <div class="portfolio-menu text-center">
+        <button class="btn active" data-filter="*">All</button>
+        <button class="btn" data-filter=".human">Human</button>
+        <button class="btn" data-filter=".nature">Nature</button>
+        <button class="btn" data-filter=".country">Country</button>
+        <button class="btn" data-filter=".video">Video</button>
+         @foreach (var item in Model)
+        {
+            <li>
+                <a href="">@item.CategoryName</a>
+            </li>
+        }
+    </div>
+</div>
