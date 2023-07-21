@@ -21,9 +21,14 @@ namespace ArtGalleryOnline.Controllers
 
         // GET: ArtWorks
         public async Task<IActionResult> Index()
+
         {
-            var artgalleryDbContext = _context.ArtWork.Include(a => a.AuthorArtWork);
-            return View(await artgalleryDbContext.ToListAsync());
+            var artWorks = await _context.ArtWork
+                                            .Include(a => a.AuthorArtWork) // Bao gồm thông tin về tác giả tác phẩm (AuthorArtWork)
+                                             .Include(a => a.Category) // Bao gồm thông tin về danh mục tác phẩm (Category)
+                                            .ToListAsync();
+            
+            return View(artWorks);
         }
 
         // GET: ArtWorks/Details/5
@@ -36,6 +41,7 @@ namespace ArtGalleryOnline.Controllers
 
             var artWork = await _context.ArtWork
                 .Include(a => a.AuthorArtWork)
+                .Include(a => a.Category)
                 .FirstOrDefaultAsync(m => m.ArtId == id);
             if (artWork == null)
             {
@@ -49,6 +55,7 @@ namespace ArtGalleryOnline.Controllers
         public IActionResult Create()
         {
             ViewData["AuthId"] = new SelectList(_context.AuthorArtWork, "AuthId", "Artist");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryDescription");
             return View();
         }
 
@@ -58,7 +65,7 @@ namespace ArtGalleryOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ArtId,ArtName,ArtDescription,ArtImage,ArtPrice,AuthId")] ArtWork artWork, IFormFile artImage)
+        public async Task<IActionResult> Create([Bind("ArtId,ArtName,ArtDescription,ArtImage,ArtPrice,AuthId,CategoryId")] ArtWork artWork, IFormFile artImage)
         {
             if (ModelState.IsValid)
             {
@@ -77,6 +84,7 @@ namespace ArtGalleryOnline.Controllers
             }
 
             ViewData["AuthId"] = new SelectList(_context.AuthorArtWork, "AuthId", "Artist", artWork.AuthId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryDescription", artWork.CategoryId);
             return View(artWork);
 
         }
@@ -96,6 +104,8 @@ namespace ArtGalleryOnline.Controllers
                 return NotFound();
             }
             ViewData["AuthId"] = new SelectList(_context.AuthorArtWork, "AuthId", "Artist", artWork.AuthId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryDescription", artWork.CategoryId);
+
             return View(artWork);
         }
 
@@ -104,7 +114,7 @@ namespace ArtGalleryOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ArtId,ArtName,ArtDescription,ArtImage,ArtPrice,AuthId")] ArtWork artWork, IFormFile artImage)
+        public async Task<IActionResult> Edit(int id, [Bind("ArtId,ArtName,ArtDescription,ArtImage,ArtPrice,AuthId,CategoryId")] ArtWork artWork, IFormFile artImage)
         {
             if (id != artWork.ArtId)
             {
@@ -150,6 +160,7 @@ namespace ArtGalleryOnline.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AuthId"] = new SelectList(_context.AuthorArtWork, "AuthId", "Artist", artWork.AuthId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryDescription", artWork.CategoryId);
             return View(artWork);
         }
 
@@ -163,6 +174,7 @@ namespace ArtGalleryOnline.Controllers
 
             var artWork = await _context.ArtWork
                 .Include(a => a.AuthorArtWork)
+                .Include(a => a.Category)
                 .FirstOrDefaultAsync(m => m.ArtId == id);
             if (artWork == null)
             {
