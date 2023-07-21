@@ -50,7 +50,8 @@ namespace ArtGalleryOnline.Controllers
                     users.UserPassword = BCrypt.Net.BCrypt.HashPassword(users.UserPassword);
 
                     // Set any other properties of the Users object here, if needed
-                    // For example, you might want to set the UserRole or any other user-specific properties
+                    users.UserFullName = ""; // Empty string, so it won't be shown in the registration view
+                    users.UserAddress = "";
 
                     // Add the new user to the database
                     _context.Users.Add(users);

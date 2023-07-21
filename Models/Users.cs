@@ -23,7 +23,6 @@ namespace ArtGalleryOnline.Models
         [Required]
         [StringLength(50)]
         public string? UserName { get; set; }
-        [Required]
         [StringLength(50)]
         public string? UserFullName { get; set; }
         [Required]
@@ -35,7 +34,6 @@ namespace ArtGalleryOnline.Models
         [Required]
         [StringLength(20)]
         public string? UserPhoneNum { get; set; }
-        [Required]
         [StringLength(50)]
         public string? UserAddress { get; set; }
         [Required]
