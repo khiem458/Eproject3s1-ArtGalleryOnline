@@ -22,15 +22,15 @@
 
         @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "login-form" }))
         {
-            <h3>Login Here</h3>
+            <h3 class="Title">LOGIN</h3>
 
             <div class="form-group">
-                <label for="UserEmail"><b>Username</b></label>
+                <label class="labelinp" for="UserEmail"><b>Username</b></label>
                 @Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control", @placeholder = "Email or Phone" })
             </div>
 
             <div class="form-group">
-                <label for="UserPassword"><b>Password</b></label>
+                <label class="labelinp" for="UserPassword"><b>Password</b></label>
                 @Html.PasswordFor(m => m.UserPassword, new { @class = "form-control", @placeholder = "Password" })
             </div>
 
@@ -144,5 +144,26 @@
         bottom: -80px;
     }
 
+    .Title {
+        text-align: center;
+        background: linear-gradient(45deg, #ff5454, #ff8554);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .labelinp{
+        background: linear-gradient(45deg, #ff5454, #ff8554);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .form-control {
+       font-family: sans-serif;
+       background: linear-gradient(45deg, #ff5454, #ff8554);
+       font-weight: bold;
+    }
     /* You can add more custom styles as needed */
 </style>
