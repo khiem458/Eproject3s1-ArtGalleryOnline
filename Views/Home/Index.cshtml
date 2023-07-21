@@ -1,7 +1,36 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    .card:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out;
+    }
 
+    .add-to-cart:hover {
+        text-decoration: none; /* Xóa gạch chân bên dưới chữ */
+    }
+    
+
+    .add-to-cart {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fc6060;
+        color: #000;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+       
+    }
+
+    .card:hover .add-to-cart {
+        display: block;
+    }
+</style>
 <!-- Welcome Area Start -->
 <section class="welcome-area">
     <div class="welcome-slides owl-carousel">
@@ -46,6 +75,9 @@
 </section>
 <!-- Welcome Area End -->
 <!-- Gallery Area Start -->
+
+
+
 <div class="alime-portfolio-area section-padding-80 clearfix">
     <div class="container-fluid">
         <div class="row">
@@ -54,118 +86,43 @@
                 @(await Component.InvokeAsync("Category"))
             </div>
         </div>
-
-        <div class="row alime-portfolio">
-            <!-- Single Gallery Item -->
-            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item nature mb-30 wow fadeInUp" data-wow-delay="100ms">
-                <div class="single-portfolio-content">
-                    <img src="/img/bg-img/3.jpg" alt="">
-                    <div class="hover-content">
-                        <a href="/img/bg-img/3.jpg" class="portfolio-img">+</a>
+       
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">Product Showcase</h1>
+            <div class="card-deck">
+                <div class="card">
+                    <img src="/img/bg-img/1.jpg" class="card-img-top" alt="Product 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Product 1</h5>
+                        <p class="card-text">Product Description Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p class="card-text">Price: $100.00</p>
+                        
+                        <a href="/product/detail/3" class="add-to-cart" onclick="addToCart(1)">Add to Cart</a>
                     </div>
                 </div>
-            </div>
-
-            <!-- Single Gallery Item -->
-            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item video human mb-30 wow fadeInUp" data-wow-delay="300ms">
-                <div class="single-portfolio-content">
-                    <img src="/img/bg-img/4.jpg" alt="">
-                    <div class="hover-content">
-                        <a href="/img/bg-img/4.jpg" class="portfolio-img">+</a>
+                <div class="card">
+                    <img src="/img/bg-img/1.jpg" class="card-img-top" alt="Product 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Product 2</h5>
+                        <p class="card-text">Product Description Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p class="card-text">Price: $150.00</p>
+                       
+                        <a href="/product/detail/3" class="add-to-cart" onclick="addToCart(2)">Add to Cart</a>
                     </div>
                 </div>
-            </div>
-
-            <!-- Single Gallery Item -->
-            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item country mb-30 wow fadeInUp" data-wow-delay="500ms">
-                <div class="single-portfolio-content">
-                    <img src="/img/bg-img/5.jpg" alt="">
-                    <div class="hover-content">
-                        <a href="/img/bg-img/5.jpg" class="portfolio-img">+</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Gallery Item -->
-            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item human mb-30 wow fadeInUp" data-wow-delay="700ms">
-                <div class="single-portfolio-content">
-                    <img src="/img/bg-img/6.jpg" alt="">
-                    <div class="hover-content">
-                        <a href="/img/bg-img/6.jpg" class="portfolio-img">+</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Gallery Item -->
-            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item nature mb-30 wow fadeInUp" data-wow-delay="100ms">
-                <div class="single-portfolio-content">
-                    <img src="/img/bg-img/7.jpg" alt="">
-                    <div class="hover-content">
-                        <a href="/img/bg-img/7.jpg" class="portfolio-img">+</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Gallery Item -->
-            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item video country mb-30 wow fadeInUp" data-wow-delay="300ms">
-                <div class="single-portfolio-content">
-                    <img src="/img/bg-img/8.jpg" alt="">
-                    <div class="hover-content">
-                        <a href="/img/bg-img/8.jpg" class="portfolio-img">+</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Gallery Item -->
-            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item human mb-30 wow fadeInUp" data-wow-delay="500ms">
-                <div class="single-portfolio-content">
-                    <img src="/img/bg-img/10.jpg" alt="">
-                    <div class="hover-content">
-                        <a href="/img/bg-img/10.jpg" class="portfolio-img">+</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Gallery Item -->
-            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item nature mb-30 wow fadeInUp" data-wow-delay="700ms">
-                <div class="single-portfolio-content">
-                    <img src="/img/bg-img/9.jpg" alt="">
-                    <div class="hover-content">
-                        <a href="/img/bg-img/9.jpg" class="portfolio-img">+</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Gallery Item -->
-            <div class="col-12 col-sm-6 col-lg-6 single_gallery_item video country mb-30 wow fadeInUp" data-wow-delay="100ms">
-                <div class="single-portfolio-content">
-                    <img src="/img/bg-img/36.jpg" alt="">
-                    <div class="hover-content">
-                        <a href="/img/bg-img/36.jpg" class="portfolio-img">+</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Gallery Item -->
-            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item human mb-30 wow fadeInUp" data-wow-delay="300ms">
-                <div class="single-portfolio-content">
-                    <img src="/img/bg-img/37.jpg" alt="">
-                    <div class="hover-content">
-                        <a href="/img/bg-img/37.jpg" class="portfolio-img">+</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Gallery Item -->
-            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item country mb-30 wow fadeInUp" data-wow-delay="500ms">
-                <div class="single-portfolio-content">
-                    <img src="/img/bg-img/5.jpg" alt="">
-                    <div class="hover-content">
-                        <a href="/img/bg-img/5.jpg" class="portfolio-img">+</a>
+                <div class="card">
+                    <img src="/img/bg-img/1.jpg" class="card-img-top" alt="Product 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Product 3</h5>
+                        <p class="card-text">Product Description Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p class="card-text">Price: $200.00</p>
+                       
+                        <a href="/product/detail/3" class="add-to-cart" onclick="addToCart(3)">Add to Cart</a>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div class="row">
             <div class="col-12 text-center wow fadeInUp" data-wow-delay="700ms">
@@ -174,8 +131,6 @@
         </div>
     </div>
 </div>
-<!-- Gallery Area End -->
-<!-- Follow Area Start -->
 
-<!-- Follow Area End -->
+
 
