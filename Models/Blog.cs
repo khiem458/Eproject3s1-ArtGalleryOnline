@@ -11,7 +11,7 @@ namespace ArtGalleryOnline.Models
         [Required]
         [StringLength(50)]
         public string? Title { get; set; }
-        [Required]
+        
         [StringLength(50)]
         public string? Image { get; set; }
         [Required]

@@ -56,10 +56,19 @@ namespace ArtGalleryOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogId,Title,Image,Date,Description,Comment,AuthId")] Blog blog)
+        public async Task<IActionResult> Create([Bind("BlogId,Title,Image,Date,Description,Comment,AuthId")] Blog blog,IFormFile Image)
         {
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileName(Image.FileName);
+                string file_path = Path.Combine(Directory.GetCurrentDirectory(),
+                    @"wwwroot/Images", fileName);
+                using (var stream = new FileStream(file_path, FileMode.Create))
+                {
+                    await Image.CopyToAsync(stream);
+                }
+                blog.Image = "Images/" + fileName;
+
                 _context.Add(blog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
