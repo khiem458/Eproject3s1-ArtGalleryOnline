@@ -5,62 +5,73 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="card mb-4">
+    <div class="card-header">
+        <h1 class="card-title text-center">Index</h1>
+        <div class="text-right">
+            <p>
+                <a asp-action="Create" class="btn btn-primary">Create New</a>
+            </p>
+        </div>
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple" class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Image)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Comment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AuthorArtWork)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            <img src="~/@item.Image" alt="Image" style="width:100px; height:auto;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AuthorArtWork.Artist)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.BlogId" class="btn btn-primary">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.BlogId" class="btn btn-secondary">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.BlogId" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AuthorArtWork)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                    <img src="~/@item.Image" alt="Image" style="width:100px; height:auto;" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorArtWork.Artist)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BlogId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BlogId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BlogId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        
+    </div>
+
+</div>
