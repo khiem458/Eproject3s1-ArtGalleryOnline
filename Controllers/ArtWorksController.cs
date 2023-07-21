@@ -49,6 +49,7 @@ namespace ArtGalleryOnline.Controllers
         public IActionResult Create()
         {
             ViewData["AuthId"] = new SelectList(_context.AuthorArtWork, "AuthId", "Artist");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             return View();
         }
 
@@ -77,6 +78,7 @@ namespace ArtGalleryOnline.Controllers
             }
 
             ViewData["AuthId"] = new SelectList(_context.AuthorArtWork, "AuthId", "Artist", artWork.AuthId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", artWork.CategoryId);
             return View(artWork);
 
         }
@@ -96,6 +98,8 @@ namespace ArtGalleryOnline.Controllers
                 return NotFound();
             }
             ViewData["AuthId"] = new SelectList(_context.AuthorArtWork, "AuthId", "Artist", artWork.AuthId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", artWork.CategoryId);
+
             return View(artWork);
         }
 
@@ -150,6 +154,7 @@ namespace ArtGalleryOnline.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AuthId"] = new SelectList(_context.AuthorArtWork, "AuthId", "Artist", artWork.AuthId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", artWork.CategoryId);
             return View(artWork);
         }
 
