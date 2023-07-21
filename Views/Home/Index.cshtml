@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<ArtGalleryOnline.Models.ArtWork>
+@{
     ViewData["Title"] = "Home Page";
 }
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -86,12 +87,12 @@
                 @(await Component.InvokeAsync("Category"))
             </div>
         </div>
-       
-        <div class="container mt-5">
-            <h1 class="text-center mb-4">Product Showcase</h1>
-            <div class="card-deck">
+        @foreach (var item in Model)
+                {
+            <div class="row ">
+                <div class="col-sm-4">
                 <div class="card">
-                    <img src="/img/bg-img/1.jpg" class="card-img-top" alt="Product 1">
+                    <img src="@item.ArtImage" class="card-img-top" alt="Product 1">
                     <div class="card-body">
                         <h5 class="card-title">Product 1</h5>
                         <p class="card-text">Product Description Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -100,29 +101,11 @@
                         <a href="/product/detail/3" class="add-to-cart" onclick="addToCart(1)">Add to Cart</a>
                     </div>
                 </div>
-                <div class="card">
-                    <img src="/img/bg-img/1.jpg" class="card-img-top" alt="Product 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 2</h5>
-                        <p class="card-text">Product Description Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="card-text">Price: $150.00</p>
-                       
-                        <a href="/product/detail/3" class="add-to-cart" onclick="addToCart(2)">Add to Cart</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/img/bg-img/1.jpg" class="card-img-top" alt="Product 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 3</h5>
-                        <p class="card-text">Product Description Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="card-text">Price: $200.00</p>
-                       
-                        <a href="/product/detail/3" class="add-to-cart" onclick="addToCart(3)">Add to Cart</a>
-                    </div>
-                </div>
+                
+                
             </div>
         </div>
-
+        }
 
         <div class="row">
             <div class="col-12 text-center wow fadeInUp" data-wow-delay="700ms">
