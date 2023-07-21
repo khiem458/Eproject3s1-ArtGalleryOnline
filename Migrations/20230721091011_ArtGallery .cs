@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ArtGalleryOnline.Migrations
 {
-    public partial class Gallery : Migration
+    public partial class ArtGallery : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -77,7 +77,7 @@ namespace ArtGalleryOnline.Migrations
                     UserAge = table.Column<int>(type: "int", nullable: false),
                     UserPhoneNum = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     UserAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UserPassword = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    UserPassword = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     UserRole = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

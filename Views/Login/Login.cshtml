@@ -34,7 +34,13 @@
                 @Html.PasswordFor(m => m.UserPassword, new { @class = "form-control", @placeholder = "Password" })
             </div>
 
+            @*<div class="form-group">
+                @Html.Label("Remember Me", new { @class = "labelinp" })
+                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-control" })
+            </div>*@
             <button type="submit" class="login-button">Log In</button>
+            <label for="Register">Doesn't have any account yet? Try <a href="/Login/Register"> Create Account </a></label>
+
             @*<div class="social">
                 <div class="go"><i class="fab fa-google"></i> Google</div>
                 <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
@@ -140,8 +146,8 @@
 
     .shape:last-child {
         background: linear-gradient(to right, #ff512f, #f09819);
-        right: -30px;
-        bottom: -80px;
+        right: -50px;
+        bottom: -120px;
     }
 
     .Title {
@@ -159,6 +165,20 @@
         font-size: 15px;
         font-weight: bold;
     }
+
+    label a {
+        background: linear-gradient(45deg, #ff5454, #ff8554);
+        transition: background 1s ease;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 15px;
+    }
+
+        label a:hover {
+            background: linear-gradient(45deg, #ff2f2f, #ff3811);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
     .form-control {
        font-family: sans-serif;

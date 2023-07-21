@@ -12,12 +12,14 @@ using System.Security.Claims;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using BCrypt.Net;
 
 namespace ArtGalleryOnline.Controllers
 {
     public class LoginController : Controller
     {
         private readonly ArtgalleryDbContext _context;
+
 
         public LoginController(ArtgalleryDbContext context)
         {
@@ -31,10 +33,47 @@ namespace ArtGalleryOnline.Controllers
                         View(await _context.Users.ToListAsync()) :
                         Problem("Entity set 'ArtgalleryDbContext.Users'  is null.");
         }
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(Users users)
+        {
+            if (ModelState.IsValid)
+            {
+                var check = _context.Users.FirstOrDefault(s => s.UserEmail == users.UserEmail);
+                if (check == null)
+                {
+                    users.UserPassword = BCrypt.Net.BCrypt.HashPassword(users.UserPassword);
+
+                    // Set any other properties of the Users object here, if needed
+                    // For example, you might want to set the UserRole or any other user-specific properties
+
+                    // Add the new user to the database
+                    _context.Users.Add(users);
+                    _context.SaveChanges();
+
+                    // Redirect the user to the login page after successful registration
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("UserEmail", "Email already exists. Please use a different email address.");
+                }
+            }
+
+            // If the ModelState is invalid or the email already exists, return to the registration page with the provided user data
+            return View(users);
+        }
+
         public async Task<IActionResult> Login()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(Users _userPage)
         {

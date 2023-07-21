@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+@model ArtGalleryOnline.Models.Users
+
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<div class="login-container">
+    <div class="login-box">
+        @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { @class = "login-form" }))
+        {
+            <h3 class="Title">REGISTER</h3>
+
+            <div class="form-group">
+                <label class="labelinp" for="UserName"><b>Username</b></label>
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Username" })
+            </div>
+
+            <div class="form-group">
+                <label class="labelinp" for="UserFullName"><b>Full Name</b></label>
+                @Html.TextBoxFor(m => m.UserFullName, new { @class = "form-control", @placeholder = "Full Name" })
+            </div>
+
+            <div class="form-group">
+                <label class="labelinp" for="UserEmail"><b>Email</b></label>
+                @Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control", @placeholder = "Email" })
+            </div>
+
+            <div class="form-group">
+                <label class="labelinp" for="UserGender"><b>Gender</b></label>
+                @Html.DropDownListFor(m => m.UserGender, new SelectList(Enum.GetValues(typeof(ArtGalleryOnline.Models.Gender))), new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label class="labelinp" for="UserAge"><b>Age</b></label>
+                @Html.TextBoxFor(m => m.UserAge, new { @class = "form-control", @placeholder = "Age" })
+            </div>
+
+            <div class="form-group">
+                <label class="labelinp" for="UserPhoneNum"><b>Phone Number</b></label>
+                @Html.TextBoxFor(m => m.UserPhoneNum, new { @class = "form-control", @placeholder = "Phone Number" })
+            </div>
+
+            <div class="form-group">
+                <label class="labelinp" for="UserAddress"><b>Address</b></label>
+                @Html.TextBoxFor(m => m.UserAddress, new { @class = "form-control", @placeholder = "Address" })
+            </div>
+
+            <div class="form-group">
+                <label class="labelinp" for="UserPassword"><b>Password</b></label>
+                @Html.PasswordFor(m => m.UserPassword, new { @class = "form-control", @placeholder = "Password" })
+            </div>
+
+            <button type="submit" class="login-button">Register</button>
+        }
+    </div>
+</div>
+
+<!-- Additional CSS styles for the registration form -->
+<style>
+    /* Your existing styles */
+
+    /* Custom styles for the registration form */
+    /* ... (add any additional custom styles as needed) */
+</style>

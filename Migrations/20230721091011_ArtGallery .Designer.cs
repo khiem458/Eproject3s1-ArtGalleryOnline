@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGalleryOnline.Migrations
 {
     [DbContext(typeof(ArtgalleryDbContext))]
-    [Migration("20230721053146_Gallery")]
-    partial class Gallery
+    [Migration("20230721091011_ArtGallery ")]
+    partial class ArtGallery
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -374,8 +374,8 @@ namespace ArtGalleryOnline.Migrations
 
                     b.Property<string>("UserPassword")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("UserPhoneNum")
                         .IsRequired()

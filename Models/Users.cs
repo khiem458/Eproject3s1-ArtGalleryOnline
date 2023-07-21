@@ -40,7 +40,7 @@ namespace ArtGalleryOnline.Models
         [StringLength(50)]
         public string? UserAddress { get; set; }
         [Required]
-        [StringLength(20)]
+        [StringLength(255)]
         public string? UserPassword { get; set; }
         public UserRole UserRole { get; set; } = UserRole.user;
 
