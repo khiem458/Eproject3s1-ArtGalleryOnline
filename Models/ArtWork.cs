@@ -3,12 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArtGalleryOnline.Models
 {
-    public enum Type
-    {
-        Scriptures = 0,
-        Painting = 1,
-        Model = 2,
-    }
     public class ArtWork
     {
         [Key]
@@ -20,7 +14,6 @@ namespace ArtGalleryOnline.Models
         [Required]
         [StringLength(50)]
         public string? ArtDescription { get; set; }
-       
         [StringLength(50)]
         public string? ArtImage { get; set; }
         [Required(ErrorMessage = "ArtPrice is required.")]
