@@ -17,5 +17,6 @@ namespace ArtGalleryOnline.Models
         public DbSet<Blog> Blog { get; set; }
         public DbSet<Interest> Interest { get; set; }
         public DbSet<Payment> payments { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
