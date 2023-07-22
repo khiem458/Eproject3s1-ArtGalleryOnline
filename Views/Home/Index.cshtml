@@ -7,18 +7,21 @@
 
     
 
-
+    .post-content a:hover {
+        text-decoration: none;
+    }
 
     #pd_card img {
         width: 100%; /* Định rõ chiều rộng hình ảnh là 100% của card */
-        height: 200px; /* Giữ tỷ lệ khung hình ban đầu */
+        height: 300px; /* Giữ tỷ lệ khung hình ban đầu */
+        border-radius: 5px;
     }
     #pd_card{
         padding-bottom: 20px;
        
     }
     body{
-        background-color: #fef7e7;
+        background-color: #fed7f7;
     }
     
 </style>
@@ -86,14 +89,14 @@
                             <!-- Post Thumbnail -->
                             <a href="#" class="post-thumbnail"><img src="@item.ArtImage" alt=""></a>
                             <!-- Post Catagory -->
-                            <a href="#" class="btn post-catagory">Camera</a>
+                            <a href="#" class="btn post-catagory">Add</a>
                             <!-- Post Conetent -->
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <a href="#">May 19, 2019</a>
-                                    <a href="#">3 Comment</a>
+                                    <a href="#">@item.ArtName</a>
+                                    <a href="#">@item.AuthorArtWork.Artist</a>
                                 </div>
-                                <a href="#" class="post-title">The Female Body Shape Men Find</a>
+                                <a href="#" class="post-title">$@item.ArtPrice</a>
                             </div>
                         </div>
                     </div>
