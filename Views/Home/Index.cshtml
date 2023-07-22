@@ -4,33 +4,23 @@
 }
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
-    .card:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease-in-out;
-    }
 
-    .add-to-cart:hover {
-        text-decoration: none; /* Xóa gạch chân bên dưới chữ */
-    }
     
 
-    .add-to-cart {
-        display: none;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fc6060;
-        color: #000;
-        padding: 8px 16px;
-        border-radius: 4px;
-        cursor: pointer;
+
+
+    #pd_card img {
+        width: 100%; /* Định rõ chiều rộng hình ảnh là 100% của card */
+        height: 200px; /* Giữ tỷ lệ khung hình ban đầu */
+    }
+    #pd_card{
+        padding-bottom: 20px;
        
     }
-
-    .card:hover .add-to-cart {
-        display: block;
+    body{
+        background-color: #fef7e7;
     }
+    
 </style>
 <!-- Welcome Area Start -->
 <section class="welcome-area">
@@ -87,28 +77,30 @@
                 @(await Component.InvokeAsync("Category"))
             </div>
         </div>
-          <div class="row ">
+        <div class="container">
+          <div class="row  ">
             @foreach (var item in Model)
                 {
-          
-                    <div class="col-sm-4">
-                        <div class="card">
-                        <img src="@item.ArtImage" class="card-img-top img-fluid" alt="Product 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Product 1</h5>
-                                <p class="card-text">Product Description Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <p class="card-text">Price: $100.00</p>
-                        
-                                <a href="/product/detail/3" class="add-to-cart" onclick="addToCart(1)">Add to Cart</a>
+                    <div class=" col-sm-4">
+                        <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms" id="pd_card">
+                            <!-- Post Thumbnail -->
+                            <a href="#" class="post-thumbnail"><img src="@item.ArtImage" alt=""></a>
+                            <!-- Post Catagory -->
+                            <a href="#" class="btn post-catagory">Camera</a>
+                            <!-- Post Conetent -->
+                            <div class="post-content">
+                                <div class="post-meta">
+                                    <a href="#">May 19, 2019</a>
+                                    <a href="#">3 Comment</a>
+                                </div>
+                                <a href="#" class="post-title">The Female Body Shape Men Find</a>
                             </div>
                         </div>
-                
-                
                     </div>
            
                 }
         </div>
-
+        </div>
         <div class="row">
             <div class="col-12 text-center wow fadeInUp" data-wow-delay="700ms">
                 <a href="#" class="btn alime-btn btn-2 mt-15">View More</a>
