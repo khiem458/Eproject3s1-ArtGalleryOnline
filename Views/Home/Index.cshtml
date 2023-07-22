@@ -87,25 +87,27 @@
                 @(await Component.InvokeAsync("Category"))
             </div>
         </div>
-        @foreach (var item in Model)
+          <div class="row ">
+            @foreach (var item in Model)
                 {
-            <div class="row ">
-                <div class="col-sm-4">
-                <div class="card">
-                    <img src="@item.ArtImage" class="card-img-top" alt="Product 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 1</h5>
-                        <p class="card-text">Product Description Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p class="card-text">Price: $100.00</p>
+          
+                    <div class="col-sm-4">
+                        <div class="card">
+                        <img src="@item.ArtImage" class="card-img-top img-fluid" alt="Product 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Product 1</h5>
+                                <p class="card-text">Product Description Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p class="card-text">Price: $100.00</p>
                         
-                        <a href="/product/detail/3" class="add-to-cart" onclick="addToCart(1)">Add to Cart</a>
+                                <a href="/product/detail/3" class="add-to-cart" onclick="addToCart(1)">Add to Cart</a>
+                            </div>
+                        </div>
+                
+                
                     </div>
-                </div>
-                
-                
-            </div>
+           
+                }
         </div>
-        }
 
         <div class="row">
             <div class="col-12 text-center wow fadeInUp" data-wow-delay="700ms">
