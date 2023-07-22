@@ -35,7 +35,8 @@ namespace ArtGalleryOnline.Controllers
         }
         public IActionResult Blog()
         {
-            return View();
+            var Blog = _context.Blog.Include(b => b.AuthorArtWork);
+            return View(Blog.ToList());
         }
         public IActionResult Contact()
         {

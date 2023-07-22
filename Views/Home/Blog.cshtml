@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ArtGalleryOnline.Models.Blog>
 @{
     ViewData["Title"] = "Blog";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,25 +27,25 @@
 <div class="alime-blog-area section-padding-80-0 mb-70">
     <div class="container">
         <div class="row">
-
+            @foreach (var item in Model){
             <!-- Single Blog Area -->
             <div class="col-12 col-lg-6">
                 <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
                     <!-- Post Thumbnail -->
-                    <a href="#" class="post-thumbnail"><img src="/img/bg-img/51.jpg" alt=""></a>
+                    <a href="#" class="post-thumbnail"><img src="@item.Image" alt=""></a>
                     <!-- Post Catagory -->
-                    <a href="#" class="btn post-catagory">Photography</a>
+                    <a href="#" class="btn post-catagory">@item.AuthorArtWork.Artist</a>
                     <!-- Post Conetent -->
                     <div class="post-content">
                         <div class="post-meta">
-                            <a href="#">May 19, 2019</a>
-                            <a href="#">3 Comment</a>
+                            <a href="#">@item.Date</a>
+                            <a href="#">@item.Comment</a>
                         </div>
-                        <a href="#" class="post-title">The Female Body Shape Men Find Most Attractive</a>
+                        <a href="#" class="post-title">@item.Description</a>
                     </div>
                 </div>
             </div>
-
+            }
             <!-- Single Blog Area -->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms">
