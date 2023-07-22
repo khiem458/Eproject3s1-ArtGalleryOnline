@@ -70,16 +70,18 @@ namespace ArtGalleryOnline.Controllers
             return View(users);
         }
 
+
         public async Task<IActionResult> Login()
         {
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> Login(Users _userPage)
         {
-            var _user = _context.Users.SingleOrDefault(m => m.UserEmail == _userPage.UserEmail && m.UserPassword == _userPage.UserPassword);
-            if (_user == null)
+            // Find the user with the given email in the database
+            var _user = _context.Users.SingleOrDefault(m => m.UserEmail == _userPage.UserEmail);
+
+            if (_user == null || !BCrypt.Net.BCrypt.Verify(_userPage.UserPassword, _user.UserPassword))
             {
                 ViewBag.LoginStatus = 0;
                 return View();
@@ -123,6 +125,7 @@ namespace ArtGalleryOnline.Controllers
                 }
             }
         }
+
         public async Task<IActionResult> Logout()
         {
             // Perform the sign-out
