@@ -87,13 +87,13 @@
                     <div class=" col-sm-4">
                         <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms" id="pd_card">
                             <!-- Post Thumbnail -->
-                            <a href="#" class="post-thumbnail"><img src="@item.ArtImage" alt=""></a>
+                            <a href="~/ArtWorks/ArtWorkDetails?id=@item.ArtId" class="post-thumbnail"><img src="@item.ArtImage" alt=""></a>
                             <!-- Post Catagory -->
-                            <a href="#" class="btn post-catagory">Add</a>
+                            <a href="~/ArtWorks/ArtWorkDetails?id=@item.ArtId" class="btn post-catagory">Add</a>
                             <!-- Post Conetent -->
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <a href="#">@item.ArtName</a>
+                                    <a href="~/ArtWorks/ArtWorkDetails?id=@item.ArtId">@item.ArtName</a>
                                    
                                     <a href="#">@item.AuthorArtWork.Artist</a>
                                 </div>
