@@ -2,14 +2,45 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
+<style>
+    /* Thêm CSS để tạo kiểu cho các liên kết */
+    .alime-projects-menu a {
+        color: #000000; /* Đặt màu chữ là màu đen */
+        font-size: 20px; /* Tăng kích thước chữ lên 25px (điều chỉnh theo ý muốn) */
+        text-decoration: none; /* Loại bỏ gạch chân dưới liên kết */
+        position: relative; /* Yêu cầu cho animation */
+    }
+
+        /* Thêm CSS để tạo hiệu ứng trượt */
+        .alime-projects-menu a::after {
+            content: ""; /* Yêu cầu cho pseudo-element */
+            position: absolute;
+            bottom: 0; /* Đặt pseudo-element ở dưới chữ */
+            left: 0;
+            width: 100%;
+            height: 3px; /* Đặt chiều cao của thanh hiệu ứng */
+            background-color: #FC6060; /* Màu nền cho hiệu ứng trượt */
+            z-index: -1; /* Đưa pseudo-element phía sau chữ */
+            transform: scaleX(0); /* Đặt chiều rộng của thanh hiệu ứng ban đầu là 0 */
+            transform-origin: left; /* Đặt điểm bắt đầu trượt từ bên trái */
+            transition: transform 0.3s; /* Thời gian của animation */
+        }
+
+        /* Thêm CSS để tạo kiểu cho liên kết khi hover vào */
+        .alime-projects-menu a:hover::after {
+            transform: scaleX(1); /* Di chuyển pseudo-element để hiệu ứng trượt từ đầu chữ */
+        }
+
+
+</style>
 <div class="alime-projects-menu">
     <div class="portfolio-menu text-center">
-        <button class="btn active" data-filter="*">All</button>
+        <ul>
         @foreach (var item in Model)
         {
-            <button class="btn">@item.CategoryName</button>
+            <li><a href="/ArtWorks/ArtWorkByCategory?CatId=@item.">@item.CategoryName</a></li>
         }
-        
+        </ul>
        
     </div>
 </div>
