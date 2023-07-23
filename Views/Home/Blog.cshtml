@@ -29,10 +29,14 @@
         <div class="row">
             @foreach (var item in Model){
             <!-- Single Blog Area -->
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6 col-lg-3">
                 <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
                     <!-- Post Thumbnail -->
+<<<<<<< HEAD
                     <a href="#" class="post-thumbnail"><img src="@item.Image" alt=""></a>
+=======
+                       <a href="#" class="post-thumbnail"><img src="~/@item.Image" alt=""></a>
+>>>>>>> 20114f798c0ef3de7aea9c19836a6e9e028b8804
                     <!-- Post Catagory -->
                     <a href="#" class="btn post-catagory">@item.AuthorArtWork.Artist</a>
                     <!-- Post Conetent -->
