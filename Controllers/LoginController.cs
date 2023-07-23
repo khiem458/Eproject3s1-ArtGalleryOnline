@@ -132,7 +132,7 @@ namespace ArtGalleryOnline.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             // Redirect the user to the desired page after logging out
-            return RedirectToAction("Index", "Home"); // Redirect to the Home page or any other page you want
+            return RedirectToAction("Index", "Login"); // Redirect to the Home page or any other page you want
         }
 
 
