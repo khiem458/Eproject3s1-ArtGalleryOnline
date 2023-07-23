@@ -3,65 +3,227 @@
     ViewData["Title"] = "ArtWorkDetails";
     Layout = "~/Views/Shared/_DetailView.cshtml";
 }
+<!-- Include Font Awesome via CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-***" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<!-- ... Các thẻ meta và các thẻ khác ... -->
-<!-- Stylesheet -->
-<link rel="stylesheet" href="/style.css">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    /* Thêm các kiểu CSS tùy chỉnh của bạn ở đây */
 
-<div class="alime-portfolio-area section-padding-80 clearfix">
-    <div class="container-fluid">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <h1 class="text-center">Chi tiết sản phẩm bán tranh</h1>
+    /* Kiểu dáng cho phần breadcrumb-area */
+    .breadcrumb-area {
+        position: relative;
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+    }
 
-                    <div class="product-container d-flex">
-                        <div class="col-md-6">
-                           
-                            <!-- Carousel -->
-                            <div id="productCarousel" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                   
-                                        
-                                            <img src="~/@Model.ArtImage" alt="Tranh" class="img-fluid">
-                                       
-                                
-                                </div>
-                                <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        </div>
+    .breadcrumb-content {
+        padding-top: 80px;
+        padding-bottom: 80px;
+        color: #fff;
+    }
 
-                        <div class="col-md-6">
-                            <div class="product-info ml-3">
-                                <div class="product-title">@Model.ArtName</div>
-                                <div class="product-artist">Họa sĩ: @Model.AuthorArtWork.Artist</div>
-                                <div class="product-price">Giá: $@Model.ArtPrice</div>
-                                <div class="product-description">
-                                    @Model.ArtDescription
-                                </div>
-                                <a href="#" class="product-btn btn btn-primary">Thêm vào giỏ hàng</a>
-                            </div>
-                        </div>
-                    </div>
+    .page-title {
+        font-size: 36px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    .breadcrumb {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .breadcrumb-item {
+        font-size: 16px;
+    }
+
+        .breadcrumb-item a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+            .breadcrumb-item a:hover {
+                text-decoration: underline;
+            }
+
+    /* Kiểu dáng cho phần banner-bottom */
+    .banner-bottom {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .container {
+        max-width: 1140px;
+        margin: 0 auto;
+    }
+
+    /* Kiểu dáng cho hình ảnh sản phẩm */
+    .desc1-left img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Kiểu dáng cho thông tin sản phẩm */
+    .desc1-right h3 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .desc1-right h5 {
+        font-size: 24px;
+        color: #f00; /* Màu đỏ cho giá sản phẩm */
+        margin-bottom: 20px;
+    }
+
+    .desc1-right p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .product-btn {
+        display: inline-block;
+        padding: 10px 30px;
+        font-size: 18px;
+        text-transform: uppercase;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+        border-radius: 4px;
+    }
+
+        .product-btn:hover {
+            background-color: #0056b3; /* Màu xanh dương đậm khi di chuột vào */
+        }
+
+    /* Kiểu dáng cho biểu tượng chia sẻ mạng xã hội */
+    .social-ficons ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .social-ficons li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .social-ficons a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    .social-ficons .fa {
+        margin-right: 5px;
+    }
+
+    /* Kiểu dáng cho phần sub-para-w3pvt */
+    .sub-para-w3pvt {
+        margin-top: 50px;
+    }
+
+    .shop-sing {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .italic-blue {
+        font-style: italic;
+        color: #007bff; /* Màu xanh dương cho văn bản in nghiêng */
+    }
+
+    /* Kiểu dáng bổ sung cho văn bản đoạn */
+    .sub-para-w3pvt p {
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+    /* CSS for the hover effect */
+    .social-ficons ul li a {
+        color: #000; /* Set the initial color of the links */
+        text-decoration: none; /* Remove underline from the links */
+        display: inline-block;
+        padding: 5px;
+        transition: color 0.3s; /* Add a smooth transition for the color change */
+    }
+
+        .social-ficons ul li a:hover {
+            color: #f00; /* Set the color when hovering over the links */
+        }
+
+</style>
+
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/bg-img/38.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="page-title">Contact</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="icon_house_alt"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">WorkDetail</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+<section class="banner-bottom py-5">
+    <div class="container py-md-5">
+        <!---728x90--->
+        <!-- product right -->
+        <div class="left-ads-display wthree">
+            <div class="row">
+                <div class="desc1-left col-md-6">
+                    <img src="~/@Model.ArtImage" class="img-fluid" alt="">
+                </div>
+                <div class="desc1-right col-md-6 pl-lg-3">
+                    <h3>@Model.ArtName</h3>
+                    <div><b>Author:</b><span>@Model.AuthorArtWork.Artist</span></div>
+                    <div><b>Category:</b><span>@Model.Category.CategoryName</span></div>
+                    <div><b>Price:</b><span style="color: #f00;display: block;">$@Model.ArtPrice</span></div>
+                    <div><b>Describe:</b><span>@Model.ArtDescription</span></div>
+                    <a href="#" class="product-btn btn btn-primary mt-3">Thêm vào giỏ hàng</a>
+                    <div class="share-desc mt-5">
+                        <div class="share text-center">
+                            <!-- Center the Share ArtWork section -->
+                            <h4>Share ArtWork :</h4>
+                            <div class="social-ficons mt-4">
+                                <ul class="list-unstyled">
+                                    <!-- Add 'list-unstyled' class to remove default list styles -->
+                                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                                    <li><a href="#"><i class="fab fa-google"></i> Google</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
 
-<!-- **** All JS Files ***** -->
-<!-- jQuery 2.2.4 -->
-<script src="/js/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="/js/bootstrap.min.js"></script>
-<!-- Active -->
-<script src="/js/default-assets/active.js"></script>
+
+
+            </div>
+            <div class="row sub-para-w3pvt my-5">
+
+                <h3 class="shop-sing">Lorem ipsum dolor sit amet</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.</p>
+                <p class="mt-3 italic-blue">Consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.</p>
+                <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.</p>
+            </div>
+
+
+           
+        </div>
+    </div>
+</section>
+
