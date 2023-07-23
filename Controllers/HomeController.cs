@@ -25,6 +25,14 @@ namespace ArtGalleryOnline.Controllers
             return View(artWorks.ToList());
         }
 
+        public IActionResult Store()
+        {
+            var artWorks = _context.ArtWork
+                                           .Include(a => a.AuthorArtWork) // Bao gồm thông tin về tác giả tác phẩm (AuthorArtWork)
+                                            .Include(a => a.Category); // Bao gồm thông tin về danh mục tác phẩm (Category)
+
+            return View(artWorks.ToList());
+        }
         public IActionResult About()
         {
             return View();
