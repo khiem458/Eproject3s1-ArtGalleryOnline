@@ -16,27 +16,28 @@ namespace ArtGalleryOnline.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var artWorks = _context.ArtWork
+            var artWorks = await _context.ArtWorks
                                            .Include(a => a.AuthorArtWork) // Bao gồm thông tin về tác giả tác phẩm (AuthorArtWork)
-                                            .Include(a => a.Category); // Bao gồm thông tin về danh mục tác phẩm (Category)
-                                          
-            return View(artWorks.ToList());
+                                            .Include(a => a.Category) // Bao gồm thông tin về danh mục tác phẩm (Category)
+                                            .ToArrayAsync();
+            return View(artWorks);
         }
 
-        public IActionResult Store(string searchString)
+        public async Task<IActionResult> Store(string searchString)
         {
+            IQueryable<ArtWork> query = _context.ArtWorks
+                                           .Include(a => a.AuthorArtWork) // Bao gồm thông tin về tác giả tác phẩm (AuthorArtWork)
+                                           .Include(a => a.Category); // Bao gồm thông tin về danh mục tác phẩm (Category)
+
             if (!String.IsNullOrEmpty(searchString))
             {
-                var artWork = _context.ArtWork.Where(a => a.ArtName.Contains(searchString));
-                return View(artWork.ToList());
+                query = query.Where(a => a.ArtName.Contains(searchString));
             }
-            var artWorks = _context.ArtWork
-                                           .Include(a => a.AuthorArtWork) // Bao gồm thông tin về tác giả tác phẩm (AuthorArtWork)
-                                            .Include(a => a.Category); // Bao gồm thông tin về danh mục tác phẩm (Category)
 
-            return View(artWorks.ToList());
+            var artWorks = await query.ToListAsync();
+            return View(artWorks);
         }
         public IActionResult About()
         {

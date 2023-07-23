@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Cart
+
+<h1>Shopping Cart</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.ArtName</td>
+                <td>@item.ArtPrice</td>
+                <td>@item.Quantity</td>
+                <td>@(item.ArtPrice * item.Quantity)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Checkout">Checkout</a>
+
+
+

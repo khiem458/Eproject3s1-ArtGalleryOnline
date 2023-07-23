@@ -21,7 +21,7 @@ namespace ArtGalleryOnline.Controllers
         public async Task<IActionResult> ArtWorkByCategory(int CatId)
 
         {
-            var artWorks = await _context.ArtWork
+            var artWorks = await _context.ArtWorks
                                             .Include(a => a.AuthorArtWork) // Bao gồm thông tin về tác giả tác phẩm (AuthorArtWork)
                                              .Include(a => a.Category) // Bao gồm thông tin về danh mục tác phẩm (Category)
                                              .Where(a => a.CategoryId == CatId)
@@ -31,12 +31,12 @@ namespace ArtGalleryOnline.Controllers
         }
         public async Task<IActionResult> ArtWorkDetails(int? id)
         {
-            if (id == null || _context.ArtWork == null)
+            if (id == null || _context.ArtWorks == null)
             {
                 return NotFound();
             }
 
-            var artWork = await _context.ArtWork
+            var artWork = await _context.ArtWorks
                 .Include(a => a.AuthorArtWork)
                 .Include(a => a.Category)
                 .FirstOrDefaultAsync(m => m.ArtId == id);

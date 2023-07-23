@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGalleryOnline.Migrations
 {
     [DbContext(typeof(ArtgalleryDbContext))]
-    [Migration("20230721091011_ArtGallery ")]
-    partial class ArtGallery
+    [Migration("20230723201854_Gallary")]
+    partial class Gallary
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,7 +61,7 @@ namespace ArtGalleryOnline.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("ArtWork");
+                    b.ToTable("ArtWorks");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.AuthorArtWork", b =>
@@ -110,7 +110,6 @@ namespace ArtGalleryOnline.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -167,7 +166,7 @@ namespace ArtGalleryOnline.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Interest");
+                    b.ToTable("Interests");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.Notification", b =>
@@ -187,7 +186,7 @@ namespace ArtGalleryOnline.Migrations
 
                     b.HasKey("NotifiId");
 
-                    b.ToTable("Notification");
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.OrderDetail", b =>
@@ -219,7 +218,7 @@ namespace ArtGalleryOnline.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderDetail");
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.Orders", b =>
@@ -311,7 +310,7 @@ namespace ArtGalleryOnline.Migrations
 
                     b.HasKey("ShipFeeId");
 
-                    b.ToTable("shippingFee");
+                    b.ToTable("shippingFees");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.UserNotification", b =>
@@ -334,7 +333,7 @@ namespace ArtGalleryOnline.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserNotification");
+                    b.ToTable("UserNotifications");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.Users", b =>
@@ -346,7 +345,6 @@ namespace ArtGalleryOnline.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
                     b.Property<string>("UserAddress")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -360,7 +358,6 @@ namespace ArtGalleryOnline.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("UserFullName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
