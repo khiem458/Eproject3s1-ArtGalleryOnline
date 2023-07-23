@@ -3,6 +3,46 @@
     ViewData["Title"] = "Blog";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+         /* Đảm bảo cột chỉ chiếm 1/3 (33.33%) của container */
+    .alime-blog-area .row .col-12,
+    .alime-blog-area .row .col-sm-6,
+    .alime-blog-area .row .col-lg-4 {
+        flex-basis: 33.33%;
+        max-width: 33.33%;
+    }
+
+    /* Tạo khoảng cách giữa các cột */
+    .alime-blog-area .row .col-12,
+    .alime-blog-area .row .col-sm-6,
+    .alime-blog-area .row .col-lg-4 {
+        padding: 15px;
+    }
+
+    /* Thêm khung cho phần tử single-post-area */
+    .single-post-area {
+        border: 1px solid #ccc;
+        padding: 20px;
+    }
+
+    #pd_card img {
+        width: 100%; /* Định rõ chiều rộng hình ảnh là 100% của card */
+        height: 300px; /* Giữ tỷ lệ khung hình ban đầu */
+        border-radius: 10px;
+    }
+
+    .single-post-area::after {
+        position: absolute;
+        width: 100%;
+        height: 342px;
+        border-radius: 5px;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.1);
+        content: '';
+        z-index: 1;
+    }
+</style>
 
 <!-- Breadcrumb Area Start -->
 <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/bg-img/38.jpg);">
@@ -27,170 +67,25 @@
 <div class="alime-blog-area section-padding-80-0 mb-70">
     <div class="container">
         <div class="row">
-            @foreach (var item in Model){
-            <!-- Single Blog Area -->
-            <div class="col-12 col-lg-6 col-lg-3">
-                <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
-                    <!-- Post Thumbnail -->
-                       <a href="#" class="post-thumbnail"><img src="~/@item.Image" alt=""></a>
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <!-- Single Blog Area -->
+                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms" id="pd_card">
+                        <a href="#" class="post-thumbnail"><img src="~/@item.Image" alt=""></a>
 
-                    <!-- Post Catagory -->
-                    <a href="#" class="btn post-catagory">@item.AuthorArtWork.Artist</a>
-                    <!-- Post Conetent -->
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <a href="#">@item.Date</a>
-                            <a href="#">@item.Comment</a>
+                        <a href="#" class="btn post-catagory">@item.AuthorArtWork.Artist</a>
+
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <a href="#">@item.Date</a>
+                                <a href="#">@item.Comment</a>
+                            </div>
+                            <a href="/Blogs/BlogDetails?id=@item.BlogId" class="post-title">@item.Title</a>
                         </div>
-                        <a href="#" class="post-title">@item.Description</a>
                     </div>
                 </div>
-            </div>
             }
-            <!-- Single Blog Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms">
-                    <!-- Post Thumbnail -->
-                    <a href="#" class="post-thumbnail"><img src="/img/bg-img/52.jpg" alt=""></a>
-                    <!-- Post Catagory -->
-                    <a href="#" class="btn post-catagory">Camera</a>
-                    <!-- Post Conetent -->
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <a href="#">May 19, 2019</a>
-                            <a href="#">3 Comment</a>
-                        </div>
-                        <a href="#" class="post-title">The Female Body Shape Men Find</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Blog Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-post-area wow fadeInUpBig" data-wow-delay="700ms">
-                    <!-- Post Thumbnail -->
-                    <a href="#" class="post-thumbnail"><img src="/img/bg-img/53.jpg" alt=""></a>
-                    <!-- Post Catagory -->
-                    <a href="#" class="btn post-catagory">Country</a>
-                    <!-- Post Conetent -->
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <a href="#">May 19, 2019</a>
-                            <a href="#">3 Comment</a>
-                        </div>
-                        <a href="#" class="post-title">Vietnam's largest art community</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Blog Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
-                    <!-- Post Thumbnail -->
-                    <a href="#" class="post-thumbnail"><img src="/img/bg-img/54.jpg" alt=""></a>
-                    <!-- Post Catagory -->
-                    <a href="#" class="btn post-catagory">Camera</a>
-                    <!-- Post Conetent -->
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <a href="#">May 19, 2019</a>
-                            <a href="#">3 Comment</a>
-                        </div>
-                        <a href="#" class="post-title">Photo awards of the year</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Blog Area -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms">
-                    <!-- Post Thumbnail -->
-                    <a href="#" class="post-thumbnail"><img src="/img/bg-img/55.jpg" alt=""></a>
-                    <!-- Post Catagory -->
-                    <a href="#" class="btn post-catagory">Tips</a>
-                    <!-- Post Conetent -->
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <a href="#">May 19, 2019</a>
-                            <a href="#">3 Comment</a>
-                        </div>
-                        <a href="#" class="post-title">The Female Body Shape Men Find</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Blog Area -->
-            <div class="col-12 col-lg-6">
-                <div class="single-post-area wow fadeInUpBig" data-wow-delay="700ms">
-                    <!-- Post Thumbnail -->
-                    <a href="#" class="post-thumbnail"><img src="/img/bg-img/56.jpg" alt=""></a>
-                    <!-- Post Catagory -->
-                    <a href="#" class="btn post-catagory">Photography</a>
-                    <!-- Post Conetent -->
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <a href="#">May 19, 2019</a>
-                            <a href="#">3 Comment</a>
-                        </div>
-                        <a href="#" class="post-title">The Female Body Shape Men Find Most Attractive</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Blog Area -->
-            <div class="col-12 col-lg-3">
-                <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
-                    <!-- Post Thumbnail -->
-                    <a href="#" class="post-thumbnail"><img src="/img/bg-img/57.jpg" alt=""></a>
-                    <!-- Post Catagory -->
-                    <a href="#" class="btn post-catagory">Country</a>
-                    <!-- Post Conetent -->
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <a href="#">May 19, 2019</a>
-                            <a href="#">3 Comment</a>
-                        </div>
-                        <a href="#" class="post-title">The Female Body Shape Men Find</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Blog Area -->
-            <div class="col-12 col-lg-6">
-                <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms">
-                    <!-- Post Thumbnail -->
-                    <a href="#" class="post-thumbnail"><img src="/img/bg-img/58.jpg" alt=""></a>
-                    <!-- Post Catagory -->
-                    <a href="#" class="btn post-catagory">Camera</a>
-                    <!-- Post Conetent -->
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <a href="#">May 19, 2019</a>
-                            <a href="#">3 Comment</a>
-                        </div>
-                        <a href="#" class="post-title">The Female Body Shape Men Find Most Attractive</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Blog Area -->
-            <div class="col-12 col-lg-3">
-                <div class="single-post-area wow fadeInUpBig" data-wow-delay="700ms">
-                    <!-- Post Thumbnail -->
-                    <a href="#" class="post-thumbnail"><img src="/img/bg-img/59.jpg" alt=""></a>
-                    <!-- Post Catagory -->
-                    <a href="#" class="btn post-catagory">Photography</a>
-                    <!-- Post Conetent -->
-                    <div class="post-content">
-                        <div class="post-meta">
-                            <a href="#">May 19, 2019</a>
-                            <a href="#">3 Comment</a>
-                        </div>
-                        <a href="#" class="post-title">The Female Body Shape Men Find</a>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>

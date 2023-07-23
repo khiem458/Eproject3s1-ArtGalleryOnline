@@ -1,0 +1,129 @@
+﻿@model ArtGalleryOnline.Models.Blog
+
+
+@{
+    ViewData["Title"] = "BlogDetails";
+    Layout = "~/Views/Shared/BlogDetail.cshtml";
+}
+
+<div class="blog-post-single-61">
+	<div class="wrapper">
+		<div style="margin: 8px auto; display: block; text-align:center;">
+
+			<!---728x90--->
+
+
+		</div>
+		<!-- left side blog post content -->
+		<div class="single-left">
+			<div class="single-left1 box13">
+				<div> 
+					<a href="#" class="img-responsive"><img src="~/@Model.Image" alt=""></a>
+				</div>
+
+				<h3 class="card-title"> @Model.Title </h3>
+				<ul class="admin-list">
+					<li><a href="#"><span class="fa fa-calendar" aria-hidden="true"></span>@Model.Date</a></li>
+					<li><a href="#"><span class="fa fa-user" aria-hidden="true"></span>@Model.AuthorArtWork.Artist</a></li>
+					<li>
+						<a href="#">
+							<span class="fa fa-commenting-o" aria-hidden="true"></span>9
+							Comments
+						</a>
+					</li>
+				</ul>
+				<p class="">
+					@Model.AuthorArtWork.Artist
+				</p>
+			
+			</div>
+			<div class="comments">
+				<h3 class="aside-title ">Recent Comments</h3>
+				<div class="comments-grids">
+					<div class="media">
+						<img class="img-responsive" src="assets/images/customer1.jpg" alt="placeholder image">
+						<a href="#comment" class="replay">Reply</a>
+						<div class="media-body comments-grid-right">
+							<h4>Jack Harry</h4>
+							<ul class="">
+								<li class="font-weight-bold">
+									20 Oct  2019
+									<i>|</i>
+								</li>
+								<li class="">
+									Customer
+								</li>
+							</ul>
+							<p>Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices. Aliquam ac arcu interdum,Aliquam ac arcu interdum, dapibus nibh convallis, semper augue.</p>
+						</div>
+					</div>
+					<div class="media second-part">
+						<a class="" href="#">
+							<img class="img-responsive" src="assets/images/customer.jpg" alt="placeholder image">
+						</a><a href="#comment" class="replay">Reply</a>
+
+						<div class="media-body comments-grid-right">
+							<h4>Charlie</h4>
+							<ul class="my-2">
+								<li class="font-weight-bold">
+									21 Oct 2019
+									<i>|</i>
+								</li>
+								<li class="">
+									Customer
+								</li>
+							</ul>
+							<p>Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices. Aliquam ac arcu interdum,Aliquam ac arcu interdum, dapibus nibh convallis, semper augue.</p>
+						</div>
+					</div>
+					<div class="media third-part">
+						<a class="" href="#">
+							<img class="img-responsive" src="assets/images/customer2.jpg" alt="placeholder image">
+						</a><a href="#comment" class="replay">Reply</a>
+
+						<div class="media-body comments-grid-right">
+							<h4>John Charlie</h4>
+							<ul class="my-2">
+								<li class="font-weight-bold">
+									21 Oct 2019
+									<i>|</i>
+								</li>
+								<li class="">
+									Customer
+								</li>
+							</ul>
+							<p>Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices. Aliquam ac arcu interdum,Aliquam ac arcu interdum, dapibus nibh convallis, semper augue.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="leave-coment-form" id="comment">
+				<h3 class="aside-title">Write Your Comment</h3>
+				<form action="#" method="post">
+					<div class="d-grid- grid-col-2">
+						<div class="form-group">
+							<input type="text" name="Name" class="form-control" placeholder="Name" required="" fdprocessedid="6s76t7">
+						</div>
+						<div class="form-group">
+							<input type="email" name="Email" class="form-control" placeholder="Email" required="" fdprocessedid="hdmtk">
+						</div>
+					</div>
+					<div class="form-group">
+						<textarea name="Message" class="form-control" placeholder="Your comment here..." required=""></textarea>
+					</div>
+					<div class="mm_single_submit">
+						<button type="submit" class="btn" fdprocessedid="0aoa7l">Post Comment</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- left side blog post content -->
+	</div>
+	<!-- //blog-post-single-61 -->
+	<div style="margin: 8px auto; display: block; text-align:center;">
+
+		<!---728x90--->
+
+
+	</div>
+</div>
