@@ -1,12 +1,15 @@
 ﻿using ArtGalleryOnline.Infrastructure;
 using ArtGalleryOnline.Models;
 using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.EntityFrameworkCore;
+
 
 namespace ArtGalleryOnline.Controllers
 {
     public class CartController : Controller
     {
+
         private readonly ArtgalleryDbContext _context;
 
         public CartController(ArtgalleryDbContext context)
@@ -47,6 +50,7 @@ namespace ArtGalleryOnline.Controllers
             HttpContext.Session.Set("Cart", cart);
 
             return RedirectToAction("Index");
+
         }
     }
 }

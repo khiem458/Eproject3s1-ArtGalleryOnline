@@ -4,6 +4,7 @@
     {
 
 
+
         private List<CartItem> items = new List<CartItem>();
 
         public IReadOnlyCollection<CartItem> Items => items.AsReadOnly();
@@ -32,12 +33,19 @@
         // Thêm các phương thức xóa mục, cập nhật số lượng, v.v. nếu cần thiết
 
 
+        
+
+        
+
     }
     public class CartItem
     {
+
         public int ArtId { get; set; }
         public string ArtName { get; set; }
         public decimal ArtPrice { get; set; }
+
+       
         public int Quantity { get; set; }
     }
 }

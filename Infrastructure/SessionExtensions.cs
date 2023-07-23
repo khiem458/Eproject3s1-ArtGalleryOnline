@@ -4,6 +4,7 @@ namespace ArtGalleryOnline.Infrastructure
 {
     public static class SessionExtensions
     {
+
         public static void Set<T>(this ISession session, string key, T value)
         {
             var options = new JsonSerializerOptions
@@ -22,6 +23,7 @@ namespace ArtGalleryOnline.Infrastructure
                 return default;
 
             return JsonSerializer.Deserialize<T>(value);
+
         }
     }
 }
