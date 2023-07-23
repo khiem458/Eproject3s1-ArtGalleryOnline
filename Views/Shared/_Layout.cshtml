@@ -74,7 +74,7 @@
                             <div class="classynav">
                                 <ul id="nav">
                                     <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                                    <li>
+                                    @*<li>
                                         <a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a asp-area="" asp-controller="Home" asp-action="Index">- Home</a></li>
@@ -91,25 +91,15 @@
                                                     <li><a href="#">- Dropdown Item</a></li>
                                                 </ul>
                                             </li>
-                                        </ul>
-                                    </li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                                        </ul> no in use 
+                                    </li>*@
                                     <li><a asp-area="" asp-controller="Home" asp-action="Gallery">Gallery</a></li>
                                     <li><a asp-area="" asp-controller="Home" asp-action="Blog">Blog</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Store">Store</a></li>                                                                    
                                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Store">Store</a></li>
-                                    <li >
-                                        <a href="">Customer</a>
-                                        <ul class="dropdown">
-                                            <li><a asp-area="" asp-controller="Login" asp-action="Login">-Login</a></li>
-                                            <li><a asp-area="" asp-controller="Login" asp-action="Register">-Register</a></li>
-                                            <li> <a asp-area="" asp-controller="Login" asp-action="Login">-Quên mât khâu</a></li>
-                                            
-                                           
-                                        </ul>
-                                       
-                                    </li>
-                                    
+                                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>                                 
+                                    <li><a asp-area="" asp-controller="Login" asp-action="Login" class="button-outline">Login</a></li>
+                                                                                                            
                                 </ul>
 
                                 <!-- Search Icon -->
@@ -248,7 +238,20 @@
     <script src="/js/alime.bundle.js"></script>
     <!-- Active -->
     <script src="/js/default-assets/active.js"></script>
+    <style>
+        .button-outline {
+            border: 1px solid white; 
+            color: white; 
+            border-radius: 5px; 
+            transition: border-color 1s color 1s ease;          
+        }
 
+            /* Button hover style */
+            .button-outline:hover {
+                border-color: #f74d4c; 
+                color: #f74d4c
+            }
+    </style>
 </body>
 
 </html>
