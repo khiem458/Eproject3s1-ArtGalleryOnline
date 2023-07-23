@@ -1,12 +1,16 @@
 ﻿using ArtGalleryOnline.Infrastructure;
 using ArtGalleryOnline.Models;
 using Microsoft.AspNetCore.Mvc;
+<<<<<<< HEAD
 using Microsoft.EntityFrameworkCore;
+=======
+>>>>>>> 37403b2cf1321335730aaed83669456188fe7316
 
 namespace ArtGalleryOnline.Controllers
 {
     public class CartController : Controller
     {
+<<<<<<< HEAD
         private readonly ArtgalleryDbContext _context;
 
         public CartController(ArtgalleryDbContext context)
@@ -47,6 +51,27 @@ namespace ArtGalleryOnline.Controllers
             HttpContext.Session.Set("Cart", cart);
 
             return RedirectToAction("Index");
+=======
+        public Cart? Cart { get; set; }
+        private readonly ArtgalleryDbContext _context;
+
+        public CartController(ArtgalleryDbContext context)
+        {
+            _context = context;
+        }
+
+       
+        public IActionResult AddToCart(int ArtId)
+        {
+            ArtWork? artWork = _context.ArtWork.FirstOrDefault(p=>p.ArtId == ArtId);
+            if(artWork != null) 
+            {
+                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+                Cart.AddItem(artWork, 1);
+                HttpContext.Session.SetJson("cart", Cart);
+            }
+            return View(Cart);
+>>>>>>> 37403b2cf1321335730aaed83669456188fe7316
         }
     }
 }
