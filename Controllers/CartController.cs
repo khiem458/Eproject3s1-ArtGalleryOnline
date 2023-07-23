@@ -1,16 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ArtGalleryOnline.Infrastructure;
+using ArtGalleryOnline.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ArtGalleryOnline.Controllers
 {
     public class CartController : Controller
     {
-        public IActionResult Index()
+        public Cart? Cart { get; set; }
+        private readonly ArtgalleryDbContext _context;
+
+        public CartController(ArtgalleryDbContext context)
         {
-            return View();
+            _context = context;
         }
+
+       
         public IActionResult AddToCart(int ArtId)
         {
-            return View();
+            ArtWork? artWork = _context.ArtWork.FirstOrDefault(p=>p.ArtId == ArtId);
+            if(artWork != null) 
+            {
+                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+                Cart.AddItem(artWork, 1);
+                HttpContext.Session.SetJson("cart", Cart);
+            }
+            return View(Cart);
         }
     }
 }

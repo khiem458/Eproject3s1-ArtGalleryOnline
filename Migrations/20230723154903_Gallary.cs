@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ArtGalleryOnline.Migrations
 {
-    public partial class ArtGallery : Migration
+    public partial class Gallary : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -71,12 +71,12 @@ namespace ArtGalleryOnline.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UserFullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserFullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UserEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UserGender = table.Column<int>(type: "int", nullable: false),
                     UserAge = table.Column<int>(type: "int", nullable: false),
                     UserPhoneNum = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    UserAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UserPassword = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     UserRole = table.Column<int>(type: "int", nullable: false)
                 },
@@ -92,7 +92,7 @@ namespace ArtGalleryOnline.Migrations
                     BlogId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),

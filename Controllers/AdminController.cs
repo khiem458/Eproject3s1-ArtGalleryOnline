@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ArtGalleryOnline.Controllers
 {
-    [Authorize(Roles ="0")]
+    
     public class AdminController : Controller
     {
         

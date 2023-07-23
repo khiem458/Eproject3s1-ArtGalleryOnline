@@ -12,7 +12,6 @@ using System.Data;
 
 namespace ArtGalleryOnline.Controllers
 {
-    [Authorize(Roles = "0")]
     public class ArtWorksController : Controller
     {
         private readonly ArtgalleryDbContext _context;
