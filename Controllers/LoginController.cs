@@ -119,23 +119,23 @@ namespace ArtGalleryOnline.Controllers
             new Claim(ClaimTypes.Role, _user.UserRole.ToString()),
         };
 
-               
+
                 var claimsIdentity = new ClaimsIdentity(
                     claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                
+
                 var authProperties = new AuthenticationProperties
                 {
-                    
+
                 };
 
-                
+
                 await HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
 
-               
+
                 if (_user.UserRole == UserRole.admin)
                 {
                     return RedirectToAction("Index", "Admin");

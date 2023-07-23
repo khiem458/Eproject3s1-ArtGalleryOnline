@@ -1,6 +1,19 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            // Display the SweetAlert popup with the error message
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '@TempData["ErrorMessage"]',
+                timer: 5000, // Auto close after 5 seconds
+                showConfirmButton: false
+            });
+        </script>
+    }
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
@@ -156,4 +169,5 @@
     </script>
 
 </body>
+
 </html>
