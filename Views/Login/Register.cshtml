@@ -11,6 +11,14 @@
 </div>
 <div class="login-container">
     <div class="login-box">
+        @if (ViewBag.Registererr != null && ViewBag.Registererr == 0)
+        {
+            <div class="error-message">
+                <p>
+                    All the field cannot be blank
+                </p>
+            </div>
+        }
         @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { @class = "login-form" }))
         {
             <h3 class="Title">REGISTER</h3>
@@ -191,9 +199,7 @@
         }
 
     .form-control {
-        font-family: sans-serif;
-        background: linear-gradient(45deg, #ff5454, #ff8554);
-        font-weight: bold;
+       
     }
     /* Custom styles for the registration form */
     /* ... (add any additional custom styles as needed) */

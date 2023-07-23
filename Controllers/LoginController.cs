@@ -42,7 +42,14 @@ namespace ArtGalleryOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(Users users)
         {
-            if (ModelState.IsValid)
+            // Check if all fields are empty
+            bool allFieldsEmpty = string.IsNullOrEmpty(users.UserName)
+                && string.IsNullOrEmpty(users.UserFullName)
+                && string.IsNullOrEmpty(users.UserEmail)
+                && string.IsNullOrEmpty(users.UserPhoneNum)
+                && string.IsNullOrEmpty(users.UserPassword);
+
+            if (ModelState.IsValid && !allFieldsEmpty)
             {
                 var check = _context.Users.FirstOrDefault(s => s.UserEmail == users.UserEmail);
                 if (check == null)
@@ -65,10 +72,18 @@ namespace ArtGalleryOnline.Controllers
                     ModelState.AddModelError("UserEmail", "Email already exists. Please use a different email address.");
                 }
             }
+            else
+            {
+                // If the ModelState is invalid or all fields are empty, set the error message
+                ViewBag.Registererr = 0;
+                ModelState.AddModelError("", "All fields cannot be blank.");
+            }
 
-            // If the ModelState is invalid or the email already exists, return to the registration page with the provided user data
+            // Return to the registration page with the provided user data
             return View(users);
         }
+
+
 
 
         public async Task<IActionResult> Login()
@@ -78,11 +93,19 @@ namespace ArtGalleryOnline.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(Users _userPage)
         {
+            // Check if the required fields are filled
+            if (string.IsNullOrEmpty(_userPage.UserEmail) || string.IsNullOrEmpty(_userPage.UserPassword))
+            {
+                ViewBag.LoginStatus = 0;
+                return View();
+            }
+
             // Find the user with the given email in the database
             var _user = _context.Users.SingleOrDefault(m => m.UserEmail == _userPage.UserEmail);
 
             if (_user == null || !BCrypt.Net.BCrypt.Verify(_userPage.UserPassword, _user.UserPassword))
             {
+                // If the user is not found or the password is incorrect, show an error message
                 ViewBag.LoginStatus = 0;
                 return View();
             }
@@ -93,28 +116,26 @@ namespace ArtGalleryOnline.Controllers
         {
             new Claim(ClaimTypes.Name, _user.UserEmail),
             new Claim("FullName", _user.UserName),
-            new Claim(ClaimTypes.Role, _user.UserRole.ToString()), // UserRole is an enum, so convert it to string
+            new Claim(ClaimTypes.Role, _user.UserRole.ToString()),
         };
 
-                // Create identity
+               
                 var claimsIdentity = new ClaimsIdentity(
                     claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                // Create authentication properties
+                
                 var authProperties = new AuthenticationProperties
                 {
-                    // You can add expiration time, sliding expiration, etc. here if needed
-                    // Example: ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30),
-                    //          IsPersistent = true,
+                    
                 };
 
-                // Sign in the user
+                
                 await HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
 
-                // Redirect based on UserRole
+               
                 if (_user.UserRole == UserRole.admin)
                 {
                     return RedirectToAction("Index", "Admin");
@@ -125,6 +146,7 @@ namespace ArtGalleryOnline.Controllers
                 }
             }
         }
+
 
         public async Task<IActionResult> Logout()
         {
