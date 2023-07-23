@@ -1,8 +1,68 @@
-﻿
+﻿@model IEnumerable<ArtGalleryOnline.Models.ArtWork>
 @{
     ViewData["Title"] = "ArtWorkByCategory";
     Layout = "~/Views/Shared/_ArtWorkList.cshtml";
 }
+<style>
 
-<h1>ArtWorkByCategory</h1>
 
+
+    .post-content a:hover {
+        text-decoration: none;
+    }
+
+    #pd_card img {
+        width: 100%; /* Định rõ chiều rộng hình ảnh là 100% của card */
+        height: 300px; /* Giữ tỷ lệ khung hình ban đầu */
+        border-radius: 10px;
+    }
+
+    #pd_card {
+        padding-bottom: 20px;
+    }
+
+    body {
+        background-color: #fed7f7;
+    }
+</style>
+
+<div class="alime-portfolio-area section-padding-80 clearfix">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- Projects Menu -->
+                @(await Component.InvokeAsync("Category"))
+            </div>
+        </div>
+        <div class="container">
+            <div class="row  ">
+                @foreach (var item in Model)
+                {
+                    <div class=" col-sm-4">
+                        <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms" id="pd_card">
+                            <!-- Post Thumbnail -->
+                            <a href="~/ArtWorks/ArtWorkDetails?id=@item.ArtId" class="post-thumbnail"><img src="~/@item.ArtImage" alt=""></a>
+                            <!-- Post Catagory -->
+                            <a href="~/ArtWorks/ArtWorkDetails?id=@item.ArtId" class="btn post-catagory">Add</a>
+                            <!-- Post Conetent -->
+                            <div class="post-content">
+                                <div class="post-meta">
+                                    <a href="~/ArtWorks/ArtWorkDetails?id=@item.ArtId">@item.ArtName</a>
+                                    <a href="">@item.Category.CategoryName</a>
+                                    <a href="#">@item.AuthorArtWork.Artist</a>
+                                </div>
+                                <a href="#" class="post-title">$@item.ArtPrice</a>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center wow fadeInUp" data-wow-delay="700ms">
+                <a href="#" class="btn alime-btn btn-2 mt-15">View More</a>
+            </div>
+        </div>
+    </div>
+</div>

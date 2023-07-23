@@ -1,0 +1,67 @@
+﻿@model ArtGalleryOnline.Models.ArtWork
+@{
+    ViewData["Title"] = "ArtWorkDetails";
+    Layout = "~/Views/Shared/_DetailView.cshtml";
+}
+
+<!-- ... Các thẻ meta và các thẻ khác ... -->
+<!-- Stylesheet -->
+<link rel="stylesheet" href="/style.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="alime-portfolio-area section-padding-80 clearfix">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <h1 class="text-center">Chi tiết sản phẩm bán tranh</h1>
+
+                    <div class="product-container d-flex">
+                        <div class="col-md-6">
+                           
+                            <!-- Carousel -->
+                            <div id="productCarousel" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                   
+                                        
+                                            <img src="~/@Model.ArtImage" alt="Tranh" class="img-fluid">
+                                       
+                                
+                                </div>
+                                <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="product-info ml-3">
+                                <div class="product-title">@Model.ArtName</div>
+                                <div class="product-artist">Họa sĩ: @Model.AuthorArtWork.Artist</div>
+                                <div class="product-price">Giá: $@Model.ArtPrice</div>
+                                <div class="product-description">
+                                    @Model.ArtDescription
+                                </div>
+                                <a href="#" class="product-btn btn btn-primary">Thêm vào giỏ hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- **** All JS Files ***** -->
+<!-- jQuery 2.2.4 -->
+<script src="/js/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/js/bootstrap.min.js"></script>
+<!-- Active -->
+<script src="/js/default-assets/active.js"></script>
