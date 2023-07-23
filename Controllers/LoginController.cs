@@ -30,7 +30,7 @@ namespace ArtGalleryOnline.Controllers
         public async Task<IActionResult> Index()
         {
             return _context.Users != null ?
-                        View(await _context.Users.ToListAsync()) :
+                        View("Login") :
                         Problem("Entity set 'ArtgalleryDbContext.Users'  is null.");
         }
         public ActionResult Register()
