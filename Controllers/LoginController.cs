@@ -30,7 +30,7 @@ namespace ArtGalleryOnline.Controllers
         public async Task<IActionResult> Index()
         {
             return _context.Users != null ?
-                        View(await _context.Users.ToListAsync()) :
+                        View("Login") :
                         Problem("Entity set 'ArtgalleryDbContext.Users'  is null.");
         }
         public ActionResult Register()
@@ -154,7 +154,7 @@ namespace ArtGalleryOnline.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             // Redirect the user to the desired page after logging out
-            return RedirectToAction("Index", "Home"); // Redirect to the Home page or any other page you want
+            return RedirectToAction("Index", "Login"); // Redirect to the Home page or any other page you want
         }
 
 

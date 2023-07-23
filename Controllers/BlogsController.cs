@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ArtGalleryOnline.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ArtGalleryOnline.Controllers
 {
+    [Authorize(Roles = "0")]
     public class BlogsController : Controller
     {
         private readonly ArtgalleryDbContext _context;
@@ -24,7 +27,23 @@ namespace ArtGalleryOnline.Controllers
             var artgalleryDbContext = _context.Blog.Include(b => b.AuthorArtWork);
             return View(await artgalleryDbContext.ToListAsync());
         }
+        public async Task<IActionResult> BlogDetails(int? id)
+        {
+            if (id == null || _context.Blog == null)
+            {
+                return NotFound();
+            }
 
+            var blog = await _context.Blog
+                .Include(b => b.AuthorArtWork)
+                .FirstOrDefaultAsync(m => m.BlogId == id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+
+            return View(blog);
+        }
         // GET: Blogs/Details/5
         public async Task<IActionResult> Details(int? id)
         {

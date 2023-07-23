@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ArtGalleryOnline.Models;
 using System.Drawing;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ArtGalleryOnline.Controllers
 {
+    [Authorize(Roles = "0")]
     public class ArtWorksController : Controller
     {
         private readonly ArtgalleryDbContext _context;

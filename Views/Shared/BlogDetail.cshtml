@@ -33,14 +33,10 @@
                         <!-- Close -->
                         <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
                         <!-- Form -->
-                        @using (Html.BeginForm("Store", "Home", FormMethod.Get))
-                        {
-                            <input type="search" name="searchString" class="form-control" placeholder="Search and hit enter...">
+                        <form action="index.html" method="post">
+                            <input type="search" name="top-search-bar" class="form-control" placeholder="Search and hit enter...">
                             <button type="submit">Search</button>
-                        }
-                       
-                            
-                       
+                        </form>
                     </div>
                 </div>
             </div>
@@ -57,7 +53,7 @@
                     <nav class="classy-navbar justify-content-between" id="alimeNav">
 
                         <!-- Logo -->
-                        <a class="nav-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/img/core-img/Logo3.jpg"  alt=""></a>
+                        <a class="nav-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/img/core-img/Logo3.jpg" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -74,14 +70,15 @@
                             <div class="classynav">
                                 <ul id="nav">
                                     <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                                    @*<li>
+                                    <li>
                                         <a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a asp-area="" asp-controller="Home" asp-action="Index">- Home</a></li>
-                                            <li><a asp-area="" asp-controller="#" asp-action="#">- 500 Page</a></li>
-                                            <li><a asp-area="" asp-controller="#" asp-action="#">-404 Page</a></li>
-                                            <li><a asp-area="" asp-controller="#" asp-action="#">-401 Page</a></li>
-                                            <li><a href="/single-blog.html">- Blog Details</a></li>                                 
+                                            <li><a asp-area="" asp-controller="Home" asp-action="About">- About</a></li>
+                                            <li><a asp-area="" asp-controller="Home" asp-action="Gallery">- Gallery</a></li>
+                                            <li><a asp-area="" asp-controller="Home" asp-action="Blog">- Blog</a></li>
+                                            <li><a href="/single-blog.html">- Blog Details</a></li>
+                                            <li><a asp-area="" asp-controller="Home" asp-action="Contact">- Contact</a></li>
                                             <li>
                                                 <a href="#">- Dropdown</a>
                                                 <ul class="dropdown">
@@ -91,15 +88,15 @@
                                                     <li><a href="#">- Dropdown Item</a></li>
                                                 </ul>
                                             </li>
-                                        </ul> no in use 
-                                    </li>*@
+                                        </ul>
+                                    </li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                                     <li><a asp-area="" asp-controller="Home" asp-action="Gallery">Gallery</a></li>
                                     <li><a asp-area="" asp-controller="Home" asp-action="Blog">Blog</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Store">Store</a></li>                                                                    
                                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>                                 
-                                    <li><a asp-area="" asp-controller="Login" asp-action="Login" class="button-outline">Login</a></li>
-                                                                                                            
+                                    <li>
+                                        <a asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                                    </li>
                                 </ul>
 
                                 <!-- Search Icon -->
@@ -113,10 +110,9 @@
         </div>
     </header>
     <!-- Header Area End -->
-    
     @RenderBody()
-    
-   
+
+
     <!-- Gallery Area End -->
     <!-- Follow Area Start -->
     <section class="follow-area clearfix">
@@ -238,20 +234,10 @@
     <script src="/js/alime.bundle.js"></script>
     <!-- Active -->
     <script src="/js/default-assets/active.js"></script>
-    <style>
-        .button-outline {
-            border: 1px solid white; 
-            color: white; 
-            border-radius: 5px; 
-            transition: border-color 1s color 1s ease;          
-        }
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
-            /* Button hover style */
-            .button-outline:hover {
-                border-color: #f74d4c; 
-                color: #f74d4c
-            }
-    </style>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
