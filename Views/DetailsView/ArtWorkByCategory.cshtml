@@ -3,6 +3,7 @@
     ViewData["Title"] = "ArtWorkByCategory";
     Layout = "~/Views/Shared/_ArtWorkList.cshtml";
 }
+
 <style>
 
 
@@ -47,7 +48,7 @@
                             <!-- Post Conetent -->
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <a href="~/ArtWorks/ArtWorkDetails?id=@item.ArtId">@item.ArtName</a>
+                                    <a href="~/DetailsView/ArtWorkDetails?id=@item.ArtId">@item.ArtName</a>
                                     <a href="">@item.Category.CategoryName</a>
                                     <a href="#">@item.AuthorArtWork.Artist</a>
                                 </div>
@@ -66,3 +67,5 @@
         </div>
     </div>
 </div>
+
+

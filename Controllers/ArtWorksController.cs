@@ -33,37 +33,9 @@ namespace ArtGalleryOnline.Controllers
             
             return View(artWorks);
         }
-        //Chuyển sang trang Category
-        public async Task<IActionResult> ArtWorkByCategory(int CatId)
-
-        {
-            var artWorks = await _context.ArtWork
-                                            .Include(a => a.AuthorArtWork) // Bao gồm thông tin về tác giả tác phẩm (AuthorArtWork)
-                                             .Include(a => a.Category) // Bao gồm thông tin về danh mục tác phẩm (Category)
-                                             .Where(a=>a.CategoryId == CatId)
-                                            .ToListAsync();
-
-            return View(artWorks);
-        }
-        // ArtWork Detail view
-        public async Task<IActionResult> ArtWorkDetails(int? id)
-        {
-            if (id == null || _context.ArtWork == null)
-            {
-                return NotFound();
-            }
-
-            var artWork = await _context.ArtWork
-                .Include(a => a.AuthorArtWork)
-                .Include(a => a.Category)
-                .FirstOrDefaultAsync(m => m.ArtId == id);
-            if (artWork == null)
-            {
-                return NotFound();
-            }
-
-            return View(artWork);
-        }
+        
+        
+        
         // GET: ArtWorks/Details/5
         public async Task<IActionResult> Details(int? id)
         {
