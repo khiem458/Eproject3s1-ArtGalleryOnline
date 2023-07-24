@@ -34,10 +34,13 @@
                 @Html.PasswordFor(m => m.UserPassword, new { @class = "form-control", @placeholder = "Password" })
             </div>
 
-            @*<div class="form-group">
-                @Html.Label("Remember Me", new { @class = "labelinp" })
-                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-control" })
-            </div>*@
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="RememberMe" name="RememberMe" asp-for="RememberMe">
+                <label class="form-check-label" for="RememberMe">
+                    Remember Me
+                </label>
+            </div>
+            
             <button type="submit" class="login-button">Log In</button>
             <label for="Register">Doesn't have any account yet? Try <a href="/Login/Register"> Create Account </a></label>
 

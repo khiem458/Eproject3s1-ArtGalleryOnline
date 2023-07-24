@@ -9,9 +9,6 @@ using ArtGalleryOnline.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using BCrypt.Net;
 
 namespace ArtGalleryOnline.Controllers
@@ -48,14 +45,13 @@ namespace ArtGalleryOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(Users users)
         {
-            // Check if all fields are empty
-            bool allFieldsEmpty = string.IsNullOrEmpty(users.UserName)
-                && string.IsNullOrEmpty(users.UserFullName)
-                && string.IsNullOrEmpty(users.UserEmail)
-                && string.IsNullOrEmpty(users.UserPhoneNum)
-                && string.IsNullOrEmpty(users.UserPassword);
+            // Check if all required fields are empty
+            bool requiredFieldsEmpty = string.IsNullOrEmpty(users.UserName)
+                || string.IsNullOrEmpty(users.UserEmail)
+                || string.IsNullOrEmpty(users.UserPhoneNum)
+                || string.IsNullOrEmpty(users.UserPassword);
 
-            if (ModelState.IsValid && !allFieldsEmpty)
+            if (ModelState.IsValid && !requiredFieldsEmpty)
             {
                 var check = _context.Users.FirstOrDefault(s => s.UserEmail == users.UserEmail);
                 if (check == null)
@@ -63,7 +59,7 @@ namespace ArtGalleryOnline.Controllers
                     users.UserPassword = BCrypt.Net.BCrypt.HashPassword(users.UserPassword);
 
                     // Set any other properties of the Users object here, if needed
-                    users.UserFullName = ""; // Empty string, so it won't be shown in the registration view
+                    users.UserFullName = "";
                     users.UserAddress = "";
 
                     // Add the new user to the database
@@ -80,16 +76,14 @@ namespace ArtGalleryOnline.Controllers
             }
             else
             {
-                // If the ModelState is invalid or all fields are empty, set the error message
+                // If the ModelState is invalid or required fields are empty, set the error message
                 ViewBag.Registererr = 0;
-                ModelState.AddModelError("", "All fields cannot be blank.");
+                ModelState.AddModelError("", "Please fill in all required fields.");
             }
 
             // Return to the registration page with the provided user data
             return View(users);
         }
-
-
 
 
         public async Task<IActionResult> Login()
@@ -99,14 +93,14 @@ namespace ArtGalleryOnline.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(Users _userPage)
         {
-            // Check if the required fields are filled
+
             if (string.IsNullOrEmpty(_userPage.UserEmail) || string.IsNullOrEmpty(_userPage.UserPassword))
             {
                 ViewBag.LoginStatus = 0;
                 return View();
             }
 
-            // Find the user with the given email in the database
+
             var _user = _context.Users.SingleOrDefault(m => m.UserEmail == _userPage.UserEmail);
 
             if (_user == null || !BCrypt.Net.BCrypt.Verify(_userPage.UserPassword, _user.UserPassword))

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGalleryOnline.Migrations
 {
     [DbContext(typeof(ArtgalleryDbContext))]
-    [Migration("20230724070422_ArtGallery")]
+    [Migration("20230724072038_ArtGallery")]
     partial class ArtGallery
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -350,6 +350,9 @@ namespace ArtGalleryOnline.Migrations
                     b.Property<string>("PassWordrecoveryToken")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("RememberMe")
+                        .HasColumnType("bit");
 
                     b.Property<string>("UserAddress")
                         .HasMaxLength(50)

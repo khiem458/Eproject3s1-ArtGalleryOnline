@@ -349,6 +349,9 @@ namespace ArtGalleryOnline.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("RememberMe")
+                        .HasColumnType("bit");
+
                     b.Property<string>("UserAddress")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");

@@ -79,6 +79,7 @@ namespace ArtGalleryOnline.Migrations
                     UserAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UserPassword = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     UserRole = table.Column<int>(type: "int", nullable: false),
+                    RememberMe = table.Column<bool>(type: "bit", nullable: false),
                     PassWordrecoveryToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PassWordRecoveryTokenExpiration = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
