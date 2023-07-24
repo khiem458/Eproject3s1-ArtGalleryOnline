@@ -1,6 +1,4 @@
 ﻿@model ArtGalleryOnline.Models.Blog
-
-
 @{
     ViewData["Title"] = "BlogDetails";
     Layout = "~/Views/Shared/BlogDetail.cshtml";
@@ -17,7 +15,7 @@
 		<!-- left side blog post content -->
 		<div class="single-left">
 			<div class="single-left1 box13">
-				<div> 
+				<div>
 					<a href="#" class="img-responsive"><img src="~/@Model.Image" alt=""></a>
 				</div>
 
@@ -35,7 +33,7 @@
 				<p class="">
 					@Model.AuthorArtWork.Artist
 				</p>
-			
+
 			</div>
 			<div class="comments">
 				<h3 class="aside-title ">Recent Comments</h3>
@@ -127,3 +125,5 @@
 
 	</div>
 </div>
+
+

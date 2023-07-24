@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ArtGalleryOnline.Migrations
 {
-    public partial class ArtGallery : Migration
+    public partial class Gala : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,7 +38,7 @@ namespace ArtGalleryOnline.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Notification",
+                name: "Notifications",
                 columns: table => new
                 {
                     NotifiId = table.Column<int>(type: "int", nullable: false)
@@ -48,11 +48,11 @@ namespace ArtGalleryOnline.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Notification", x => x.NotifiId);
+                    table.PrimaryKey("PK_Notifications", x => x.NotifiId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "shippingFee",
+                name: "shippingFees",
                 columns: table => new
                 {
                     ShipFeeId = table.Column<int>(type: "int", nullable: false)
@@ -61,7 +61,7 @@ namespace ArtGalleryOnline.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_shippingFee", x => x.ShipFeeId);
+                    table.PrimaryKey("PK_shippingFees", x => x.ShipFeeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,12 +71,12 @@ namespace ArtGalleryOnline.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UserFullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserFullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UserEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UserGender = table.Column<int>(type: "int", nullable: false),
                     UserAge = table.Column<int>(type: "int", nullable: false),
                     UserPhoneNum = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    UserAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UserPassword = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     UserRole = table.Column<int>(type: "int", nullable: false)
                 },
@@ -92,7 +92,7 @@ namespace ArtGalleryOnline.Migrations
                     BlogId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
@@ -110,7 +110,7 @@ namespace ArtGalleryOnline.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ArtWork",
+                name: "ArtWorks",
                 columns: table => new
                 {
                     ArtId = table.Column<int>(type: "int", nullable: false)
@@ -124,15 +124,15 @@ namespace ArtGalleryOnline.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ArtWork", x => x.ArtId);
+                    table.PrimaryKey("PK_ArtWorks", x => x.ArtId);
                     table.ForeignKey(
-                        name: "FK_ArtWork_AuthorArtWork_AuthId",
+                        name: "FK_ArtWorks_AuthorArtWork_AuthId",
                         column: x => x.AuthId,
                         principalTable: "AuthorArtWork",
                         principalColumn: "AuthId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ArtWork_Categories_CategoryId",
+                        name: "FK_ArtWorks_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "CategoryId",
@@ -162,7 +162,7 @@ namespace ArtGalleryOnline.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserNotification",
+                name: "UserNotifications",
                 columns: table => new
                 {
                     UnotifiId = table.Column<int>(type: "int", nullable: false)
@@ -172,15 +172,15 @@ namespace ArtGalleryOnline.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserNotification", x => x.UnotifiId);
+                    table.PrimaryKey("PK_UserNotifications", x => x.UnotifiId);
                     table.ForeignKey(
-                        name: "FK_UserNotification_Notification_NotifiId",
+                        name: "FK_UserNotifications_Notifications_NotifiId",
                         column: x => x.NotifiId,
-                        principalTable: "Notification",
+                        principalTable: "Notifications",
                         principalColumn: "NotifiId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserNotification_Users_UserId",
+                        name: "FK_UserNotifications_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
@@ -188,7 +188,7 @@ namespace ArtGalleryOnline.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Interest",
+                name: "Interests",
                 columns: table => new
                 {
                     InterestId = table.Column<int>(type: "int", nullable: false)
@@ -198,15 +198,15 @@ namespace ArtGalleryOnline.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Interest", x => x.InterestId);
+                    table.PrimaryKey("PK_Interests", x => x.InterestId);
                     table.ForeignKey(
-                        name: "FK_Interest_ArtWork_ArtId",
+                        name: "FK_Interests_ArtWorks_ArtId",
                         column: x => x.ArtId,
-                        principalTable: "ArtWork",
+                        principalTable: "ArtWorks",
                         principalColumn: "ArtId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Interest_Users_UserId",
+                        name: "FK_Interests_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
@@ -214,7 +214,7 @@ namespace ArtGalleryOnline.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderDetail",
+                name: "OrderDetails",
                 columns: table => new
                 {
                     OrderDetailId = table.Column<int>(type: "int", nullable: false)
@@ -227,15 +227,15 @@ namespace ArtGalleryOnline.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderDetail", x => x.OrderDetailId);
+                    table.PrimaryKey("PK_OrderDetails", x => x.OrderDetailId);
                     table.ForeignKey(
-                        name: "FK_OrderDetail_ArtWork_ArtId",
+                        name: "FK_OrderDetails_ArtWorks_ArtId",
                         column: x => x.ArtId,
-                        principalTable: "ArtWork",
+                        principalTable: "ArtWorks",
                         principalColumn: "ArtId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderDetail_Orders_OrderId",
+                        name: "FK_OrderDetails_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "OrderId",
@@ -285,13 +285,13 @@ namespace ArtGalleryOnline.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ArtWork_AuthId",
-                table: "ArtWork",
+                name: "IX_ArtWorks_AuthId",
+                table: "ArtWorks",
                 column: "AuthId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ArtWork_CategoryId",
-                table: "ArtWork",
+                name: "IX_ArtWorks_CategoryId",
+                table: "ArtWorks",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
@@ -300,23 +300,23 @@ namespace ArtGalleryOnline.Migrations
                 column: "AuthId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Interest_ArtId",
-                table: "Interest",
+                name: "IX_Interests_ArtId",
+                table: "Interests",
                 column: "ArtId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Interest_UserId",
-                table: "Interest",
+                name: "IX_Interests_UserId",
+                table: "Interests",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetail_ArtId",
-                table: "OrderDetail",
+                name: "IX_OrderDetails_ArtId",
+                table: "OrderDetails",
                 column: "ArtId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetail_OrderId",
-                table: "OrderDetail",
+                name: "IX_OrderDetails_OrderId",
+                table: "OrderDetails",
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
@@ -335,13 +335,13 @@ namespace ArtGalleryOnline.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserNotification_NotifiId",
-                table: "UserNotification",
+                name: "IX_UserNotifications_NotifiId",
+                table: "UserNotifications",
                 column: "NotifiId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserNotification_UserId",
-                table: "UserNotification",
+                name: "IX_UserNotifications_UserId",
+                table: "UserNotifications",
                 column: "UserId");
         }
 
@@ -351,31 +351,31 @@ namespace ArtGalleryOnline.Migrations
                 name: "Blog");
 
             migrationBuilder.DropTable(
-                name: "Interest");
+                name: "Interests");
 
             migrationBuilder.DropTable(
-                name: "OrderDetail");
+                name: "OrderDetails");
 
             migrationBuilder.DropTable(
                 name: "payments");
 
             migrationBuilder.DropTable(
-                name: "shippingFee");
+                name: "shippingFees");
 
             migrationBuilder.DropTable(
                 name: "shippings");
 
             migrationBuilder.DropTable(
-                name: "UserNotification");
+                name: "UserNotifications");
 
             migrationBuilder.DropTable(
-                name: "ArtWork");
+                name: "ArtWorks");
 
             migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Notification");
+                name: "Notifications");
 
             migrationBuilder.DropTable(
                 name: "AuthorArtWork");

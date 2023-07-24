@@ -12,7 +12,6 @@ using System.Data;
 
 namespace ArtGalleryOnline.Controllers
 {
-    [Authorize(Roles = "0")]
     public class ArtWorksController : Controller
     {
         private readonly ArtgalleryDbContext _context;
@@ -26,53 +25,25 @@ namespace ArtGalleryOnline.Controllers
         public async Task<IActionResult> Index()
 
         {
-            var artWorks = await _context.ArtWork
+            var artWorks = await _context.ArtWorks
                                             .Include(a => a.AuthorArtWork) // Bao gồm thông tin về tác giả tác phẩm (AuthorArtWork)
                                              .Include(a => a.Category) // Bao gồm thông tin về danh mục tác phẩm (Category)
                                             .ToListAsync();
             
             return View(artWorks);
         }
-        //Chuyển sang trang Category
-        public async Task<IActionResult> ArtWorkByCategory(int CatId)
-
-        {
-            var artWorks = await _context.ArtWork
-                                            .Include(a => a.AuthorArtWork) // Bao gồm thông tin về tác giả tác phẩm (AuthorArtWork)
-                                             .Include(a => a.Category) // Bao gồm thông tin về danh mục tác phẩm (Category)
-                                             .Where(a=>a.CategoryId == CatId)
-                                            .ToListAsync();
-
-            return View(artWorks);
-        }
-        // ArtWork Detail view
-        public async Task<IActionResult> ArtWorkDetails(int? id)
-        {
-            if (id == null || _context.ArtWork == null)
-            {
-                return NotFound();
-            }
-
-            var artWork = await _context.ArtWork
-                .Include(a => a.AuthorArtWork)
-                .Include(a => a.Category)
-                .FirstOrDefaultAsync(m => m.ArtId == id);
-            if (artWork == null)
-            {
-                return NotFound();
-            }
-
-            return View(artWork);
-        }
+        
+        
+        
         // GET: ArtWorks/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.ArtWork == null)
+            if (id == null || _context.ArtWorks == null)
             {
                 return NotFound();
             }
 
-            var artWork = await _context.ArtWork
+            var artWork = await _context.ArtWorks
                 .Include(a => a.AuthorArtWork)
                 .Include(a => a.Category)
                 .FirstOrDefaultAsync(m => m.ArtId == id);
@@ -126,12 +97,12 @@ namespace ArtGalleryOnline.Controllers
         // GET: ArtWorks/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.ArtWork == null)
+            if (id == null || _context.ArtWorks == null)
             {
                 return NotFound();
             }
 
-            var artWork = await _context.ArtWork.FindAsync(id);
+            var artWork = await _context.ArtWorks.FindAsync(id);
             if (artWork == null)
             {
                 return NotFound();
@@ -172,7 +143,7 @@ namespace ArtGalleryOnline.Controllers
                     else
                     {
                         // Nếu người dùng không chọn hình ảnh mới, giữ nguyên ảnh cũ
-                        var existingArtWork = await _context.ArtWork.AsNoTracking().FirstOrDefaultAsync(a => a.ArtId == id);
+                        var existingArtWork = await _context.ArtWorks.AsNoTracking().FirstOrDefaultAsync(a => a.ArtId == id);
                         artWork.ArtImage = existingArtWork.ArtImage;
                     }
 
@@ -200,12 +171,12 @@ namespace ArtGalleryOnline.Controllers
         // GET: ArtWorks/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.ArtWork == null)
+            if (id == null || _context.ArtWorks == null)
             {
                 return NotFound();
             }
 
-            var artWork = await _context.ArtWork
+            var artWork = await _context.ArtWorks
                 .Include(a => a.AuthorArtWork)
                 .Include(a => a.Category)
                 .FirstOrDefaultAsync(m => m.ArtId == id);
@@ -222,14 +193,14 @@ namespace ArtGalleryOnline.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.ArtWork == null)
+            if (_context.ArtWorks == null)
             {
                 return Problem("Entity set 'ArtgalleryDbContext.ArtWork'  is null.");
             }
-            var artWork = await _context.ArtWork.FindAsync(id);
+            var artWork = await _context.ArtWorks.FindAsync(id);
             if (artWork != null)
             {
-                _context.ArtWork.Remove(artWork);
+                _context.ArtWorks.Remove(artWork);
             }
             
             await _context.SaveChangesAsync();
@@ -238,7 +209,7 @@ namespace ArtGalleryOnline.Controllers
 
         private bool ArtWorkExists(int id)
         {
-          return (_context.ArtWork?.Any(e => e.ArtId == id)).GetValueOrDefault();
+          return (_context.ArtWorks?.Any(e => e.ArtId == id)).GetValueOrDefault();
         }
     }
 }
