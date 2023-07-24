@@ -40,7 +40,8 @@ namespace ArtGalleryOnline.Models
         [StringLength(255)]
         public string? UserPassword { get; set; }
         public UserRole UserRole { get; set; } = UserRole.user;
-
+        public string PassWordrecoveryToken { get; set; }
+        public DateTime? PassWordRecoveryTokenExpiration { get; set; }
         public ICollection<Orders>? Orders { get; set; }
         public ICollection<UserNotification>? UserNotifications { get; set; }
         public ICollection<Interest>? Interests { get; set; }

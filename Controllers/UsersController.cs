@@ -24,7 +24,7 @@ namespace ArtGalleryOnline.Controllers
         public async Task<IActionResult> Index()
         {
             var users = await _context.Users.ToListAsync();
-            var artworks = await _context.ArtWork.ToListAsync();
+            var artworks = await _context.ArtWorks.ToListAsync();
 
             var viewModel = new UserArtworkViewModels
             {
@@ -75,10 +75,10 @@ namespace ArtGalleryOnline.Controllers
         {
             if (!String.IsNullOrEmpty(searchString))
             {
-                var artWork = _context.ArtWork.Where(a => a.ArtName.Contains(searchString));
+                var artWork = _context.ArtWorks.Where(a => a.ArtName.Contains(searchString));
                 return View(artWork.ToList());
             }
-            var artWorks = _context.ArtWork
+            var artWorks = _context.ArtWorks
                                            .Include(a => a.AuthorArtWork) // Bao gồm thông tin về tác giả tác phẩm (AuthorArtWork)
                                             .Include(a => a.Category); // Bao gồm thông tin về danh mục tác phẩm (Category)
 

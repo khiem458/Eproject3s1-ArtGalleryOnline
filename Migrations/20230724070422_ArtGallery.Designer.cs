@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGalleryOnline.Migrations
 {
     [DbContext(typeof(ArtgalleryDbContext))]
-    [Migration("20230723211659_Gala")]
-    partial class Gala
+    [Migration("20230724070422_ArtGallery")]
+    partial class ArtGallery
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -343,6 +343,13 @@ namespace ArtGalleryOnline.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
+
+                    b.Property<DateTime?>("PassWordRecoveryTokenExpiration")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PassWordrecoveryToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserAddress")
                         .HasMaxLength(50)

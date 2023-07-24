@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ArtGalleryOnline.Migrations
 {
-    public partial class Gala : Migration
+    public partial class ArtGallery : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -78,7 +78,9 @@ namespace ArtGalleryOnline.Migrations
                     UserPhoneNum = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     UserAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UserPassword = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    UserRole = table.Column<int>(type: "int", nullable: false)
+                    UserRole = table.Column<int>(type: "int", nullable: false),
+                    PassWordrecoveryToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PassWordRecoveryTokenExpiration = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
