@@ -29,9 +29,15 @@ namespace ArtGalleryOnline.Controllers
         // GET: Login
         public async Task<IActionResult> Index()
         {
-            return _context.Users != null ?
-                        View("Login") :
-                        Problem("Entity set 'ArtgalleryDbContext.Users'  is null.");
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Users");
+            }
+            else
+            {
+
+                return View("Login");
+            }
         }
         public ActionResult Register()
         {
@@ -142,7 +148,7 @@ namespace ArtGalleryOnline.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Users");
                 }
             }
         }
@@ -150,11 +156,14 @@ namespace ArtGalleryOnline.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            // Perform the sign-out
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            // Redirect the user to the desired page after logging out
-            return RedirectToAction("Index", "Login"); // Redirect to the Home page or any other page you want
+            Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+            Response.Headers["Pragma"] = "no-cache";
+            Response.Headers["Expires"] = "0";
+
+
+            return RedirectToAction("Index", "Home");
         }
 
 

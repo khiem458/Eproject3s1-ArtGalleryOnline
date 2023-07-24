@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ArtGalleryOnline.Models.Blog>
+@{
+    ViewData["Title"] = "Blog";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<style>
+         /* Đảm bảo cột chỉ chiếm 1/3 (33.33%) của container */
+    .alime-blog-area .row .col-12,
+    .alime-blog-area .row .col-sm-6,
+    .alime-blog-area .row .col-lg-4 {
+        flex-basis: 33.33%;
+        max-width: 33.33%;
+    }
+
+    /* Tạo khoảng cách giữa các cột */
+    .alime-blog-area .row .col-12,
+    .alime-blog-area .row .col-sm-6,
+    .alime-blog-area .row .col-lg-4 {
+        padding: 15px;
+    }
+
+    /* Thêm khung cho phần tử single-post-area */
+    .single-post-area {
+        border: 1px solid #ccc;
+        padding: 20px;
+    }
+
+    #pd_card img {
+        width: 100%; /* Định rõ chiều rộng hình ảnh là 100% của card */
+        height: 300px; /* Giữ tỷ lệ khung hình ban đầu */
+        border-radius: 10px;
+    }
+
+    .single-post-area::after {
+        position: absolute;
+        width: 100%;
+        height: 342px;
+        border-radius: 5px;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.1);
+        content: '';
+        z-index: 1;
+    }
+</style>
+
+<!-- Breadcrumb Area Start -->
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/bg-img/38.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="page-title">Latest Blog</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="icon_house_alt"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Blog</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+<!-- Blog Area Start -->
+<div class="alime-blog-area section-padding-80-0 mb-70">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <!-- Single Blog Area -->
+                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms" id="pd_card">
+                        <a href="#" class="post-thumbnail"><img src="~/@item.Image" alt=""></a>
+
+                        <a href="#" class="btn post-catagory">@item.AuthorArtWork.Artist</a>
+
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <a href="#">@item.Date</a>
+                                <a href="#">@item.Comment</a>
+                            </div>
+                            <a href="/Blogs/BlogDetails?id=@item.BlogId" class="post-title">@item.Title</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Blog Area End -->
+
