@@ -26,5 +26,30 @@ namespace ArtGalleryOnline.Controllers
             }
             return View(Cart);
         }
+        public IActionResult UpdateCart(int artId)
+        {
+            ArtWork? artWork = _context.ArtWorks.FirstOrDefault(p => p.ArtId == artId);
+            if (artWork != null)
+            {
+                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+                if (Cart.CartItems.Any(item => item.ArtWork.ArtId == artId && item.Quantity > 1))
+                {
+                    Cart.AddItem(artWork, -1);
+                    HttpContext.Session.SetJson("cart", Cart);
+                }
+            }
+            return View("AddToCart",Cart);
+        }
+        public IActionResult RemoveFromcart(int artId)
+        {
+            ArtWork? artWork = _context.ArtWorks.FirstOrDefault(p => p.ArtId == artId);
+            if (artWork != null)
+            {
+                Cart = HttpContext.Session.GetJson<Cart>("cart");
+                Cart.RemoveItem(artWork);
+                HttpContext.Session.SetJson("cart", Cart);
+            }
+            return View("AddToCart",Cart);
+        }
     }
 }
