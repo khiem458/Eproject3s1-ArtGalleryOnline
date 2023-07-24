@@ -39,11 +39,10 @@ namespace ArtGalleryOnline.Models
         [Required]
         [StringLength(255)]
         public string? UserPassword { get; set; }
-        public UserRole UserRole { get; set; } = UserRole.user;    
+        public UserRole UserRole { get; set; } = UserRole.user;
         public ICollection<Orders>? Orders { get; set; }
         public ICollection<UserNotification>? UserNotifications { get; set; }
         public ICollection<Interest>? Interests { get; set; }
-
 
     }
 }
