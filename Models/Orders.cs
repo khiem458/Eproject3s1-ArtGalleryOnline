@@ -27,6 +27,17 @@ namespace ArtGalleryOnline.Models
         public RequestStatus RequestStatus { get; set; }
 
         public decimal TotalAmount { get; set; }
+        // Tên người nhận hàng
+        public string? RecipientName { get; set; }
+
+        // Địa chỉ giao hàng
+        public string? ShippingAddress { get; set; }
+
+        // Số điện thoại liên hệ người nhận hàng
+        public string? RecipientPhone { get; set; }
+
+        // Địa chỉ email liên hệ người nhận hàng
+        public string? RecipientEmail { get; set; }
 
         // Thuộc tính UserId đại diện cho khóa ngoại liên kết với bảng "Users"
         public int UserId { get; set; }

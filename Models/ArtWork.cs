@@ -19,6 +19,8 @@ namespace ArtGalleryOnline.Models
         [Required(ErrorMessage = "ArtPrice is required.")]
         [Range(0, double.MaxValue, ErrorMessage = "ArtPrice must be a positive number.")]
         public decimal ArtPrice { get; set; }
+        // Số lượng tồn kho
+        public int StockQuantity { get; set; }
         //lien ket voi Author
         public int AuthId { get; set; }
         [ForeignKey("AuthId")]

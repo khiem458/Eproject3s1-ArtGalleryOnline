@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ArtGalleryOnline.Migrations
 {
-    public partial class ArtGallery : Migration
+    public partial class Gallery : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -119,6 +119,7 @@ namespace ArtGalleryOnline.Migrations
                     ArtDescription = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ArtImage = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ArtPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    StockQuantity = table.Column<int>(type: "int", nullable: false),
                     AuthId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -148,6 +149,10 @@ namespace ArtGalleryOnline.Migrations
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RequestStatus = table.Column<int>(type: "int", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RecipientName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ShippingAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RecipientPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RecipientEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
