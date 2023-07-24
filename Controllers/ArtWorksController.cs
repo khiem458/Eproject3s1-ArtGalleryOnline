@@ -69,7 +69,7 @@ namespace ArtGalleryOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ArtId,ArtName,ArtDescription,ArtImage,ArtPrice,AuthId,CategoryId")] ArtWork artWork, IFormFile artImage)
+        public async Task<IActionResult> Create([Bind("ArtId,ArtName,ArtDescription,ArtImage,ArtPrice,AuthId,CategoryId,StockQuantity")] ArtWork artWork, IFormFile artImage)
         {
             if (ModelState.IsValid)
             {
@@ -118,7 +118,7 @@ namespace ArtGalleryOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ArtId,ArtName,ArtDescription,ArtImage,ArtPrice,AuthId,CategoryId")] ArtWork artWork, IFormFile artImage)
+        public async Task<IActionResult> Edit(int id, [Bind("ArtId,ArtName,ArtDescription,ArtImage,ArtPrice,AuthId,CategoryId,StockQuantity")] ArtWork artWork, IFormFile artImage)
         {
             if (id != artWork.ArtId)
             {

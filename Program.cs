@@ -8,6 +8,7 @@ builder.Services.AddDbContext<ArtgalleryDbContext>(options => options.UseSqlServ
 builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {

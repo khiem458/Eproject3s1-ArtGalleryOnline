@@ -31,6 +31,9 @@
                         @Html.DisplayNameFor(model => model.ArtPrice)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.StockQuantity)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.AuthorArtWork)
                     </th>
                     <th>
@@ -54,6 +57,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.ArtPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StockQuantity)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.AuthorArtWork.Artist)
