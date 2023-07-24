@@ -3,7 +3,65 @@
     ViewData["Title"] = "BlogDetails";
     Layout = "~/Views/Shared/BlogDetail.cshtml";
 }
+<style>
+	.single-left1 .img-responsive {
+		display: block; /* Đảm bảo hình ảnh là một khối hiển thị riêng biệt */
+		margin: 0 auto; /* Để căn giữa theo chiều ngang */
+		max-width: 60%; /* Đặt kích thước tối đa cho chiều ngang (có thể điều chỉnh giá trị theo ý muốn) */
+		max-height: 50%; /* Đặt kích thước tối đa cho chiều dọc (có thể điều chỉnh giá trị theo ý muốn) */
+		margin-top: 55px;
+	}
+	.img-responsive{
+		height:553px;
+	}
 
+	.Mota{
+		display: flex; /* Sử dụng flexbox để căn giữa văn bản theo chiều dọc */
+		max-width: 956px;
+		margin: 0 auto;
+		color: var(--theme-para);
+	}
+
+	.single-left1 h3{
+		font-size: 32px;
+		margin: 15px 0 15px 313px;
+		display: block;
+		margin: 0 auto text-transform: capitalize;
+		
+	}
+
+	.w3l-blog-single-post-main .admin-list {
+		display: flex; /* Sắp xếp các li trên cùng một hàng ngang */
+		margin: 0 307px 23px;
+		padding: 0;
+		border-bottom: 1px solid #ececec;
+	}
+
+	.w3l-blog-single-post-main .admin-list li {
+			margin: 0 10px; /* Thêm margin 5px vào bên trái và phải của từng li */
+	}
+
+	.aside-title{
+		font-size: 25px;
+		margin: 40px 307px 30px 0;
+		line-height: 30px;
+		text-transform: capitalize;
+		color: var(--theme-title);
+	}
+	/* Căn giữa các phần tử còn lại trong wrapper */
+	.wrapper {
+		display: flex; /* Sử dụng flexbox để căn giữa theo chiều dọc và ngang */
+		justify-content: center; /* Căn giữa theo chiều ngang */
+		align-items: center; /* Căn giữa theo chiều dọc */
+		flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+	}
+
+	/* Căn giữa form Comment */
+	.leave-coment-form {
+		margin: 0 auto; /* Để căn giữa theo chiều ngang */
+		max-width: 600px; /* Đảm bảo form không quá rộng */
+	}
+</style>
 <div class="blog-post-single-61">
 	<div class="wrapper">
 		<div style="margin: 8px auto; display: block; text-align:center;">
@@ -16,45 +74,31 @@
 		<div class="single-left">
 			<div class="single-left1 box13">
 				<div>
-					<a href="#" class="img-responsive"><img src="~/@Model.Image" alt=""></a>
+					<a href="#"><img src="~/@Model.Image" alt="" class="img-responsive"></a>
 				</div>
 
 				<h3 class="card-title"> @Model.Title </h3>
-				<ul class="admin-list">
-					<li><a href="#"><span class="fa fa-calendar" aria-hidden="true"></span>@Model.Date</a></li>
-					<li><a href="#"><span class="fa fa-user" aria-hidden="true"></span>@Model.AuthorArtWork.Artist</a></li>
-					<li>
-						<a href="#">
-							<span class="fa fa-commenting-o" aria-hidden="true"></span>9
-							Comments
-						</a>
-					</li>
-				</ul>
-				<p class="">
-					@Model.AuthorArtWork.Artist
+				<div class="w3l-blog-single-post-main">
+					<ul class="admin-list">
+						<li><a href="#"><span class="fa fa-calendar" aria-hidden="true"></span>@Model.Date</a></li>
+						<li><a href="#"><span class="fa fa-user" aria-hidden="true"></span>@Model.AuthorArtWork.Artist</a></li>
+						<li>
+							<a href="#">
+								<span class="fa fa-commenting-o" aria-hidden="true"></span>9
+								Comments
+							</a>
+						</li>
+					</ul>
+				</div>
+				<p class="Mota">
+					@Model.Description
 				</p>
 
 			</div>
 			<div class="comments">
 				<h3 class="aside-title ">Recent Comments</h3>
 				<div class="comments-grids">
-					<div class="media">
-						<img class="img-responsive" src="assets/images/customer1.jpg" alt="placeholder image">
-						<a href="#comment" class="replay">Reply</a>
-						<div class="media-body comments-grid-right">
-							<h4>Jack Harry</h4>
-							<ul class="">
-								<li class="font-weight-bold">
-									20 Oct  2019
-									<i>|</i>
-								</li>
-								<li class="">
-									Customer
-								</li>
-							</ul>
-							<p>Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices. Aliquam ac arcu interdum,Aliquam ac arcu interdum, dapibus nibh convallis, semper augue.</p>
-						</div>
-					</div>
+					
 					<div class="media second-part">
 						<a class="" href="#">
 							<img class="img-responsive" src="assets/images/customer.jpg" alt="placeholder image">
@@ -74,25 +118,7 @@
 							<p>Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices. Aliquam ac arcu interdum,Aliquam ac arcu interdum, dapibus nibh convallis, semper augue.</p>
 						</div>
 					</div>
-					<div class="media third-part">
-						<a class="" href="#">
-							<img class="img-responsive" src="assets/images/customer2.jpg" alt="placeholder image">
-						</a><a href="#comment" class="replay">Reply</a>
-
-						<div class="media-body comments-grid-right">
-							<h4>John Charlie</h4>
-							<ul class="my-2">
-								<li class="font-weight-bold">
-									21 Oct 2019
-									<i>|</i>
-								</li>
-								<li class="">
-									Customer
-								</li>
-							</ul>
-							<p>Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices. Aliquam ac arcu interdum,Aliquam ac arcu interdum, dapibus nibh convallis, semper augue.</p>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 			<div class="leave-coment-form" id="comment">
