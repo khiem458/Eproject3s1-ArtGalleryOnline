@@ -23,7 +23,9 @@
                 item.Quantity += quantity;
             }
         }
-
+        public void RemoveItem(ArtWork artWork)=>CartItems.RemoveAll(l=>l.ArtWork.ArtId == artWork.ArtId);
+        public decimal ComputeTotalValues() => CartItems.Sum(e => e.ArtWork.ArtPrice * e.Quantity);
+        public void Clear()=>CartItems.Clear();
 
     }
     public class CartItem
