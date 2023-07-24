@@ -51,5 +51,9 @@ namespace ArtGalleryOnline.Controllers
             }
             return View("AddToCart",Cart);
         }
+        public IActionResult Index()
+        {
+            return View("AddToCart", HttpContext.Session.GetJson<Cart>("cart"));
+        }
     }
 }

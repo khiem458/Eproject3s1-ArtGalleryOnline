@@ -1,12 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Title -->
     <title>Alime - Photography HTML Template</title>
 
@@ -49,8 +48,11 @@
 
     <!-- Header Area Start -->
     <header class="header-area">
-        <!-- Main Header Start -->
+        
+        
+     <!-- Main Header Start -->
         <div class="main-header-area">
+            
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
                     <!-- Classy Menu -->
@@ -98,8 +100,18 @@
                                     <li><a asp-area="" asp-controller="Home" asp-action="Store">Store</a></li>                                                                    
                                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>                                 
-                                    <li><a asp-area="" asp-controller="Login" asp-action="Login" class="button-outline">Login</a></li>
-                                                                                                            
+                                    
+                                    <li>
+                                        <a href="#"><i class="fas fa-user"></i></a>
+                                        <ul class="dropdown">
+                                            <li><a asp-area="" asp-controller="Login" asp-action="Login" class="button-outline">Login</a></li>
+                                            <li><a href="/Login/Register">Register</a></li>
+
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @(await Component.InvokeAsync("CartWidget"))
+                                    </li>
                                 </ul>
 
                                 <!-- Search Icon -->
