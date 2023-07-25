@@ -17,6 +17,7 @@ namespace ArtGalleryOnline.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
+       
 
         // Thuộc tính OrderDate đại diện cho ngày đặt hàng, được yêu cầu và không thể null
 
@@ -25,6 +26,7 @@ namespace ArtGalleryOnline.Models
         // Thuộc tính RequestStatus đại diện cho trạng thái yêu cầu, có kiểu enum RequestStatus
         // Theo mô tả của bạn, trạng thái yêu cầu có thể là "Pending", "Approved", hoặc "Rejected"
         public RequestStatus RequestStatus { get; set; }
+        public int Quantity { get; set; }
 
         public decimal TotalAmount { get; set; }
         // Tên người nhận hàng
@@ -38,6 +40,7 @@ namespace ArtGalleryOnline.Models
 
         // Địa chỉ email liên hệ người nhận hàng
         public string? RecipientEmail { get; set; }
+        public int TypePayment { get; set; }
 
         // Thuộc tính UserId đại diện cho khóa ngoại liên kết với bảng "Users"
         public int UserId { get; set; }
