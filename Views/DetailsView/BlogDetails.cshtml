@@ -4,30 +4,38 @@
     Layout = "~/Views/Shared/BlogDetail.cshtml";
 }
 <style>
+	
+	
 	.single-left1 .img-responsive {
-		display: block; /* Đảm bảo hình ảnh là một khối hiển thị riêng biệt */
-		margin: 0 auto; /* Để căn giữa theo chiều ngang */
-		max-width: 60%; /* Đặt kích thước tối đa cho chiều ngang (có thể điều chỉnh giá trị theo ý muốn) */
-		max-height: 50%; /* Đặt kích thước tối đa cho chiều dọc (có thể điều chỉnh giá trị theo ý muốn) */
-		margin-top: 55px;
-	}
-	.img-responsive{
-		height:553px;
+		max-width: 60%;
+		max-height: 50%;
+		margin-top: 78px;
+		position: relative; /* Sử dụng relative positioning để dịch chuyển hình ảnh */
+		left: 30%; /* Di chuyển ảnh sang bên trái 50% so với phần tử cha */
+		transform: translateX(-50%); 
 	}
 
-	.Mota{
+	.single-left1 {
+		text-align: center; /* Căn giữa các phần tử con theo chiều ngang */
+	}
+
+	
+	.img-responsive {
+		height: 553px;
+	}
+
+	.Mota {
 		display: flex; /* Sử dụng flexbox để căn giữa văn bản theo chiều dọc */
 		max-width: 956px;
 		margin: 0 auto;
 		color: var(--theme-para);
 	}
 
-	.single-left1 h3{
+	.single-left1 h3 {
 		font-size: 32px;
-		margin: 15px 0 15px 313px;
+		margin: 15px 0 15px -760px;
 		display: block;
-		margin: 0 auto text-transform: capitalize;
-		
+
 	}
 
 	.w3l-blog-single-post-main .admin-list {
@@ -37,30 +45,114 @@
 		border-bottom: 1px solid #ececec;
 	}
 
-	.w3l-blog-single-post-main .admin-list li {
-			margin: 0 10px; /* Thêm margin 5px vào bên trái và phải của từng li */
-	}
+		.w3l-blog-single-post-main .admin-list li {
+			margin: 0 10px;
+		}
 
-	.aside-title{
+	.aside-title {
 		font-size: 25px;
-		margin: 40px 307px 30px 0;
+		margin: 70px 307px 30px 0;
 		line-height: 30px;
 		text-transform: capitalize;
 		color: var(--theme-title);
-	}
-	/* Căn giữa các phần tử còn lại trong wrapper */
-	.wrapper {
-		display: flex; /* Sử dụng flexbox để căn giữa theo chiều dọc và ngang */
-		justify-content: center; /* Căn giữa theo chiều ngang */
-		align-items: center; /* Căn giữa theo chiều dọc */
-		flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+		margin-left: 10px;
 	}
 
-	/* Căn giữa form Comment */
-	.leave-coment-form {
-		margin: 0 auto; /* Để căn giữa theo chiều ngang */
-		max-width: 600px; /* Đảm bảo form không quá rộng */
+	/* CSS cho phần bình luận */
+	/* CSS cho phần bình luận */
+	.binhluan {
+		margin-bottom: -17px;
+		padding: 10px;
+		max-width: 53%; /* Chiều ngang tối đa là 1/3 */
+		padding-left: 80px;
 	}
+
+		.binhluan h4 {
+			margin: 0;
+			font-size: 20px;
+			font-weight: bold;
+		}
+
+		.binhluan ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.binhluan li {
+			display: inline-block;
+			margin-right: 10px;
+			color: #888;
+		}
+
+			.binhluan li i {
+				margin: 0 5px;
+			}
+
+		.binhluan p {
+			margin-top: 10px;
+		}
+
+		.binhluan a.replay {
+			padding: 10px 20px;
+			background: #cec9bddb;
+			color: #713e3e;
+			border: none;
+			border-radius: 10px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+			.binhluan a.replay:hover {
+				text-decoration: underline;
+				background-color: #ad996adb;
+			}
+
+	/* CSS cho biểu mẫu bình luận */
+	form {
+		margin-bottom: 20px;
+		padding-left: 80px;
+	}
+
+	.d-grid-2 {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 10px;
+	}
+
+	.form-group {
+		margin-bottom: 15px;
+	}
+
+	/* Chiều ngang của các phần tử input và textarea chỉ chiếm 1/2 so với hiện tại */
+	.form-control {
+		width: 30%;
+		padding: 8px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		font-size: 14px;
+	}
+
+	textarea.form-control {
+		resize: vertical; /* Cho phép điều chỉnh chiều cao dọc của textarea */
+	}
+
+	.btn {
+		padding: 10px 20px;
+		background: #cec9bddb;
+		color: #713e3e;
+		border: none;
+		border-radius: 10px;
+		cursor: pointer;
+		font-size: 16px;
+	}
+
+		/* Tùy chỉnh kiểu dáng khi hover vào nút */
+		.btn:hover {
+			background-color: #ad996adb;
+			text-decoration: underline
+		}
+
 </style>
 <div class="blog-post-single-61">
 	<div class="wrapper">
@@ -97,29 +189,20 @@
 			</div>
 			<div class="comments">
 				<h3 class="aside-title ">Recent Comments</h3>
-				<div class="comments-grids">
 					
-					<div class="media second-part">
-						<a class="" href="#">
-							<img class="img-responsive" src="assets/images/customer.jpg" alt="placeholder image">
-						</a><a href="#comment" class="replay">Reply</a>
-
-						<div class="media-body comments-grid-right">
-							<h4>Charlie</h4>
-							<ul class="my-2">
-								<li class="font-weight-bold">
-									21 Oct 2019
-									<i>|</i>
-								</li>
-								<li class="">
-									Customer
-								</li>
-							</ul>
-							<p>Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices. Aliquam ac arcu interdum,Aliquam ac arcu interdum, dapibus nibh convallis, semper augue.</p>
-						</div>
-					</div>
+				<div class="binhluan">
+					<h4>Charlie</h4>
+					<ul class="my-2">
+						<li class="font-weight-bold">
+							21 Oct 2019
+						</li>
 					
+					</ul>
+					<p>Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices. Aliquam ac arcu interdum,Aliquam ac arcu interdum, dapibus nibh convallis, semper augue.</p>
+					<a href="#comment" class="replay">Reply</a>
 				</div>
+				
+			
 			</div>
 			<div class="leave-coment-form" id="comment">
 				<h3 class="aside-title">Write Your Comment</h3>

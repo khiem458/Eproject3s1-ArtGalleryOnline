@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ArtGalleryOnline.Models;
 
 namespace ArtGalleryOnline.Models
 {
@@ -18,6 +19,7 @@ namespace ArtGalleryOnline.Models
         public DbSet<Interest> Interests { get; set; }
         public DbSet<Payment> payments { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<ArtGalleryOnline.Models.CommentBlog>? CommentBlog { get; set; }
         
 
     }
