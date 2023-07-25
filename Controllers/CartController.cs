@@ -54,11 +54,19 @@ namespace ArtGalleryOnline.Controllers
         }
         public IActionResult Index()
         {
+           
             return View("AddToCart", HttpContext.Session.GetJson<Cart>("cart"));
         }
-       
+       public IActionResult CheckOut()
+        {
+            return View(HttpContext.Session.GetJson<Cart>("cart"));
+        }
+        public IActionResult PlaceOrder()
+        {
+            return View(HttpContext.Session.GetJson<Cart>("cart"));
+        }
 
-       
+
 
 
     }
