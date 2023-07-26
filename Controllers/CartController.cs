@@ -1,5 +1,6 @@
 ﻿using ArtGalleryOnline.Infrastructure;
 using ArtGalleryOnline.Models;
+using ArtGalleryOnline.ModelsView;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,12 +62,56 @@ namespace ArtGalleryOnline.Controllers
         {
             return View();
         }
-        public IActionResult PlaceOrder()
+        [HttpPost]
+        public IActionResult CheckOut(OrderViewModel req)
         {
-            return View(HttpContext.Session.GetJson<Cart>("cart"));
+            if (ModelState.IsValid)
+            {
+                Cart cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+                if (cart != null && cart.CartItems.Any()) // Kiểm tra giỏ hàng có sản phẩm không
+                {
+                    Orders orders = new Orders();
+                    orders.RecipientName = req.RecipientName;
+                    orders.RecipientPhone = req.RecipientPhone;
+                    orders.ShippingAddress = req.ShippingAddress;
+                    orders.RecipientEmail = req.RecipientEmail;
+                    orders.OrderDetails = new List<OrderDetail>();
+                    cart.CartItems.ForEach(x => orders.OrderDetails.Add(new OrderDetail
+                    {
+                        ArtId = x.CartItemId,
+                        Quantity = x.Quantity,
+                        Price = x.Price
+                    }));
+                    orders.TotalAmount = cart.CartItems.Sum(x => (x.Price * x.Quantity));
+                    orders.TypePayment = req.TypePayment;
+                    orders.CreatedDate = DateTime.Now;
+                    orders.ModifiedDate = DateTime.Now;
+                    orders.CreatedBy = req.RecipientPhone;
+
+                    try
+                    {
+                        _context.Orders.Add(orders);
+                        _context.SaveChanges();
+                        return RedirectToAction("CheckOutSuccess");
+                    }
+                    catch (Exception ex)
+                    {
+                        // Xử lý lỗi khi lưu đơn hàng vào cơ sở dữ liệu
+                        // Ghi log hoặc hiển thị thông báo lỗi tùy ý
+                        return View("Error");
+                    }
+                }
+            }
+
+            // Trả về view "CheckOut" nếu không hợp lệ, hoặc giỏ hàng rỗng
+            return View("CheckOut");
         }
 
 
+        public IActionResult CheckOutSuccess()
+        {
+            return View();
+        }
 
 
     }
