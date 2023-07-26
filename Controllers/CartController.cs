@@ -59,7 +59,7 @@ namespace ArtGalleryOnline.Controllers
         }
        public IActionResult CheckOut()
         {
-            return View(HttpContext.Session.GetJson<Cart>("cart"));
+            return View();
         }
         public IActionResult PlaceOrder()
         {
