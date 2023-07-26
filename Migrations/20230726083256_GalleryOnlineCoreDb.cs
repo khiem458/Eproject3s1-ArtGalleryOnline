@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ArtGalleryOnline.Migrations
 {
-    public partial class Gallery : Migration
+    public partial class GalleryOnlineCoreDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,11 @@ namespace ArtGalleryOnline.Migrations
                     AuthId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Artist = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AuthDesciption = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AuthDesciption = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Modifiedby = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -30,7 +34,11 @@ namespace ArtGalleryOnline.Migrations
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Modifiedby = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -121,7 +129,11 @@ namespace ArtGalleryOnline.Migrations
                     ArtPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     StockQuantity = table.Column<int>(type: "int", nullable: false),
                     AuthId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Modifiedby = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -148,12 +160,18 @@ namespace ArtGalleryOnline.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RequestStatus = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     RecipientName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShippingAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RecipientPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RecipientEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    TypePayment = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Modifiedby = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -193,6 +211,29 @@ namespace ArtGalleryOnline.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CommentBlog",
+                columns: table => new
+                {
+                    CommentBlogId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BlogId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DatePosted = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CommentBlog", x => x.CommentBlogId);
+                    table.ForeignKey(
+                        name: "FK_CommentBlog_Blog_BlogId",
+                        column: x => x.BlogId,
+                        principalTable: "Blog",
+                        principalColumn: "BlogId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Interests",
                 columns: table => new
                 {
@@ -225,10 +266,9 @@ namespace ArtGalleryOnline.Migrations
                     OrderDetailId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderId = table.Column<int>(type: "int", nullable: false),
-                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    ArtId = table.Column<int>(type: "int", nullable: false)
+                    ArtId = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -305,6 +345,11 @@ namespace ArtGalleryOnline.Migrations
                 column: "AuthId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CommentBlog_BlogId",
+                table: "CommentBlog",
+                column: "BlogId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Interests_ArtId",
                 table: "Interests",
                 column: "ArtId");
@@ -353,7 +398,7 @@ namespace ArtGalleryOnline.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Blog");
+                name: "CommentBlog");
 
             migrationBuilder.DropTable(
                 name: "Interests");
@@ -372,6 +417,9 @@ namespace ArtGalleryOnline.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserNotifications");
+
+            migrationBuilder.DropTable(
+                name: "Blog");
 
             migrationBuilder.DropTable(
                 name: "ArtWorks");

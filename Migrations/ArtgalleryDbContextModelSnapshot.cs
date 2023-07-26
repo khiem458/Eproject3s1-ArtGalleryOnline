@@ -185,11 +185,14 @@ namespace ArtGalleryOnline.Migrations
 
             modelBuilder.Entity("ArtGalleryOnline.Models.CommentBlog", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CommentBlogId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentBlogId"), 1L, 1);
+
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
@@ -201,9 +204,12 @@ namespace ArtGalleryOnline.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CommentBlogId");
+
+                    b.HasIndex("BlogId");
 
                     b.ToTable("CommentBlog");
                 });
@@ -506,6 +512,17 @@ namespace ArtGalleryOnline.Migrations
                     b.Navigation("AuthorArtWork");
                 });
 
+            modelBuilder.Entity("ArtGalleryOnline.Models.CommentBlog", b =>
+                {
+                    b.HasOne("ArtGalleryOnline.Models.Blog", "Blog")
+                        .WithMany("CommentBlogs")
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
+                });
+
             modelBuilder.Entity("ArtGalleryOnline.Models.Interest", b =>
                 {
                     b.HasOne("ArtGalleryOnline.Models.ArtWork", "ArtWork")
@@ -608,6 +625,11 @@ namespace ArtGalleryOnline.Migrations
                     b.Navigation("ArtWorks");
 
                     b.Navigation("Blogs");
+                });
+
+            modelBuilder.Entity("ArtGalleryOnline.Models.Blog", b =>
+                {
+                    b.Navigation("CommentBlogs");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.Category", b =>

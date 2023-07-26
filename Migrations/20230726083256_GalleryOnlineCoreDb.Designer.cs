@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGalleryOnline.Migrations
 {
     [DbContext(typeof(ArtgalleryDbContext))]
-    [Migration("20230724125709_Gallery")]
-    partial class Gallery
+    [Migration("20230726083256_GalleryOnlineCoreDb")]
+    partial class GalleryOnlineCoreDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,18 @@ namespace ArtGalleryOnline.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Modifiedby")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("StockQuantity")
                         .HasColumnType("int");
 
@@ -81,6 +93,18 @@ namespace ArtGalleryOnline.Migrations
 
                     b.Property<string>("AuthDesciption")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Modifiedby")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AuthId");
@@ -144,9 +168,52 @@ namespace ArtGalleryOnline.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Modifiedby")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("ArtGalleryOnline.Models.CommentBlog", b =>
+                {
+                    b.Property<int>("CommentBlogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentBlogId"), 1L, 1);
+
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DatePosted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CommentBlogId");
+
+                    b.HasIndex("BlogId");
+
+                    b.ToTable("CommentBlog");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.Interest", b =>
@@ -206,14 +273,11 @@ namespace ArtGalleryOnline.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("OrderDetailId");
 
@@ -232,8 +296,23 @@ namespace ArtGalleryOnline.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Modifiedby")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<string>("RecipientEmail")
                         .HasColumnType("nvarchar(max)");
@@ -252,6 +331,9 @@ namespace ArtGalleryOnline.Migrations
 
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("TypePayment")
+                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -432,6 +514,17 @@ namespace ArtGalleryOnline.Migrations
                     b.Navigation("AuthorArtWork");
                 });
 
+            modelBuilder.Entity("ArtGalleryOnline.Models.CommentBlog", b =>
+                {
+                    b.HasOne("ArtGalleryOnline.Models.Blog", "Blog")
+                        .WithMany("CommentBlogs")
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
+                });
+
             modelBuilder.Entity("ArtGalleryOnline.Models.Interest", b =>
                 {
                     b.HasOne("ArtGalleryOnline.Models.ArtWork", "ArtWork")
@@ -534,6 +627,11 @@ namespace ArtGalleryOnline.Migrations
                     b.Navigation("ArtWorks");
 
                     b.Navigation("Blogs");
+                });
+
+            modelBuilder.Entity("ArtGalleryOnline.Models.Blog", b =>
+                {
+                    b.Navigation("CommentBlogs");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.Category", b =>
