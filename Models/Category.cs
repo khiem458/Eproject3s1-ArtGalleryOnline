@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ArtGalleryOnline.Models
 {
-    public class Category: CommonAbstract
+    public class Category
     {
         [Key]
         public int CategoryId { get; set; }

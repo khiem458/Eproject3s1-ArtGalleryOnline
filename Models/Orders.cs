@@ -13,7 +13,7 @@ namespace ArtGalleryOnline.Models
         Rejected = 2
     }
 
-    public class Orders: CommonAbstract
+    public class Orders
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArtGalleryOnline.Models
 {
-    public class ArtWork: CommonAbstract
+    public class ArtWork
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

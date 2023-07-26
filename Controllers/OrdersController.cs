@@ -56,7 +56,7 @@ namespace ArtGalleryOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderId,OrderDate,RequestStatus,Quantity,TotalAmount,RecipientName,ShippingAddress,RecipientPhone,RecipientEmail,TypePayment,UserId,CreatedBy,CreatedDate,ModifiedDate,Modifiedby")] Orders orders)
+        public async Task<IActionResult> Create([Bind("OrderId,OrderDate,RequestStatus,Quantity,TotalAmount,RecipientName,ShippingAddress,RecipientPhone,RecipientEmail,TypePayment,UserId")] Orders orders)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace ArtGalleryOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,OrderDate,RequestStatus,Quantity,TotalAmount,RecipientName,ShippingAddress,RecipientPhone,RecipientEmail,TypePayment,UserId,CreatedBy,CreatedDate,ModifiedDate,Modifiedby")] Orders orders)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderId,OrderDate,RequestStatus,Quantity,TotalAmount,RecipientName,ShippingAddress,RecipientPhone,RecipientEmail,TypePayment,UserId")] Orders orders)
         {
             if (id != orders.OrderId)
             {
