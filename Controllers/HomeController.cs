@@ -52,10 +52,7 @@ namespace ArtGalleryOnline.Controllers
             var Blog = _context.Blog.Include(b => b.AuthorArtWork);
             return View(Blog.ToList());
         }
-        public IActionResult Contact()
-        {
-            return View();
-        }
+       
         public IActionResult Privacy()
         {
             return View();
@@ -65,6 +62,11 @@ namespace ArtGalleryOnline.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        [HttpGet]
+        public IActionResult Contact()
+        {
+            return View();
         }
     }
 }

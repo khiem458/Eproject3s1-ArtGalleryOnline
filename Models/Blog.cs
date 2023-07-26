@@ -28,5 +28,7 @@ namespace ArtGalleryOnline.Models
         [ForeignKey("AuthId")]
         public AuthorArtWork? AuthorArtWork { get; set; }
 
+        public ICollection<CommentBlog>? CommentBlogs { get; set; }
+
     }
 }

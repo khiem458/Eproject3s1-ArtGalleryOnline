@@ -173,10 +173,10 @@
 				<div class="w3l-blog-single-post-main">
 					<ul class="admin-list">
 						<li><a href="#"><span class="fa fa-calendar" aria-hidden="true"></span>@Model.Date</a></li>
-						<li><a href="#"><span class="fa fa-user" aria-hidden="true"></span>@Model.AuthorArtWork.Artist</a></li>
+						<li><a href="#"><span class="fa fa-user" aria-hidden="true"></span>@(Model.AuthorArtWork?.Artist??"unknow")</a></li>
 						<li>
 							<a href="#">
-								<span class="fa fa-commenting-o" aria-hidden="true"></span>9
+								<span class="fa fa-commenting-o" aria-hidden="true"></span>@(Model.CommentBlogs?.Count??0)
 								Comments
 							</a>
 						</li>
@@ -189,24 +189,28 @@
 			</div>
 			<div class="comments">
 				<h3 class="aside-title ">Recent Comments</h3>
-					
-				<div class="binhluan">
-					<h4>Charlie</h4>
-					<ul class="my-2">
-						<li class="font-weight-bold">
-							21 Oct 2019
-						</li>
-					
-					</ul>
-					<p>Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices. Aliquam ac arcu interdum,Aliquam ac arcu interdum, dapibus nibh convallis, semper augue.</p>
-					<a href="#comment" class="replay">Reply</a>
-				</div>
-				
-			
+					@if(Model.CommentBlogs?.Count>0)
+					{
+						foreach(var comment in Model.CommentBlogs)
+						{
+							<div class="binhluan">
+								<h4>@comment.Name</h4>
+								<ul class="my-2">
+									<li class="font-weight-bold">
+										@comment.DatePosted.ToString("yyyy/dd/MM HH:mm:ss")
+									</li>
+
+								</ul>
+								<p>@comment.Message</p>
+								<a href="#comment" class="replay">Reply</a>
+							</div>
+						}
+					}
+		
 			</div>
 			<div class="leave-coment-form" id="comment">
 				<h3 class="aside-title">Write Your Comment</h3>
-				<form action="#" method="post">
+				<form action="@Url.Action("PostComment","DetailsView",new {blogId = Model.BlogId})" method="post">
 					<div class="d-grid- grid-col-2">
 						<div class="form-group">
 							<input type="text" name="Name" class="form-control" placeholder="Name" required="" fdprocessedid="6s76t7">

@@ -19,7 +19,7 @@ namespace ArtGalleryOnline.Models
         public DbSet<Interest> Interests { get; set; }
         public DbSet<Payment> payments { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<ArtGalleryOnline.Models.CommentBlog>? CommentBlog { get; set; }
+        public DbSet<CommentBlog> CommentBlog { get; set; }
         
 
     }

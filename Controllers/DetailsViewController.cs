@@ -56,13 +56,37 @@ namespace ArtGalleryOnline.Controllers
 
             var blog = await _context.Blog
                 .Include(b => b.AuthorArtWork)
+                .Include(b => b.CommentBlogs)
                 .FirstOrDefaultAsync(m => m.BlogId == id);
+
+            //var solidBlog =await  _context.Blog.FirstOrDefaultAsync(m => m.BlogId == id);
+            //var solidAuthorArtWork =await _context.AuthorArtWork.FirstOrDefaultAsync(x => x.AuthId == solidBlog!.AuthId);
+            //var comment = await _context.CommentBlog.FirstOrDefaultAsync(x => x.BlogId == solidBlog!.BlogId);
+
             if (blog == null)
             {
                 return NotFound();
             }
 
             return View(blog);
+        }
+
+        public async Task<IActionResult> PostComment(int blogId,string name,string email,string message)
+        {
+            var blog =await _context.Blog.FirstOrDefaultAsync(x => x.BlogId == blogId);
+            if(blog!=null)
+            {
+                var newComment = _context.CommentBlog.Add(new CommentBlog
+                {
+                    BlogId = blogId,
+                    Name = name,
+                    Email = email,
+                    Message = message,
+                    DatePosted = DateTime.Now,
+                });
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("BlogDetails",new {id = blogId });
         }
     }
 }
