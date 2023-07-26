@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ArtGalleryOnline.ModelsView;
+using System.ComponentModel.DataAnnotations;
 
 namespace ArtGalleryOnline.Models
 {
-    public class Category
+    public class Category: CommonAbstract
     {
         [Key]
         public int CategoryId { get; set; }

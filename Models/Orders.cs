@@ -1,4 +1,5 @@
-﻿using Microsoft.Build.Framework;
+﻿using ArtGalleryOnline.ModelsView;
+using Microsoft.Build.Framework;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,7 +13,7 @@ namespace ArtGalleryOnline.Models
         Rejected = 2
     }
 
-    public class Orders
+    public class Orders: CommonAbstract
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
