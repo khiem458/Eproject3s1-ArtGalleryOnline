@@ -2,6 +2,43 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    body {
+        background-image: url('/img/code-mg/hinh11.webp'); /* Replace 'wooden-background.jpg' with the actual path to your wooden background image */
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    /* Thêm góc nhìn để tạo không gian 3D cho khung hình */
+    .alime-portfolio-area {
+        perspective: 1000px; /* Điều chỉnh giá trị cho hiệu ứng 3D mong muốn */
+    }
+
+        /* Áp dụng biến đổi 3D cho từng mục trong bộ sưu tập */
+        .alime-portfolio-area .single_gallery_item {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            position: relative; /* Đặt vị trí là tương đối để cho phép z-index và box-shadow */
+            border: 1px solid transparent; /* Thêm viền trong suốt ban đầu */
+        }
+
+            /* Xoay và co dãn hình ảnh khi di chuột qua */
+            .alime-portfolio-area .single_gallery_item:hover {
+                transform: translateY(-10px) rotateX(5deg); /* Điều chỉnh giá trị translateY và rotateX cho hiệu ứng mong muốn */
+                box-shadow: 0 20px 30px #060607; /* Thêm bóng đậm để tạo hiệu ứng độ sâu */
+                z-index: 1; /* Đặt z-index để đưa mục đang di chuột qua lên phía trên các mục khác */
+               
+            }
+
+        /* Tùy chọn: Thêm bóng để tạo hiệu ứng độ sâu cho 3D */
+        .alime-portfolio-area .single_gallery_item {
+            box-shadow: 0 10px 15px black; /* Điều chỉnh thuộc tính của bóng theo ý muốn */
+        }
+
+
+
+
+</style>
 <!-- Welcome Area Start -->
 <section class="welcome-area">
     <div class="welcome-slides owl-carousel">
@@ -66,19 +103,20 @@
             <!-- Single Gallery Item -->
             <div class="col-12 col-sm-6 col-lg-3 single_gallery_item nature mb-30 wow fadeInUp" data-wow-delay="100ms">
                 <div class="single-portfolio-content">
-                    <img src="/img/bg-img/3.jpg" alt="">
+                    <img src="/img/code-mg/img-1.jpg" alt="">
                     <div class="hover-content">
-                        <a href="/img/bg-img/3.jpg" class="portfolio-img">+</a>
+                        <a href="/img/code-mg/img-1.jpg" class="portfolio-img">+</a>
                     </div>
                 </div>
             </div>
 
+
             <!-- Single Gallery Item -->
             <div class="col-12 col-sm-6 col-lg-3 single_gallery_item video human mb-30 wow fadeInUp" data-wow-delay="300ms">
                 <div class="single-portfolio-content">
-                    <img src="/img/bg-img/4.jpg" alt="">
+                    <img src="/img/code-mg/img-2.jpg" alt="">
                     <div class="hover-content">
-                        <a href="/img/bg-img/4.jpg" class="portfolio-img">+</a>
+                        <a href="/img/code-mg/img-2.jpg" class="portfolio-img">+</a>
                     </div>
                 </div>
             </div>
@@ -86,9 +124,9 @@
             <!-- Single Gallery Item -->
             <div class="col-12 col-sm-6 col-lg-3 single_gallery_item country mb-30 wow fadeInUp" data-wow-delay="500ms">
                 <div class="single-portfolio-content">
-                    <img src="/img/bg-img/5.jpg" alt="">
+                    <img src="/img/code-mg/img-3.jpg" alt="">
                     <div class="hover-content">
-                        <a href="/img/bg-img/5.jpg" class="portfolio-img">+</a>
+                        <a href="/img/code-mg/img-3.jpg" class="portfolio-img">+</a>
                     </div>
                 </div>
             </div>
@@ -96,9 +134,9 @@
             <!-- Single Gallery Item -->
             <div class="col-12 col-sm-6 col-lg-3 single_gallery_item human mb-30 wow fadeInUp" data-wow-delay="700ms">
                 <div class="single-portfolio-content">
-                    <img src="/img/bg-img/6.jpg" alt="">
+                    <img src="/img/code-mg/img-4.jpg" alt="">
                     <div class="hover-content">
-                        <a href="/img/bg-img/6.jpg" class="portfolio-img">+</a>
+                        <a href="/img/code-mg/img-4.jpg" class="portfolio-img">+</a>
                     </div>
                 </div>
             </div>
@@ -106,9 +144,9 @@
             <!-- Single Gallery Item -->
             <div class="col-12 col-sm-6 col-lg-3 single_gallery_item nature mb-30 wow fadeInUp" data-wow-delay="100ms">
                 <div class="single-portfolio-content">
-                    <img src="/img/bg-img/7.jpg" alt="">
+                    <img src="/img/code-mg/img-5.jpg" alt="">
                     <div class="hover-content">
-                        <a href="/img/bg-img/7.jpg" class="portfolio-img">+</a>
+                        <a href="/img/code-mg/img-5.jpg" class="portfolio-img">+</a>
                     </div>
                 </div>
             </div>
@@ -116,9 +154,9 @@
             <!-- Single Gallery Item -->
             <div class="col-12 col-sm-6 col-lg-3 single_gallery_item video country mb-30 wow fadeInUp" data-wow-delay="300ms">
                 <div class="single-portfolio-content">
-                    <img src="/img/bg-img/8.jpg" alt="">
+                    <img src="/img/code-mg/img-6.jpg" alt="">
                     <div class="hover-content">
-                        <a href="/img/bg-img/8.jpg" class="portfolio-img">+</a>
+                        <a href="/img/code-mg/img-6.jpg" class="portfolio-img">+</a>
                     </div>
                 </div>
             </div>
@@ -126,9 +164,9 @@
             <!-- Single Gallery Item -->
             <div class="col-12 col-sm-6 col-lg-3 single_gallery_item human mb-30 wow fadeInUp" data-wow-delay="500ms">
                 <div class="single-portfolio-content">
-                    <img src="/img/bg-img/10.jpg" alt="">
+                    <img src="/img/code-mg/img-7.jpg" alt="">
                     <div class="hover-content">
-                        <a href="/img/bg-img/10.jpg" class="portfolio-img">+</a>
+                        <a href="/img/code-mg/img-7.jpg" class="portfolio-img">+</a>
                     </div>
                 </div>
             </div>
@@ -136,9 +174,9 @@
             <!-- Single Gallery Item -->
             <div class="col-12 col-sm-6 col-lg-3 single_gallery_item nature mb-30 wow fadeInUp" data-wow-delay="700ms">
                 <div class="single-portfolio-content">
-                    <img src="/img/bg-img/9.jpg" alt="">
+                    <img src="/img/code-mg/img-8.jpg" alt="">
                     <div class="hover-content">
-                        <a href="/img/bg-img/9.jpg" class="portfolio-img">+</a>
+                        <a href="/img/code-mg/img-8.jpg" class="portfolio-img">+</a>
                     </div>
                 </div>
             </div>
@@ -146,9 +184,9 @@
             <!-- Single Gallery Item -->
             <div class="col-12 col-sm-6 col-lg-6 single_gallery_item video country mb-30 wow fadeInUp" data-wow-delay="100ms">
                 <div class="single-portfolio-content">
-                    <img src="/img/bg-img/36.jpg" alt="">
+                    <img src="/img/code-mg/img-9.jpg" alt="">
                     <div class="hover-content">
-                        <a href="/img/bg-img/36.jpg" class="portfolio-img">+</a>
+                        <a href="/img/code-mg/img-9.jpg" class="portfolio-img">+</a>
                     </div>
                 </div>
             </div>
