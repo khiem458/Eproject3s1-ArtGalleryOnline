@@ -3,7 +3,29 @@
     ViewData["Title"] = "Gallery";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+<style>
+    body {
+        background-image: url('/img/code-mg/hinh11.webp'); /* Replace 'wooden-background.jpg' with the actual path to your wooden background image */
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    /* Thêm bóng đậm vào khung hình */
+    .alime-portfolio-area .single_gallery_item {
+        box-shadow: 0 20px 15px rgba(0, 0, 0, 0);
+       
+    }
 
+        /* Tạo viền màu trắng cho khung ngoài */
+        .alime-portfolio-area .single_gallery_item .single-portfolio-content {
+            border: 20px solid #fff;
+        }
+
+            /* Tạo khoảng cách giữa khung ảnh và viền trắng */
+            .alime-portfolio-area .single_gallery_item .single-portfolio-content img {
+                margin: 5px;
+            }
+
+</style>
 <!-- Breadcrumb Area Start -->
 <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/bg-img/38.jpg);">
     <div class="container h-100">

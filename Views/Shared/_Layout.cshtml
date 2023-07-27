@@ -14,7 +14,14 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/style.css">
-
+    <style>
+        /* Định dạng cho chữ "ART" */
+        .logo-text {
+            font-size: 36px; /* Điều chỉnh kích thước chữ theo ý muốn */
+            color: #ff6600; /* Màu cam, bạn có thể thay đổi mã màu tùy ý */
+            font-weight: bold; /* Để chữ in đậm */
+        }
+    </style>
 </head>
 
 <body>
@@ -59,7 +66,7 @@
                     <nav class="classy-navbar justify-content-between" id="alimeNav">
 
                         <!-- Logo -->
-                        <a class="nav-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/img/core-img/Logo3.jpg"  alt=""></a>
+                        <a class="nav-brand" asp-area="" asp-controller="Home" asp-action="Index"><div class="logo-text">A R T</div></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
