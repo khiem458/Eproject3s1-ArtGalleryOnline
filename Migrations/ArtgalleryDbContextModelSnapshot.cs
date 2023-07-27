@@ -173,6 +173,28 @@ namespace ArtGalleryOnline.Migrations
                     b.ToTable("CommentBlog");
                 });
 
+            modelBuilder.Entity("ArtGalleryOnline.Models.Contact", b =>
+                {
+                    b.Property<string>("ContactName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ContactEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ContactName");
+
+                    b.ToTable("Contact");
+                });
+
             modelBuilder.Entity("ArtGalleryOnline.Models.Interest", b =>
                 {
                     b.Property<int>("InterestId")

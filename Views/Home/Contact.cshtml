@@ -1,4 +1,4 @@
-﻿@model SendmailDot
+﻿@model Contact
 @{
     ViewData["Title"] = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,19 +13,20 @@
             <p> Công ty</p>
             <p> địa chỉ</p>
             <p> số điện thoại:</p>
-            <h2>@ViewBag.message</h2>
+            <h2>@ViewBag.SuccessMessage</h2>
+            <h2>@ViewBag.ErrorMessage</h2>
             <form>
                 <div class="form-group"> 
-                    <label asp-for="@Model.Name">Name</label>
-                    <input type="text" asp-for="@Model.Name" id="txtName" class="form-control"  placeholder="Enter your name"/>
+                    <label asp-for="@Model.ContactName">Name</label>
+                    <input type="text" asp-for="@Model.ContactName" id="txtName" class="form-control" placeholder="Enter your name" />
                 </div>
                 <div class="form-group"> 
-                    <label asp-for="@Model.phonenumber">phone number</label>
-                    <input type="text" asp-for="@Model.phonenumber" id=" txtphone" class="form-control" placeholder="Enter your phonenumber" />
+                    <label asp-for="@Model.ContactPhone">phone number</label>
+                    <input type="text" asp-for="@Model.ContactPhone" id=" txtphone" class="form-control" placeholder="Enter your phonenumber" />
                 </div>
                 <div class="form-group"> 
-                    <label asp-for="@Model.Email">Email</label>
-                    <input type="text" asp-for="@Model.Email" id="txtEmail" class="form-control" placeholder="Enter your Email" />
+                    <label asp-for="@Model.ContactEmail">Email</label>
+                    <input type="text" asp-for="@Model.ContactEmail" id="txtEmail" class="form-control" placeholder="Enter your Email" />
                 </div>
                 <div class="form-group">
                     <label asp-for="@Model.Description">Description</label>

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGalleryOnline.Migrations
 {
     [DbContext(typeof(ArtgalleryDbContext))]
-    [Migration("20230726083256_GalleryOnlineCoreDb")]
+    [Migration("20230727140737_GalleryOnlineCoreDb")]
     partial class GalleryOnlineCoreDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,18 +55,6 @@ namespace ArtGalleryOnline.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Modifiedby")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("StockQuantity")
                         .HasColumnType("int");
 
@@ -95,18 +83,6 @@ namespace ArtGalleryOnline.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Modifiedby")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("AuthId");
 
                     b.ToTable("AuthorArtWork");
@@ -122,11 +98,6 @@ namespace ArtGalleryOnline.Migrations
 
                     b.Property<int>("AuthId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime?>("Date")
                         .IsRequired()
@@ -168,18 +139,6 @@ namespace ArtGalleryOnline.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Modifiedby")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
@@ -214,6 +173,28 @@ namespace ArtGalleryOnline.Migrations
                     b.HasIndex("BlogId");
 
                     b.ToTable("CommentBlog");
+                });
+
+            modelBuilder.Entity("ArtGalleryOnline.Models.Contact", b =>
+                {
+                    b.Property<string>("ContactName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ContactEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ContactName");
+
+                    b.ToTable("Contact");
                 });
 
             modelBuilder.Entity("ArtGalleryOnline.Models.Interest", b =>
@@ -295,18 +276,6 @@ namespace ArtGalleryOnline.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Modifiedby")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
