@@ -18,13 +18,15 @@
 </div>
 <!-- Page Header End -->
 <!-- Checkout Start -->
+ @using (Html.BeginForm("CheckOut", "Cart", FormMethod.Post))
+                {
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
         <div class="col-lg-8">
             <div class="mb-4">
-                @using (Html.BeginForm("CheckOut", "Cart", FormMethod.Post))
-                {
+               
                     <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
+                   
                     <div class="form-group">
                         <label>Ho ten khach hang</label>
                        
@@ -52,10 +54,8 @@
                             <option value="2">Chuyen khoan</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-block btn-success">Dat hang</button>
-                    </div>
-                }
+                  
+              
             </div>
         </div>
         <div class="col-lg-4">
@@ -94,6 +94,8 @@
                 </div>
             </div>
         </div>
+              
     </div>
 </div>
 <!-- Checkout End -->
+}

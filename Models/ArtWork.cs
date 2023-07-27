@@ -4,8 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArtGalleryOnline.Models
 {
+    
+   
     public class ArtWork
     {
+         
+       
+        
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ArtId { get; set; }

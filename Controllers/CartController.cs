@@ -3,6 +3,7 @@ using ArtGalleryOnline.Models;
 using ArtGalleryOnline.ModelsView;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ArtGalleryOnline.Controllers
 {
@@ -71,43 +72,43 @@ namespace ArtGalleryOnline.Controllers
                 if (cart != null && cart.CartItems.Any()) // Kiểm tra giỏ hàng có sản phẩm không
                 {
                     // Thiết lập các thông tin đơn hàng từ đối tượng OrderViewModel req
+
                     orders.OrderDate = DateTime.Now;
                     orders.RequestStatus = RequestStatus.Pending;
-                    orders.Quantity = cart.CartItems.Sum(x => x.Quantity);
-                    orders.TotalAmount = cart.CartItems.Sum(x => (x.Price * x.Quantity));
+                    orders.Quantity = cart.CartItems.Count;
+                    orders.TotalAmount = cart.CartItems.Sum(e => e.ArtWork.ArtPrice * e.Quantity);
+                    var claim = ((ClaimsIdentity)User.Identity).FindFirst("UserId");
+                    var userId = claim == null ? null : claim.Value;
+                    orders.UserId = int.Parse(userId);
+                    
 
-                    try
-                    {
-                        // Lưu đơn hàng vào cơ sở dữ liệu
-                        _context.Orders.Add(orders);
-                        _context.SaveChanges();
 
-                        // Lưu thông tin chi tiết đơn hàng vào bảng OrderDetails
-                        foreach (var cartItem in cart.CartItems)
+                    // Lưu đơn hàng vào cơ sở dữ liệu
+                    _context.Orders.Add(orders);
+                    _context.SaveChanges();
+
+
+                    // Lưu thông tin chi tiết đơn hàng vào bảng OrderDetails
+                    foreach (var cartItem in cart.CartItems)
                         {
                             OrderDetail orderDetail = new OrderDetail
                             {
-                                OrderId = orders.OrderId, // Gán khóa ngoại OrderId
-                                ArtId = cartItem.CartItemId,
+                                OrderId = orders.OrderId,
+                                ArtId = cartItem.ArtWork.ArtId,
                                 Quantity = cartItem.Quantity,
                                 Price = cartItem.Price
                             };
                             _context.OrderDetails.Add(orderDetail);
                         }
-                        _context.SaveChanges();
+                   
+                    _context.SaveChanges();
 
                         // Xóa giỏ hàng sau khi lưu đơn hàng thành công
                         HttpContext.Session.Remove("cart");
 
                         // Chuyển hướng đến trang hiển thị thông báo thành công
                         return RedirectToAction("CheckOutSuccess");
-                    }
-                    catch (Exception ex)
-                    {
-                        // Xử lý lỗi khi lưu đơn hàng vào cơ sở dữ liệu
-                        // Ghi log hoặc hiển thị thông báo lỗi tùy ý
-                        return View("Error");
-                    }
+                   
                 }
             }
 

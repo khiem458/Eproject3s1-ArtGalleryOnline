@@ -20,7 +20,8 @@ namespace ArtGalleryOnline.Models
         public DbSet<Payment> payments { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CommentBlog> CommentBlog { get; set; }
-        
+       
+
 
     }
 }

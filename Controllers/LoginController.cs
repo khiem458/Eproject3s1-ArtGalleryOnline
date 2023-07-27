@@ -115,6 +115,7 @@ namespace ArtGalleryOnline.Controllers
                 var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, _user.UserEmail),
+             new Claim("UserId", _user.UserId.ToString()),
             new Claim("FullName", _user.UserName),
             new Claim(ClaimTypes.Role, _user.UserRole.ToString()),
         };

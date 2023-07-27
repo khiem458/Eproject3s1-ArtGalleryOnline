@@ -107,7 +107,11 @@
                                                     <li><a href="/Login/Logout">Logout</a></li>
                                                                                         
                                                 </ul>
-                                            </li>                                 
+                                            </li>
+
+                                     <li>
+                                        @(await Component.InvokeAsync("CartWidget"))
+                                    </li
                                 </ul>
 
                                 <!-- Search Icon -->
