@@ -7,9 +7,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
     body {
-        background-image: url('/img/code-mg/hinh11.webp'); /* Replace 'wooden-background.jpg' with the actual path to your wooden background image */
-        background-size: cover;
-        background-repeat: no-repeat;
+        background-color: black;
+        color: white;
     }
 
 
@@ -23,66 +22,30 @@
         overflow: hidden;
     }
 
-        /* Viền ngoài màu đen */
-        #pd_card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 1px solid #000;
-            z-index: 1;
-        }
+    .alime-portfolio-area {
+        border: 4px solid white; /* Add a black border around the outer container */
+        padding: 20px; /* Optional: Add some padding inside the outer container */
+    }
 
-        /* Viền trong màu trắng */
-        #pd_card img {
-            border: 2px solid #fff;
-        }
-
-        /* Hiệu ứng hover */
-        #pd_card:hover::before {
-            border-color: #fff; /* Thay đổi màu viền ngoài khi hover */
-        }
+    .single-post-area {
+        border: 20px solid white; /* Add a white border around each item */
+        padding: 10px; /* Optional: Add some padding inside each item */
+    }
 
 </style>
 <!-- Welcome Area Start -->
-<section class="welcome-area">
-    <div class="welcome-slides owl-carousel">
-        <!-- Single Slide -->
-        <div class="single-welcome-slide bg-img bg-overlay" style="background-image: url(/img/bg-img/1.jpg);">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
-                    <!-- Welcome Text -->
-                    <div class="col-12 col-lg-8 col-xl-6">
-                        <div class="welcome-text">
-                            <h2 data-animation="bounceInDown" data-delay="900ms">Hello <br>I'm Jackson</h2>
-                            <p data-animation="bounceInDown" data-delay="500ms">I photograph very instinctively. I see how it is taken like that. I do not follow certain styles, philosophies or teachers.</p>
-                            <div class="hero-btn-group" data-animation="bounceInDown" data-delay="100ms">
-                                <a asp-area="" asp-controller="Home" asp-action="About" class="btn alime-btn mb-3 mb-sm-0 mr-4">Get a Quote</a>
-                                <a class="hero-mail-contact" href="mailto:hello.alime@gmail.com">hello.alime@gmail.com</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Single Slide -->
-        <div class="single-welcome-slide bg-img bg-overlay" style="background-image: url(/img/bg-img/2.jpg);">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
-                    <!-- Welcome Text -->
-                    <div class="col-12 col-lg-8 col-xl-6">
-                        <div class="welcome-text">
-                            <h2 data-animation="bounceInUp" data-delay="100ms">Hello <br>I'm Alime</h2>
-                            <p data-animation="bounceInUp" data-delay="500ms">I photograph very instinctively. I see how it is taken like that. I do not follow certain styles, philosophies or teachers.</p>
-                            <div class="hero-btn-group" data-animation="bounceInUp" data-delay="900ms">
-                                <a asp-area="" asp-controller="Home" asp-action="About" class="btn alime-btn mb-3 mb-sm-0 mr-4">Get a Quote</a>
-                                <a class="hero-mail-contact" href="mailto:hello.alime@gmail.com">hello.alime@gmail.com</a>
-                            </div>
-                        </div>
-                    </div>
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/code-mg/blog-img16.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="page-title">Shop</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="~/Home"><i class="icon_house_alt"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -114,7 +77,7 @@
                             <!-- Post Conetent -->
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <a href="~/DetailsView/ArtWorkDetails?id=@item.ArtId">@item.ArtName</a>
+                                    <a href="~/DetailsView/ArtWorkDetails?id=@item.ArtId" >@item.ArtName</a>
                                 </div>
                                 <a href="#" class="post-title">$@item.ArtPrice</a>
                             </div>

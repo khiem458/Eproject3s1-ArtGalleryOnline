@@ -1,12 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Title -->
     <title>Alime - Photography HTML Template</title>
 
@@ -15,7 +14,14 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/style.css">
-
+    <style>
+        /* Định dạng cho chữ "ART" */
+        .logo-text {
+            font-size: 36px; /* Điều chỉnh kích thước chữ theo ý muốn */
+            color: #ff6600; /* Màu cam, bạn có thể thay đổi mã màu tùy ý */
+            font-weight: bold; /* Để chữ in đậm */
+        }
+    </style>
 </head>
 
 <body>
@@ -33,10 +39,14 @@
                         <!-- Close -->
                         <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
                         <!-- Form -->
-                        <form action="index.html" method="post">
-                            <input type="search" name="top-search-bar" class="form-control" placeholder="Search and hit enter...">
+                        @using (Html.BeginForm("Store", "Home", FormMethod.Get))
+                        {
+                            <input type="search" name="searchString" class="form-control" placeholder="Search and hit enter...">
                             <button type="submit">Search</button>
-                        </form>
+                        }
+
+
+
                     </div>
                 </div>
             </div>
@@ -45,15 +55,18 @@
 
     <!-- Header Area Start -->
     <header class="header-area">
+
+
         <!-- Main Header Start -->
         <div class="main-header-area">
+
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
                     <!-- Classy Menu -->
                     <nav class="classy-navbar justify-content-between" id="alimeNav">
 
                         <!-- Logo -->
-                        <a class="nav-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/img/core-img/Logo3.jpg" alt=""></a>
+                        <a class="nav-brand" asp-area="" asp-controller="Home" asp-action="Index"><div class="logo-text">A R T</div></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -70,32 +83,42 @@
                             <div class="classynav">
                                 <ul id="nav">
                                     <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                                    @*<li>
+                                    <a href="#">Pages</a>
+                                    <ul class="dropdown">
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Index">- Home</a></li>
+                                    <li><a asp-area="" asp-controller="#" asp-action="#">- 500 Page</a></li>
+                                    <li><a asp-area="" asp-controller="#" asp-action="#">-404 Page</a></li>
+                                    <li><a asp-area="" asp-controller="#" asp-action="#">-401 Page</a></li>
+                                    <li><a href="/single-blog.html">- Blog Details</a></li>
                                     <li>
-                                        <a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a asp-area="" asp-controller="Home" asp-action="Index">- Home</a></li>
-                                            <li><a asp-area="" asp-controller="Home" asp-action="About">- About</a></li>
-                                            <li><a asp-area="" asp-controller="Home" asp-action="Gallery">- Gallery</a></li>
-                                            <li><a asp-area="" asp-controller="Home" asp-action="Blog">- Blog</a></li>
-                                            <li><a href="/single-blog.html">- Blog Details</a></li>
-                                            <li><a asp-area="" asp-controller="Home" asp-action="Contact">- Contact</a></li>
-                                            <li>
-                                                <a href="#">- Dropdown</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">- Dropdown Item</a></li>
-                                                    <li><a href="#">- Dropdown Item</a></li>
-                                                    <li><a href="#">- Dropdown Item</a></li>
-                                                    <li><a href="#">- Dropdown Item</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
+                                    <a href="#">- Dropdown</a>
+                                    <ul class="dropdown">
+                                    <li><a href="#">- Dropdown Item</a></li>
+                                    <li><a href="#">- Dropdown Item</a></li>
+                                    <li><a href="#">- Dropdown Item</a></li>
+                                    <li><a href="#">- Dropdown Item</a></li>
+                                    </ul>
                                     </li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                                    </ul> no in use
+                                    </li>*@
                                     <li><a asp-area="" asp-controller="Home" asp-action="Gallery">Gallery</a></li>
                                     <li><a asp-area="" asp-controller="Home" asp-action="Blog">Blog</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Store">Store</a></li>
                                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                                    <li><a asp-area="" asp-controller="Orders" asp-action="Indext">Orders</a></li>
+
                                     <li>
-                                        <a asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                                        <a href="#"><i class="fas fa-user"></i></a>
+                                        <ul class="dropdown">
+                                            <li><a asp-area="" asp-controller="Login" asp-action="Login" class="button-outline">Login</a></li>
+                                            <li><a href="/Login/Register">Register</a></li>
+
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @(await Component.InvokeAsync("CartWidget"))
                                     </li>
                                 </ul>
 
@@ -234,7 +257,20 @@
     <script src="/js/alime.bundle.js"></script>
     <!-- Active -->
     <script src="/js/default-assets/active.js"></script>
+    <style>
+        .button-outline {
+            border: 1px solid white;
+            color: white;
+            border-radius: 5px;
+            transition: border-color 1s color 1s ease;
+        }
 
+            /* Button hover style */
+            .button-outline:hover {
+                border-color: #f74d4c;
+                color: #f74d4c
+            }
+    </style>
 </body>
 
 </html>

@@ -17,33 +17,20 @@
         text-decoration: none;
     }
 
-    /* Đóng khung ảnh hình bình hành */
-    #pd_card {
-        position: relative;
-        overflow: hidden;
+    /* Thêm bóng đậm vào khung hình */
+    .alime-portfolio-area .single_gallery_item {
+        box-shadow: 0 20px 15px rgba(0, 0, 0, 0);
     }
 
-        /* Viền ngoài màu đen */
-        #pd_card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 1px solid #000;
-            z-index: 1;
+        /* Tạo viền màu trắng cho khung ngoài */
+        .alime-portfolio-area .single_gallery_item .single-portfolio-content {
+            border: 20px solid #fff;
         }
 
-        /* Viền trong màu trắng */
-        #pd_card img {
-            border: 2px solid #fff;
-        }
-
-        /* Hiệu ứng hover */
-        #pd_card:hover::before {
-            border-color: #fff; /* Thay đổi màu viền ngoài khi hover */
-        }
+            /* Tạo khoảng cách giữa khung ảnh và viền trắng */
+            .alime-portfolio-area .single_gallery_item .single-portfolio-content img {
+                margin: 5px;
+            }
 
 </style>
 <!-- Welcome Area Start -->
