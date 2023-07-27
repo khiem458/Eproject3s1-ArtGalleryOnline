@@ -21,4 +21,12 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\AnhLinh\Documents\GitHub\Eproject3s2-ArtGalleryOnline\Models\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\AnhLinh\Documents\GitHub\Eproject3s2-ArtGalleryOnline\Models\.editorconfig" />
+  </ItemGroup>
+
 </Project>

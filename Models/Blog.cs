@@ -18,9 +18,6 @@ namespace ArtGalleryOnline.Models
         public DateTime? Date { get; set; }
         [Required]
         public string? Description { get; set; }
-        [Required]
-        [StringLength(500)]
-        public string? Comment { get; set; }
 
         // lien ket voi Author
         public int AuthId { get; set; }

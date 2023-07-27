@@ -59,7 +59,7 @@ namespace ArtGalleryOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogId,Title,Image,Date,Description,Comment,AuthId")] Blog blog,IFormFile Image)
+        public async Task<IActionResult> Create([Bind("BlogId,Title,Image,Date,Description,AuthId")] Blog blog,IFormFile Image)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@ namespace ArtGalleryOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BlogId,Title,Image,Date,Description,Comment,AuthId")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("BlogId,Title,Image,Date,Description,AuthId")] Blog blog)
         {
             if (id != blog.BlogId)
             {

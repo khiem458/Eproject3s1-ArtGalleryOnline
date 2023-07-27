@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Net.Mail;
 
 namespace ArtGalleryOnline.Controllers
 {
@@ -68,5 +69,23 @@ namespace ArtGalleryOnline.Controllers
         {
             return View();
         }
-    }
+        [HttpPost]
+		public IActionResult Contact(SendmailDot sendmailDot)
+		{
+            if(!ModelState.IsValid) return View();
+            try
+            {
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("chandra@.com");
+    
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message.ToString();
+            }
+			return View();
+		}
+
+	}
 }

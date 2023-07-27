@@ -4,7 +4,31 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<style>
+    /* Adjust the height of table rows */
+    table.table tbody tr {
+        height: 80px; /* You can adjust the height as needed */
+    }
 
+        /* Vertically align buttons in the table cell */
+        table.table tbody tr td {
+            vertical-align: middle;
+        }
+
+            /* Limit the description cell width and add ellipsis for overflow */
+            table.table tbody tr td:nth-child(4) {
+                max-width: 200px; /* You can adjust the width as needed */
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /* Ensure the image stays within the cell */
+            table.table tbody tr td img {
+                max-width: 100px;
+                max-height: 100px;
+            }
+</style>
 <div class="card mb-4">
     <div class="card-header">
         <h1 class="card-title text-center">Index</h1>
@@ -31,9 +55,6 @@
                         @Html.DisplayNameFor(model => model.Description)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Comment)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.AuthorArtWork)
                     </th>
                     <th></th>
@@ -56,22 +77,17 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Comment)
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.AuthorArtWork.Artist)
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.BlogId" class="btn btn-primary">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.BlogId" class="btn btn-secondary">Details</a> |
+                            <a asp-action="Edit" asp-route-id="@item.BlogId" class="btn btn-primary">Edit</a> 
+                            <a asp-action="Details" asp-route-id="@item.BlogId" class="btn btn-secondary">Details</a> 
                             <a asp-action="Delete" asp-route-id="@item.BlogId" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 }
             </tbody>
-        </table>
-
-        
+        </table> 
     </div>
 
 </div>
