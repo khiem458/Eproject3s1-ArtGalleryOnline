@@ -137,7 +137,7 @@ namespace ArtGalleryOnline.Controllers
                     authProperties);
 
 
-                if (_user.UserRole == UserRole.admin)
+                if (_user.UserRole == UserRole.Admin)
                 {
                     return RedirectToAction("Index", "Admin");
                 }

@@ -11,7 +11,7 @@ namespace ArtGalleryOnline.Models
     }
     public enum UserRole
     {
-        admin = 0,
+        Admin = 0,
         user = 1,
         author = 2
     }
