@@ -18,7 +18,7 @@
 </div>
 <!-- Page Header End -->
 <!-- Checkout Start -->
- @using (Html.BeginForm("CheckOut", "Cart", FormMethod.Post))
+@using (Html.BeginForm("CheckOut", "Cart", FormMethod.Post ))
                 {
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
@@ -29,23 +29,23 @@
                    
                     <div class="form-group">
                         <label>Ho ten khach hang</label>
-                       
-                        @Html.TextBoxFor(m => m.RecipientName, new { @class = "form-control", @placeholder = "Username" })
+
+                        @Html.TextBoxFor(m => m.RecipientName, new { @class = "form-control", @placeholder = "Username",required = "required"  } )
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                       
-                        @Html.TextBoxFor(m => m.RecipientEmail, new { @class = "form-control", @placeholder = "RecipientEmail" })
+
+                        @Html.TextBoxFor(m => m.RecipientEmail, new { @class = "form-control", @placeholder = "RecipientEmail",required = "required" })
                     </div>
                     <div class="form-group">
                         <label>SDT</label>
-                       
-                        @Html.TextBoxFor(m => m.RecipientPhone, new { @class = "form-control", @placeholder = "RecipientPhone" })
+
+                        @Html.TextBoxFor(m => m.RecipientPhone, new { @class = "form-control", @placeholder = "RecipientPhone",required = "required" })
                     </div>
                     <div class="form-group">
                         <label>Address</label>
-                      
-                        @Html.TextBoxFor(m => m.ShippingAddress, new { @class = "form-control", @placeholder = "ShippingAddress" })
+
+                        @Html.TextBoxFor(m => m.ShippingAddress, new { @class = "form-control", @placeholder = "ShippingAddress",required = "required" })
                     </div>
                     <div class="form-group">
                         <label>Hinh thuc thanh toan</label>
@@ -97,5 +97,7 @@
               
     </div>
 </div>
+
 <!-- Checkout End -->
 }
+

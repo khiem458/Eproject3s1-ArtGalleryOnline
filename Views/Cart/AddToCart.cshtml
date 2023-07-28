@@ -3,16 +3,21 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model Cart
-
+<style>
+    body {
+        background-color: black;
+        color: white;
+    }
+</style>
 
 <!-- Page Header Start -->
-<div class="container-fluid bg-secondary mb-5">
+<div class="container-fluid bg-secondary mb-5" style="background-image: url(/img/bg-img/38.jpg);">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3" style="color:azure">Shopping Cart</h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="">Home</a></p>
+            <p class="m-0"><a href="~/Home" style="color:azure">Home</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Shopping Cart</p>
+            <p class="m-0" style="color:azure">Shopping Cart</p>
         </div>
     </div>
 </div>
@@ -24,11 +29,11 @@
             <table class="table table-bordered text-center mb-0">
                 <thead class="bg-secondary text-dark">
                     <tr>
-                        <th>Products</th>
-                        <th>Price</th>
+                        <th >Products</th>
+                        <th >Price</th>
                         <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Remove</th>
+                        <th >Total</th>
+                        <th >Remove</th>
                     </tr>
                 </thead>
                 <tbody class="align-middle">
@@ -36,9 +41,9 @@
                     {
                         @foreach (var item in Model?.CartItems) {
                             <tr>
-                                <td class="align-middle"><img src="@item.ArtWork.ArtImage" alt="" style="width: 50px;">@item.ArtWork.ArtName </td>
-                                <td class="align-middle">$@item.ArtWork.ArtPrice</td>
-                                <td class="align-middle">
+                                <td class="align-middle"><img src="@item.ArtWork.ArtImage" alt="" style="width: 50px;" >@item.ArtWork.ArtName </td>
+                                <td class="align-middle" style="color:azure">$@item.ArtWork.ArtPrice</td>
+                                <td class="align-middle" style="color:azure">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
                                         <div class="input-group-btn">
                                             <a href="/Cart/UpdateCart/?artId=@item.ArtWork.ArtId" class="btn btn-sm btn-primary btn-minus">
@@ -53,7 +58,8 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="align-middle">$@(
+                                <td class="align-middle" style="color:azure">
+                                    $@(
                             item.ArtWork.ArtPrice * item.Quantity
                             )</td>
                                 <td class="align-middle"><a href="/Cart/RemoveFromcart/?artId=@item.ArtWork.ArtId" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>

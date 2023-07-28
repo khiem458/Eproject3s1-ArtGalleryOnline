@@ -19,13 +19,13 @@
                 </p>
             </div>
         }
-        @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { @class = "login-form" }))
+        @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { @class = "login-form", required = "required" }))
         {
             <h3 class="Title">REGISTER</h3>
 
             <div class="form-group">
                 <label class="labelinp" for="UserName"><b>Username</b></label>
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Username" })
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Username",required = "required" })
             </div>
 
             @*<div class="form-group">
@@ -35,7 +35,7 @@
 
             <div class="form-group">
                 <label class="labelinp" for="UserEmail"><b>Email</b></label>
-                @Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control", @placeholder = "Email" })
+                @Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control", @placeholder = "Email",required = "required" })
             </div>
 
             <div class="form-group">
@@ -45,12 +45,12 @@
 
             <div class="form-group">
                 <label class="labelinp" for="UserAge"><b>Age</b></label>
-                @Html.TextBoxFor(m => m.UserAge, new { @class = "form-control", @placeholder = "Age" })
+                @Html.TextBoxFor(m => m.UserAge, new { @class = "form-control", @placeholder = "Age",required = "required" })
             </div>
 
             <div class="form-group">
                 <label class="labelinp" for="UserPhoneNum"><b>Phone Number</b></label>
-                @Html.TextBoxFor(m => m.UserPhoneNum, new { @class = "form-control", @placeholder = "Phone Number" })
+                @Html.TextBoxFor(m => m.UserPhoneNum, new { @class = "form-control", @placeholder = "Phone Number",required = "required" })
             </div>
 
             @*<div class="form-group">
@@ -60,7 +60,7 @@
 
             <div class="form-group">
                 <label class="labelinp" for="UserPassword"><b>Password</b></label>
-                @Html.PasswordFor(m => m.UserPassword, new { @class = "form-control", @placeholder = "Password" })
+                @Html.PasswordFor(m => m.UserPassword, new { @class = "form-control", @placeholder = "Password",required = "required" })
             </div>
 
             <button type="submit" class="login-button">Register</button>
