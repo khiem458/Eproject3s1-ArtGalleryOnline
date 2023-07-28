@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Net;
 using System.Net.Mail;
+using System.Text;
 
 namespace ArtGalleryOnline.Controllers
 {
@@ -70,22 +72,38 @@ namespace ArtGalleryOnline.Controllers
             return View();
         }
         [HttpPost]
-		public IActionResult Contact(SendmailDot sendmailDot)
-		{
-            if(!ModelState.IsValid) return View();
-            try
+        public IActionResult Contact(Contact contact)
+        {
+            if (ModelState.IsValid)
             {
-                MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("chandra@.com");
-    
+                try
+                {
+                    string mailFrom = "mailfromonlineartgallery@gmail.com"; // Thay đổi địa chỉ email của bạn
+                    string password = "OnlineArtgallery.@"; // Thay đổi mật khẩu email của bạn
 
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Message = ex.Message.ToString();
-            }
-			return View();
-		}
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress(mailFrom);
+                    mail.To.Add("vythianhlinh02@gmail.com"); // Thay đổi địa chỉ email của người nhận
+                    mail.Subject = "Contact Us Enquiry from " + contact.ContactName;
+                    mail.Body = $"Name: {contact.ContactName}\nEmail: {contact.ContactEmail}\nPhone: {contact.ContactPhone}\n\n{contact.Description}";
 
-	}
+                    SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                    smtpClient.EnableSsl = true;
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = new NetworkCredential(mailFrom, password);
+                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtpClient.Send(mail);
+
+                    ViewBag.Message = "Message sent successfully.";
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.ErrorMessage = "An error occurred while sending the email: " + ex.Message;
+                }
+            }
+
+            return View();
+        }
+    }
+
 }
