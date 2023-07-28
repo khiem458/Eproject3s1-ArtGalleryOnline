@@ -36,108 +36,65 @@ namespace ArtGalleryOnline.Controllers
                 return View("Login");
             }
         }
-        public ActionResult Register()
+        public IActionResult RegisterCreate()
         {
             return View();
         }
 
+        // POST: ManageUsers/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Users users)
+        public async Task<IActionResult> RegisterCreate([Bind("UserId,UserName,UserFullName,UserEmail,UserGender,UserAge,UserPhoneNum,UserAddress,UserPassword,UserRole")] Users users)
         {
-            // Check if all required fields are empty
-            bool requiredFieldsEmpty = string.IsNullOrEmpty(users.UserName)
-                || string.IsNullOrEmpty(users.UserEmail)
-                || string.IsNullOrEmpty(users.UserPhoneNum)
-                || string.IsNullOrEmpty(users.UserPassword);
-
-            if (ModelState.IsValid && !requiredFieldsEmpty)
+            if (ModelState.IsValid)
             {
-                var check = _context.Users.FirstOrDefault(s => s.UserEmail == users.UserEmail);
-                if (check == null)
-                {
-                    users.UserPassword = BCrypt.Net.BCrypt.HashPassword(users.UserPassword);
-
-                    // Set any other properties of the Users object here, if needed
-                    users.UserFullName = "";
-                    users.UserAddress = "";
-
-                    // Add the new user to the database
-                    _context.Users.Add(users);
-                    _context.SaveChanges();
-
-                    // Redirect the user to the login page after successful registration
-                    return RedirectToAction("Login");
-                }
-                else
-                {
-                    ModelState.AddModelError("UserEmail", "Email already exists. Please use a different email address.");
-                }
+                _context.Add(users);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            else
-            {
-                // If the ModelState is invalid or required fields are empty, set the error message
-                ViewBag.Registererr = 0;
-                ModelState.AddModelError("", "Please fill in all required fields.");
-            }
-
-            // Return to the registration page with the provided user data
             return View(users);
-        }
-
-
+        }        
         public async Task<IActionResult> Login()
         {
+           
+           
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Login(Users _userPage)
         {
-
-            if (string.IsNullOrEmpty(_userPage.UserEmail) || string.IsNullOrEmpty(_userPage.UserPassword))
+            var _user = _context.Users.Where(m => m.UserEmail == _userPage.UserEmail && m.UserPassword == _userPage.UserPassword).FirstOrDefault();
+            if (_user == null)
             {
-                ViewBag.LoginStatus = 0;
-                return View();
-            }
-
-
-            var _user = _context.Users.SingleOrDefault(m => m.UserEmail == _userPage.UserEmail);
-
-            if (_user == null || !BCrypt.Net.BCrypt.Verify(_userPage.UserPassword, _user.UserPassword))
-            {
-                // If the user is not found or the password is incorrect, show an error message
                 ViewBag.LoginStatus = 0;
                 return View();
             }
             else
             {
-                // Create claims for the authenticated user
                 var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, _user.UserEmail),
-             new Claim("UserId", _user.UserId.ToString()),
-            new Claim("FullName", _user.UserName),
-            new Claim(ClaimTypes.Role, _user.UserRole.ToString()),
-        };
+                {
+                        new Claim(ClaimTypes.Name, _user.UserEmail),
+                         new Claim("UserId", _user.UserId.ToString()),
+                        new Claim("FullName", _user.UserName),
 
+                        new Claim(ClaimTypes.Role, _user.UserRole.ToString()),
+                };
 
                 var claimsIdentity = new ClaimsIdentity(
                     claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
 
                 var authProperties = new AuthenticationProperties
                 {
 
                 };
 
-
                 await HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
-
-
-                if (_user.UserRole == UserRole.Admin)
+                if (_user.UserRole == UserRole.admin)
                 {
                     return RedirectToAction("Index", "Admin");
                 }
@@ -145,7 +102,11 @@ namespace ArtGalleryOnline.Controllers
                 {
                     return RedirectToAction("Index", "Users");
                 }
+
             }
+
+            // Nếu không có vai trò nào phù hợp hoặc có lỗi xảy ra, quay lại trang đăng nhập
+            return View();
         }
 
 

@@ -1,0 +1,159 @@
+﻿@model ArtGalleryOnline.Models.Users
+@{
+    ViewData["Title"] = "RegisterCreate";
+    Layout = "~/Views/Shared/_LayoutRegister.cshtml";
+}
+
+<style>
+    body {
+        background-image: url('/img/bg-img/face-art.jpg'); /* Replace 'wooden-background.jpg' with the actual path to your wooden background image */
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .right {
+        position: absolute;
+        top: 0;
+        right: 0;
+        box-sizing: border-box;
+        padding: 40px;
+        width: 300px;
+        height: 400px;
+        background: url("https://goo.gl/YbktSj");
+        background-size: cover;
+        background-position: center;
+        border-radius: 0 2px 2px 0;
+    }
+
+        .right .loginwith {
+            display: block;
+            margin-bottom: 40px;
+            font-size: 28px;
+            color: #fff;
+            text-align: center;
+        }
+
+    button.social-signin {
+        margin-bottom: 20px;
+        width: 220px;
+        height: 36px;
+        border: none;
+        border-radius: 2px;
+        color: #fff;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        transition: 0.2s ease;
+        cursor: pointer;
+    }
+
+        button.social-signin:hover,
+        button.social-signin:focus {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            transition: 0.2s ease;
+        }
+
+        button.social-signin:active {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+            transition: 0.2s ease;
+        }
+
+        button.social-signin.facebook {
+            background: #32508e;
+        }
+
+        button.social-signin.twitter {
+            background: #55acee;
+        }
+
+        button.social-signin.google {
+            background: #dd4b39;
+        }
+</style>
+
+<h4>Register</h4>
+<hr />
+
+    <div class="row">
+       
+            <div class="col-sm">
+                
+                    
+                        <form asp-controller="Login" asp-action="RegisterCreate">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="UserName" class="control-label"></label>
+                                <input asp-for="UserName" class="form-control" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="UserFullName" class="control-label"></label>
+                                <input asp-for="UserFullName" class="form-control" />
+                                <span asp-validation-for="UserFullName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="UserEmail" class="control-label"></label>
+                                <input asp-for="UserEmail" class="form-control" />
+                                <span asp-validation-for="UserEmail" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="UserGender" class="control-label"></label>
+                                <select asp-for="UserGender" class="form-control">
+                                    <option value="1"> Female</option>
+                                    <option value="0"> Male</option>
+                                </select>
+                                <span asp-validation-for="UserGender" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="UserAge" class="control-label"></label>
+                                <input asp-for="UserAge" class="form-control" />
+                                <span asp-validation-for="UserAge" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="UserPhoneNum" class="control-label"></label>
+                                <input asp-for="UserPhoneNum" class="form-control" />
+                                <span asp-validation-for="UserPhoneNum" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="UserAddress" class="control-label"></label>
+                                <input asp-for="UserAddress" class="form-control" />
+                                <span asp-validation-for="UserAddress" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="UserPassword" class="control-label"></label>
+                                <input asp-for="UserPassword" class="form-control" />
+                                <span asp-validation-for="UserPassword" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="UserRole" class="control-label"></label>
+                                <select asp-for="UserRole" class="form-control">
+                                    <option value="1" selected>Customer</option>
+                                    
+                                </select>
+                                <span asp-validation-for="UserRole" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    
+                
+            </div>
+    
+            <div class="col-sm">
+
+
+                    <div class="right">
+                        <span class="loginwith">Sign in with<br />social network</span>
+
+                        <button class="social-signin facebook">Log in with facebook</button>
+                        <button class="social-signin twitter">Log in with Twitter</button>
+                        <button class="social-signin google">Log in with Google+</button>
+                    </div>
+                            
+                 
+                  
+              
+            </div>
+            
+    </div>
+
+

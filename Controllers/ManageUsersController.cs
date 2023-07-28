@@ -66,6 +66,7 @@ namespace ArtGalleryOnline.Controllers
             return View(users);
         }
 
+
         // GET: ManageUsers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
