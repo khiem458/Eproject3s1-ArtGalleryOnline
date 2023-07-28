@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ArtGalleryOnline.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArtGalleryOnline.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class ManageUsersController : Controller
     {
         private readonly ArtgalleryDbContext _context;

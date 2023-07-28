@@ -4,81 +4,79 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<style>
+    /* CSS cho màu nền đen */
+    .card-header {
+        background-color: #000000; /* Mã màu HEX cho màu đen */
+        color: #ffffff; /* Mã màu HEX cho màu chữ trắng */
+    }
+    .card-body{
+        background-image: url('/img/code-mg/hinh18.jpg'); /* Replace 'wooden-background.jpg' with the actual path to your wooden background image */
+        background-size: cover;
+        background-repeat: no-repeat;
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserFullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserEmail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserGender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserAge)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserPhoneNum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserPassword)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserRole)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserFullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserEmail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserGender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserAge)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserPhoneNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserPassword)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserRole)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    }
+     .table-responsive{
+         border-radius:5px;
+        
+     }
+    
+    
+    /* CSS cho màu chữ trắng */
+    .card-header h1.card-title {
+        color: #ffffff;
+    }
+</style>
+<div class="container mt-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <h1 class="card-title text-center">Index</h1>
+            <div class="text-right">
+                <p>
+                    <a asp-action="Create" class="btn btn-primary">Create New</a>
+                </p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="datatablesSimple" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserFullName)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserEmail)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserGender)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserAge)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserPhoneNum)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserAddress)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserPassword)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserRole)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UserFullName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UserEmail)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UserGender)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UserAge)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UserPhoneNum)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UserAddress)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UserPassword)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UserRole)</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-primary btn-sm">Edit</a>
+                                    <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-info btn-sm">Details</a>
+                                    <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
