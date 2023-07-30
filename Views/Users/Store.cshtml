@@ -7,9 +7,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
     body {
-        background-image: url('/img/code-mg/hinh11.webp'); /* Replace 'wooden-background.jpg' with the actual path to your wooden background image */
-        background-size: cover;
-        background-repeat: no-repeat;
+        background-color: black;
+        color: white;
     }
 
 
@@ -17,59 +16,36 @@
         text-decoration: none;
     }
 
-    /* Thêm bóng đậm vào khung hình */
-    .alime-portfolio-area .single_gallery_item {
-        box-shadow: 0 20px 15px rgba(0, 0, 0, 0);
+    /* Đóng khung ảnh hình bình hành */
+    #pd_card {
+        position: relative;
+        overflow: hidden;
     }
 
-        /* Tạo viền màu trắng cho khung ngoài */
-        .alime-portfolio-area .single_gallery_item .single-portfolio-content {
-            border: 20px solid #fff;
-        }
+    .alime-portfolio-area {
+        border: 0px solid white; /* Add a black border around the outer container */
+        padding: 20px; /* Optional: Add some padding inside the outer container */
+    }
 
-            /* Tạo khoảng cách giữa khung ảnh và viền trắng */
-            .alime-portfolio-area .single_gallery_item .single-portfolio-content img {
-                margin: 5px;
-            }
+    .single-post-area {
+        border: 20px solid white; /* Add a white border around each item */
+        padding: 10px; /* Optional: Add some padding inside each item */
+    }
 
 </style>
 <!-- Welcome Area Start -->
-<section class="welcome-area">
-    <div class="welcome-slides owl-carousel">
-        <!-- Single Slide -->
-        <div class="single-welcome-slide bg-img bg-overlay" style="background-image: url(/img/bg-img/1.jpg);">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
-                    <!-- Welcome Text -->
-                    <div class="col-12 col-lg-8 col-xl-6">
-                        <div class="welcome-text">
-                            <h2 data-animation="bounceInDown" data-delay="900ms">Hello <br>I'm Jackson</h2>
-                            <p data-animation="bounceInDown" data-delay="500ms">I photograph very instinctively. I see how it is taken like that. I do not follow certain styles, philosophies or teachers.</p>
-                            <div class="hero-btn-group" data-animation="bounceInDown" data-delay="100ms">
-                                <a asp-area="" asp-controller="Home" asp-action="About" class="btn alime-btn mb-3 mb-sm-0 mr-4">Get a Quote</a>
-                                <a class="hero-mail-contact" href="mailto:hello.alime@gmail.com">hello.alime@gmail.com</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Single Slide -->
-        <div class="single-welcome-slide bg-img bg-overlay" style="background-image: url(/img/bg-img/2.jpg);">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
-                    <!-- Welcome Text -->
-                    <div class="col-12 col-lg-8 col-xl-6">
-                        <div class="welcome-text">
-                            <h2 data-animation="bounceInUp" data-delay="100ms">Hello <br>I'm Alime</h2>
-                            <p data-animation="bounceInUp" data-delay="500ms">I photograph very instinctively. I see how it is taken like that. I do not follow certain styles, philosophies or teachers.</p>
-                            <div class="hero-btn-group" data-animation="bounceInUp" data-delay="900ms">
-                                <a asp-area="" asp-controller="Home" asp-action="About" class="btn alime-btn mb-3 mb-sm-0 mr-4">Get a Quote</a>
-                                <a class="hero-mail-contact" href="mailto:hello.alime@gmail.com">hello.alime@gmail.com</a>
-                            </div>
-                        </div>
-                    </div>
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/code-mg/hinh16.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="page-title">Shop</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="~/Home"><i class="icon_house_alt"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -118,4 +94,3 @@
         </div>
     </div>
 </div>
-

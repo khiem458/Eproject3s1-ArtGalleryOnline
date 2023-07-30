@@ -1,20 +1,79 @@
-﻿
+﻿@model Contact
 @{
     ViewData["Title"] = "Contact";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
 <!-- Breadcrumb Area Start -->
+<style>
+
+    body {
+        background-color: black;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .form-container {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 75px;
+    }
+
+    label {
+        color: #989081;
+    }
+
+    h2 {
+        color: #989081;
+    }
+
+    .btn-primary {
+        background: #cec9bddb;
+        color: #713e3e;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .btn-primary:hover {
+            text-decoration: underline;
+            background-color: #ad996adb;
+        }
+
+    form {
+        padding-left: 30px;
+        max-width: 1530px;
+    }
+
+    .form-left {
+        flex: 1;
+        padding-right: 20px;
+    }
+
+
+    .form-right {
+        flex: 1;
+        padding-left: 20px
+    }
+
+
+
+    .form-control {
+        width: 100%;
+        max-width: 500px;
+    }
+
+</style>
 <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/bg-img/38.jpg);">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="breadcrumb-content text-center">
-                    <h2 class="page-title">Contact</h2>
+                    <h2 class="page-title">Gallery</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a href="index.html"><i class="icon_house_alt"></i> Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                            <li class="breadcrumb-item active" aria-current="page">Gallery</li>
                         </ol>
                     </nav>
                 </div>
@@ -22,44 +81,44 @@
         </div>
     </div>
 </section>
-<!-- Breadcrumb Area End -->
-<!-- Contact Area Start -->
-<div class="contact-area section-padding-80-50">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <h2 class="contact-title mb-30">Let’s Work <br>Together</h2>
-            </div>
-            <div class="col-12 col-md-6 col-lg-3">
-                <!-- Contact Info -->
-                <div class="contact-info mb-30">
-                    <p>Email</p>
-                    <a href="mailto:info.deercreative@gmail.com">info.deercreative@gmail.com</a>
-                </div>
-                <!-- Contact Info -->
-                <div class="contact-info mb-30">
-                    <p>Call Us</p>
-                    <a href="#">+6511.188.888</a>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-3">
-                <!-- Contact Info -->
-                <div class="contact-info mb-30">
-                    <p>Visit Us</p>
-                    <a href="#">60-49 Road 11378 New York</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Contact Area End -->
-<!-- Map Area Start -->
-<div class="map-area section-padding-0-80">
-    <div class="container">
-        <div id="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12309.440717226664!2d24.094896788114085!3d56.9484200464499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecfb0e5073ded%3A0x400cfcd68f2fe30!2sRiga%2C+Latvia!5e0!3m2!1sen!2sbd!4v1550835159592" allowfullscreen></iframe>
-        </div>
-    </div>
-</div>
-<!-- Map Area End -->
 
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-success">@ViewBag.Message</div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+<br />
+<br />
+<br />
+<form asp-action="Contact" method="post">
+    <div class="form-container">
+        <div class="form-left">
+            <h2>Contact Us</h2>
+            <div class="form-group">
+                <label>Name:</label>
+                <input asp-for="ContactName" class="form-control" placeholder="Enter your Name" />
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input asp-for="ContactEmail" class="form-control" placeholder="Enter your Email" />
+            </div>
+            <div class="form-group">
+                <label>Phone:</label>
+                <input asp-for="ContactPhone" class="form-control" placeholder="Enter your phone" />
+            </div>
+            <div class="form-group">
+                <label>Message:</label>
+                <textarea asp-for="Description" class="form-control" placeholder="Enter your Description"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+        <div class="form-right">
+            <h2>Maps</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d957.4514418141962!2d106.66573455122112!3d10.786543425818904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752edac37c5025%3A0xd5fab66e51e1049d!2sFPT%20Arena%20Multimedia!5e0!3m2!1svi!2s!4v1690613339308!5m2!1svi!2s" width="800" height="480" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</form>
