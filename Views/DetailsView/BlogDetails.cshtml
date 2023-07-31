@@ -4,7 +4,11 @@
     Layout = "~/Views/Shared/BlogDetail.cshtml";
 }
 <style>
-	
+	body{
+		background-image: url('/img/code-mg/hinh11.webp'); /* Replace 'wooden-background.jpg' with the actual path to your wooden background image */
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
 	
 	.single-left1 .img-responsive {
 		max-width: 60%;
@@ -28,13 +32,17 @@
 		display: flex; /* Sử dụng flexbox để căn giữa văn bản theo chiều dọc */
 		max-width: 956px;
 		margin: 0 auto;
-		color: var(--theme-para);
+		color: aliceblue;
+		text-align: left;
+		font-size: 20px;
 	}
 
 	.single-left1 h3 {
-		font-size: 32px;
-		margin: 15px 0 15px -760px;
+		font-size: 40px;
+		margin: 15px 0 15px -900px;
 		display: block;
+		color:aliceblue;
+		
 
 	}
 
@@ -50,12 +58,12 @@
 		}
 
 	.aside-title {
-		font-size: 25px;
 		margin: 70px 307px 30px 0;
 		line-height: 30px;
 		text-transform: capitalize;
 		color: var(--theme-title);
 		margin-left: 10px;
+	
 	}
 
 	/* CSS cho phần bình luận */
@@ -153,6 +161,10 @@
 			text-decoration: underline
 		}
 
+	.linho{
+		color:aliceblue;
+		font-size: 20px;
+	}
 </style>
 <div class="blog-post-single-61">
 	<div class="wrapper">
@@ -172,10 +184,10 @@
 				<h3 class="card-title"> @Model.Title </h3>
 				<div class="w3l-blog-single-post-main">
 					<ul class="admin-list">
-						<li><a href="#"><span class="fa fa-calendar" aria-hidden="true"></span>@Model.Date</a></li>
-						<li><a href="#"><span class="fa fa-user" aria-hidden="true"></span>@(Model.AuthorArtWork?.Artist??"unknow")</a></li>
+						<li><a href="#" class="linho"><span class="fa fa-calendar" aria-hidden="true"></span>@Model.Date</a></li>
+						<li><a href="#" class="linho"><span class="fa fa-user" aria-hidden="true"></span>@(Model.AuthorArtWork?.Artist ?? "unknow")</a></li>
 						<li>
-							<a href="#">
+							<a href="#" class="linho">
 								<span class="fa fa-commenting-o" aria-hidden="true"></span>@(Model.CommentBlogs?.Count??0)
 								Comments
 							</a>
