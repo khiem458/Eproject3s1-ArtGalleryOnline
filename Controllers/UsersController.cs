@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ArtGalleryOnline.Models;
 using ArtGalleryOnline.ModelsView;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArtGalleryOnline.Controllers
 {
