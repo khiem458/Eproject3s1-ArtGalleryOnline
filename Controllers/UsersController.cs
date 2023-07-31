@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using ArtGalleryOnline.Models;
 using ArtGalleryOnline.ModelsView;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArtGalleryOnline.Controllers
 {
+    [Authorize(Roles = "user")]
     public class UsersController : Controller
     {
         private readonly ArtgalleryDbContext _context;

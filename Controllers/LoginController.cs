@@ -90,6 +90,10 @@ namespace ArtGalleryOnline.Controllers
                 {
                     return RedirectToAction("Index", "Admin");
                 }
+                else if( _user.UserRole == UserRole.author)
+                {
+                    return RedirectToAction("Index", "Author");
+                }
                 else
                 {
                     return RedirectToAction("Index", "Users");
