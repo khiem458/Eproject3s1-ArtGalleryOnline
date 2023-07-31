@@ -17,7 +17,6 @@ namespace ArtGalleryOnline.Controllers
     {
         private readonly ArtgalleryDbContext _context;
 
-
         public LoginController(ArtgalleryDbContext context)
         {
             _context = context;
@@ -28,32 +27,33 @@ namespace ArtGalleryOnline.Controllers
         {
             return View("Login");
         }
+
         public IActionResult RegisterCreate()
         {
             return View();
         }
 
-        // POST: ManageUsers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterCreate([Bind("UserId,UserName,UserFullName,UserEmail,UserGender,UserAge,UserPhoneNum,UserAddress,UserPassword,UserRole")] Users users)
         {
             if (ModelState.IsValid)
             {
+                // Hash the user's password using BCrypt
+                users.UserPassword = BCrypt.Net.BCrypt.HashPassword(users.UserPassword);
+
                 _context.Add(users);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(users);
         }
+
         public async Task<IActionResult> Login()
         {
-
-
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(Users _userPage, bool rememberMe)
         {
@@ -102,9 +102,6 @@ namespace ArtGalleryOnline.Controllers
                 }
             }
         }
-
-
-
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -113,10 +110,8 @@ namespace ArtGalleryOnline.Controllers
             Response.Headers["Pragma"] = "no-cache";
             Response.Headers["Expires"] = "0";
 
-
             return RedirectToAction("Index", "Home");
         }
-
 
         private bool UsersExists(int id)
         {
