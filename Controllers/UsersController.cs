@@ -23,16 +23,25 @@ namespace ArtGalleryOnline.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            var users = await _context.Users.ToListAsync();
-            var artworks = await _context.ArtWorks.ToListAsync();
-
-            var viewModel = new UserArtworkViewModels
+            if (User.Identity.IsAuthenticated)
             {
-                Users = users,
-                ArtWorks = artworks
-            };
+                var users = await _context.Users.ToListAsync();
+                var artworks = await _context.ArtWorks.ToListAsync();
 
-            return View(viewModel);
+                var viewModel = new UserArtworkViewModels
+                {
+                    Users = users,
+                    ArtWorks = artworks
+                };
+
+                return View(viewModel);
+            }
+            else
+            {
+
+                return RedirectToAction("Login", "Login");
+            }
+
 
 
         }

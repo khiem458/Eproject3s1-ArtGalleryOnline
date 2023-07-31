@@ -26,15 +26,7 @@ namespace ArtGalleryOnline.Controllers
         // GET: Login
         public async Task<IActionResult> Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Users");
-            }
-            else
-            {
-
-                return View("Login");
-            }
+            return View("Login");
         }
         public IActionResult RegisterCreate()
         {
@@ -55,11 +47,11 @@ namespace ArtGalleryOnline.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(users);
-        }        
+        }
         public async Task<IActionResult> Login()
         {
-           
-           
+
+
             return View();
         }
         [HttpPost]
