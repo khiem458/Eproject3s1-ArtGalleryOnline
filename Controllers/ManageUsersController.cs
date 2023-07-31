@@ -61,6 +61,11 @@ namespace ArtGalleryOnline.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(users.UserPassword);
+
+                // Gán mật khẩu đã được mã hóa vào thuộc tính UserPassword
+                users.UserPassword = hashedPassword;
                 _context.Add(users);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

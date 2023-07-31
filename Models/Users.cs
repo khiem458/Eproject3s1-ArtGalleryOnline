@@ -28,7 +28,7 @@ namespace ArtGalleryOnline.Models
         [Required]
         [StringLength(50)]
         public string? UserEmail { get; set; }
-        public Gender UserGender { get; set; }
+        public Gender? UserGender { get; set; }
         [Required]
         public int? UserAge { get; set; }
         [Required]
