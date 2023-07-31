@@ -43,6 +43,6 @@ namespace ArtGalleryOnline.Models
         public ICollection<Orders>? Orders { get; set; }
         public ICollection<UserNotification>? UserNotifications { get; set; }
         public ICollection<Interest>? Interests { get; set; }
-
+        public bool RememberMe { get; set; }
     }
 }

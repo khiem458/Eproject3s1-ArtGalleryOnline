@@ -55,10 +55,10 @@ namespace ArtGalleryOnline.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(Users _userPage)
+        public async Task<IActionResult> Login(Users _userPage, bool rememberMe)
         {
-            var _user = _context.Users.Where(m => m.UserEmail == _userPage.UserEmail && m.UserPassword == _userPage.UserPassword).FirstOrDefault();
-            if (_user == null)
+            var _user = _context.Users.FirstOrDefault(m => m.UserEmail == _userPage.UserEmail);
+            if (_user == null || !BCrypt.Net.BCrypt.Verify(_userPage.UserPassword, _user.UserPassword))
             {
                 ViewBag.LoginStatus = 0;
                 return View();
@@ -67,11 +67,10 @@ namespace ArtGalleryOnline.Controllers
             {
                 var claims = new List<Claim>
                 {
-                        new Claim(ClaimTypes.Name, _user.UserEmail),
-                         new Claim("UserId", _user.UserId.ToString()),
-                        new Claim("FullName", _user.UserName),
-
-                        new Claim(ClaimTypes.Role, _user.UserRole.ToString()),
+                    new Claim(ClaimTypes.Name, _user.UserEmail),
+                    new Claim("UserId", _user.UserId.ToString()),
+                    new Claim("FullName", _user.UserName),
+                    new Claim(ClaimTypes.Role, _user.UserRole.ToString()),
                 };
 
                 var claimsIdentity = new ClaimsIdentity(
@@ -79,18 +78,21 @@ namespace ArtGalleryOnline.Controllers
 
                 var authProperties = new AuthenticationProperties
                 {
-
+                    // Set the "Remember Me" option for the cookie
+                    IsPersistent = rememberMe,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddMonths(1) // Adjust the expiration time as needed
                 };
 
                 await HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
+
                 if (_user.UserRole == UserRole.admin)
                 {
                     return RedirectToAction("Index", "Admin");
                 }
-                else if( _user.UserRole == UserRole.author)
+                else if (_user.UserRole == UserRole.author)
                 {
                     return RedirectToAction("Index", "Author");
                 }
@@ -98,12 +100,9 @@ namespace ArtGalleryOnline.Controllers
                 {
                     return RedirectToAction("Index", "Users");
                 }
-
             }
-
-            // Nếu không có vai trò nào phù hợp hoặc có lỗi xảy ra, quay lại trang đăng nhập
-            return View();
         }
+
 
 
         public async Task<IActionResult> Logout()

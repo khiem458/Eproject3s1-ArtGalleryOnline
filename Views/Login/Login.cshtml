@@ -33,7 +33,10 @@
                 <label class="labelinp" for="UserPassword"><b>Password</b></label>
                 @Html.PasswordFor(m => m.UserPassword, new { @class = "form-control", @placeholder = "Password" })
             </div>
-
+            <div class="form-check">
+                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input" })
+                <label class="form-check-label remember-me" for="RememberMe">Remember Me</label>
+            </div>
             
             
             <button type="submit" class="login-button">Log In</button>

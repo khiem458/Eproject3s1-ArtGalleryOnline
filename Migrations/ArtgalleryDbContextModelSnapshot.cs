@@ -408,6 +408,9 @@ namespace ArtGalleryOnline.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
+                    b.Property<bool>("RememberMe")
+                        .HasColumnType("bit");
+
                     b.Property<string>("UserAddress")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
