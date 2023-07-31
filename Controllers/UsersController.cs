@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ArtGalleryOnline.Models;
 using ArtGalleryOnline.ModelsView;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 
 namespace ArtGalleryOnline.Controllers
 {
@@ -15,11 +16,13 @@ namespace ArtGalleryOnline.Controllers
     {
         private readonly ArtgalleryDbContext _context;
 
+
+
         public UsersController(ArtgalleryDbContext context)
         {
             _context = context;
-        }
 
+        }
         // GET: Users
         public async Task<IActionResult> Index()
         {
@@ -42,26 +45,8 @@ namespace ArtGalleryOnline.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-
-
         }
 
-        public async Task<IActionResult> Profile(int? id)
-        {
-            if (id == null || _context.Users == null)
-            {
-                return NotFound();
-            }
-
-            // Find the user with the given id in the database
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return View(user);
-        }
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)

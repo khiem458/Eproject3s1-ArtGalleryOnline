@@ -206,6 +206,24 @@
         border-color: #007bff;
        
     }
+
+    .select-gender {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        background-color: rgba(255, 255, 255, 0.07);
+        color: #e5e5e5;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        width: 100%;
+        outline: none;
+        cursor: pointer;
+    }
+
+        .select-gender option {
+            color: black;
+        }
 </style>
 
 
@@ -237,10 +255,10 @@
                                 <span asp-validation-for="UserEmail" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="UserGender" class="control-label"  style="color:azure"></label>
-                                <select asp-for="UserGender" class="form-control" >
-                                    <option value="1"selected > Female</option>
-                                    <option value="0"> Male</option>
+                                <label asp-for="UserGender" class="control-label" style="color:azure"></label>
+                                <select asp-for="UserGender" class="form-control select-gender">
+                                    <option value="1">Female</option>
+                                    <option value="0">Male</option>
                                 </select>
                                 <span asp-validation-for="UserGender" class="text-danger"></span>
                             </div>
@@ -264,14 +282,7 @@
                                 <input asp-for="UserPassword" class="form-control"required />
                                 <span asp-validation-for="UserPassword" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="UserRole" class="control-label" style="color:azure"></label>
-                                <select asp-for="UserRole" class="form-control" >
-                                    <option value="1" selected>Customer</option>
-                                    
-                                </select>
-                                <span asp-validation-for="UserRole" class="text-danger"></span>
-                            </div>
+                            
                             <button type="submit" class="login-button">Register</button>
                         </form>
                     
