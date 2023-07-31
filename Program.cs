@@ -12,9 +12,12 @@ builder.Services.AddSession();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-        options.SlidingExpiration = true;
-        options.AccessDeniedPath = "/Forbidden/";
+        options.Cookie.HttpOnly = true;
+        options.Cookie.MaxAge = TimeSpan.FromDays(30);
+        options.SlidingExpiration = true; // Enables "Remember Me" functionality with sliding expiration
+        options.LoginPath = "/Login/Login"; // The login path if authentication is required
+        options.LogoutPath = "/Login/Logout"; // The logout path
+        options.AccessDeniedPath = "/Error/AccessDenied";
     });
 
 var app = builder.Build();
@@ -28,7 +31,7 @@ app.UseStaticFiles();
 app.UseSession();
 
 app.UseRouting();
-app.UseAuthentication();
+app.UseAuthentication(); // Add this before app.UseAuthorization();
 app.UseAuthorization();
 
 app.MapControllerRoute(

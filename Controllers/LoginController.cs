@@ -66,12 +66,12 @@ namespace ArtGalleryOnline.Controllers
             else
             {
                 var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, _user.UserEmail),
-                    new Claim("UserId", _user.UserId.ToString()),
-                    new Claim("FullName", _user.UserName),
-                    new Claim(ClaimTypes.Role, _user.UserRole.ToString()),
-                };
+        {
+            new Claim(ClaimTypes.Name, _user.UserEmail),
+            new Claim("UserId", _user.UserId.ToString()),
+            new Claim("FullName", _user.UserName),
+            new Claim(ClaimTypes.Role, _user.UserRole.ToString()),
+        };
 
                 var claimsIdentity = new ClaimsIdentity(
                     claims, CookieAuthenticationDefaults.AuthenticationScheme);
