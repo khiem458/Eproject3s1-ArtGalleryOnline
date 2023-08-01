@@ -1,9 +1,15 @@
 using ArtGalleryOnline.Models;
+using ArtGalleryOnline.ModelsView;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ArtgalleryDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("mycon")));
+
+//email configuration
+var emailConfiguration = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+builder.Services.AddSingleton(emailConfiguration);
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
