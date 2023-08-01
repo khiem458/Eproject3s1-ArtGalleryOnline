@@ -14,7 +14,7 @@ using MailKit.Net.Smtp;
 
 namespace ArtGalleryOnline.Controllers
 {
-    [Authorize(Roles = "admin")]
+    
     public class ManageUsersController : Controller
     {
         private readonly ArtgalleryDbContext _context;
