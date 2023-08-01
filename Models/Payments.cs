@@ -8,7 +8,7 @@ namespace ArtGalleryOnline.Models
         Cash = 1,
         OnlinePay = 2
     }
-    public class Payment
+    public class Payments
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

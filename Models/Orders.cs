@@ -52,7 +52,7 @@ namespace ArtGalleryOnline.Models
 
 
         public ICollection<OrderDetail>? OrderDetails { get; set; }
-        public ICollection<Payment>? Payments { get; set; }
+        public ICollection<Payments>? Payments { get; set; }
 
     }
 }

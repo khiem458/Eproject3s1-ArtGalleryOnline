@@ -2,18 +2,25 @@
 using ArtGalleryOnline.Models;
 using ArtGalleryOnline.ModelsView;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
+using PayPal.Api;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace ArtGalleryOnline.Controllers
 {
     public class CartController : Controller
     {
         private readonly ArtgalleryDbContext _context;
+        private readonly string _ClientId;
+        private readonly string _SecretKey;
 
-        public CartController(ArtgalleryDbContext context)
+        public CartController(ArtgalleryDbContext context, IConfiguration config)
         {
             _context = context;
+            _ClientId = config["PaypalSetting:ClientId"];
+            _SecretKey = config["PaypalSetting:SecretKey"];
 
         }
 
@@ -56,10 +63,14 @@ namespace ArtGalleryOnline.Controllers
         }
         public IActionResult Index()
         {
-           
+
             return View("AddToCart", HttpContext.Session.GetJson<Cart>("cart"));
         }
-       public IActionResult CheckOut()
+        public IActionResult CheckOut()
+        {
+            return View();
+        }
+        public IActionResult CheckOutSuccess()
         {
             return View();
         }
@@ -80,7 +91,7 @@ namespace ArtGalleryOnline.Controllers
                     var claim = ((ClaimsIdentity)User.Identity).FindFirst("UserId");
                     var userId = claim == null ? null : claim.Value;
                     orders.UserId = int.Parse(userId);
-                    
+
 
 
                     // Lưu đơn hàng vào cơ sở dữ liệu
@@ -90,25 +101,25 @@ namespace ArtGalleryOnline.Controllers
 
                     // Lưu thông tin chi tiết đơn hàng vào bảng OrderDetails
                     foreach (var cartItem in cart.CartItems)
+                    {
+                        OrderDetail orderDetail = new OrderDetail
                         {
-                            OrderDetail orderDetail = new OrderDetail
-                            {
-                                OrderId = orders.OrderId,
-                                ArtId = cartItem.ArtWork.ArtId,
-                                Quantity = cartItem.Quantity,
-                                Price = cartItem.Price
-                            };
-                            _context.OrderDetails.Add(orderDetail);
-                        }
-                   
+                            OrderId = orders.OrderId,
+                            ArtId = cartItem.ArtWork.ArtId,
+                            Quantity = cartItem.Quantity,
+                            Price = cartItem.Price
+                        };
+                        _context.OrderDetails.Add(orderDetail);
+                    }
+
                     _context.SaveChanges();
 
-                        // Xóa giỏ hàng sau khi lưu đơn hàng thành công
-                        HttpContext.Session.Remove("cart");
+                    // Xóa giỏ hàng sau khi lưu đơn hàng thành công
+                    HttpContext.Session.Remove("cart");
 
-                        // Chuyển hướng đến trang hiển thị thông báo thành công
-                        return RedirectToAction("CheckOutSuccess");
-                   
+                    // Chuyển hướng đến trang hiển thị thông báo thành công
+                    return RedirectToAction("CheckOutSuccess");
+
                 }
             }
 
@@ -117,11 +128,156 @@ namespace ArtGalleryOnline.Controllers
         }
 
 
-
-        public IActionResult CheckOutSuccess()
+        public ActionResult PaymentWithPaypal(string Cancel = null)
         {
-            return View();
+
+
+            // Getting the apiContext  
+            APIContext apiContext = PaypalConfiguration.GetAPIContext();
+            try
+            {
+                // A resource representing a Payer that funds a payment Payment Method as PayPal  
+                // Payer Id will be returned when payment proceeds or click to pay  
+                string payerId = Request.Query["PayerID"].ToString();
+                if (string.IsNullOrEmpty(payerId))
+                {
+                    // This section will be executed first because PayerID doesn't exist  
+                    // It is returned by the create function call of the payment class  
+                    // Creating a payment  
+                    // baseURL is the URL on which PayPal sends back the data.  
+                    var guid = Guid.NewGuid().ToString();
+                    var baseURI = Url.Action("PaymentWithPaypal", "Cart", new { guid }, Request.Scheme);
+                    // Here we are generating a GUID for storing the paymentID received in session  
+                    // which will be used in the payment execution  
+
+
+                    // CreatePayment function gives us the payment approval URL  
+                    // on which payer is redirected for PayPal account payment  
+                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid);
+
+                    // Get links returned from PayPal in response to Create function call  
+                    var links = createdPayment.links.GetEnumerator();
+                    string paypalRedirectUrl = null;
+                    while (links.MoveNext())
+                    {
+                        Links lnk = links.Current;
+                        if (lnk.rel.ToLower().Trim().Equals("approval_url"))
+                        {
+                            // Saving the PayPal redirect URL to which the user will be redirected for payment  
+                            paypalRedirectUrl = lnk.href;
+                        }
+                    }
+
+                    // Save the paymentID in the session  
+                    HttpContext.Session.SetString("guid", createdPayment.id);
+
+                    return Redirect(paypalRedirectUrl);
+                }
+                else
+                {
+                    var guid = Request.Query["guid"].ToString();
+                    var executedPayment = ExecutePayment(apiContext, payerId, HttpContext.Session.GetString("guid"));
+                    // If executed payment failed then we will show payment failure message to the user  
+                    if (executedPayment.state.ToLower() != "approved")
+                    {
+                        return View("CheckOut");
+                    }
+                }
+            }
+            catch (PayPal.PaymentsException ex)
+            {
+                // Handle PayPal payment exceptions
+                return View("CheckOut");
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                return View("CheckOut");
+            }
+            // On successful payment, show the success page to the user.  
+            return View("CheckOutSuccess");
         }
+        private PayPal.Api.Payment payment;
+        private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
+        {
+            var paymentExecution = new PaymentExecution()
+            {
+                payer_id = payerId
+            };
+            this.payment = new Payment()
+            {
+                id = paymentId
+            };
+            return this.payment.Execute(apiContext, paymentExecution);
+        }
+        private Payment CreatePayment(APIContext apiContext, string redirectUrl)
+        {
+            Cart cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            //create itemlist and add item objects to it  
+            var itemList = new ItemList()
+            {
+                items = new List<Item>()
+            };
+            //Adding Item Details like name, currency, price etc  
+            foreach (var item in cart.CartItems)
+            {
+                itemList.items.Add(new Item()
+                {
+                    name = "Item Name",
+                    currency = "USD",
+                    price = "1",
+                    quantity = "1",
+                    sku = "sku",
+                });
+            }
+
+            var payer = new Payer()
+            {
+                payment_method = "paypal"
+            };
+            // Configure Redirect Urls here with RedirectUrls object  
+            var redirUrls = new RedirectUrls()
+            {
+                cancel_url = redirectUrl + "&Cancel=true",
+                return_url = redirectUrl
+            };
+            // Adding Tax, shipping and Subtotal details  
+            var details = new Details()
+            {
+                tax = "1",
+                shipping = "1",
+                subtotal = "1"
+            };
+            //Final amount with details  
+            var amount = new Amount()
+            {
+                currency = "USD",
+                total = "3", // Total must be equal to sum of tax, shipping and subtotal.  
+                details = details
+            };
+            var transactionList = new List<Transaction>();
+            // Adding description about the transaction  
+            var paypalOrderId = DateTime.Now.Ticks;
+            transactionList.Add(new Transaction()
+            {
+                description = $"Invoice #{paypalOrderId}",
+                invoice_number = paypalOrderId.ToString(), //Generate an Invoice No    
+                amount = amount,
+                item_list = itemList
+            });
+            this.payment = new Payment()
+            {
+                intent = "sale",
+                payer = payer,
+                transactions = transactionList,
+                redirect_urls = redirUrls
+            };
+            // Create a payment using a APIContext  
+            return this.payment.Create(apiContext);
+        }
+
+
+
 
 
     }

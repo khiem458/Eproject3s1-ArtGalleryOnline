@@ -17,7 +17,7 @@ namespace ArtGalleryOnline.Models
         public DbSet<ShippingFee> shippingFees { get; set; }
         public DbSet<Blog> Blog { get; set; }
         public DbSet<Interest> Interests { get; set; }
-        public DbSet<Payment> payments { get; set; }
+        public DbSet<Payments> payments { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CommentBlog> CommentBlog { get; set; }
         public DbSet<ArtGalleryOnline.Models.Contact>? Contact { get; set; }
