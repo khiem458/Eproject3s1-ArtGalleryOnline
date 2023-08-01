@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using BCrypt.Net;
+using Microsoft.AspNetCore.Identity;
 
 namespace ArtGalleryOnline.Controllers
 {
@@ -33,15 +34,14 @@ namespace ArtGalleryOnline.Controllers
             return View();
         }
 
+        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterCreate([Bind("UserId,UserName,UserFullName,UserEmail,UserGender,UserAge,UserPhoneNum,UserAddress,UserPassword,UserRole")] Users users)
+        public async Task<IActionResult> RegisterCreate(Users users)
         {
             if (ModelState.IsValid)
             {
-                // Hash the user's password using BCrypt
-                users.UserPassword = BCrypt.Net.BCrypt.HashPassword(users.UserPassword);
-
                 _context.Add(users);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -58,7 +58,7 @@ namespace ArtGalleryOnline.Controllers
         public async Task<IActionResult> Login(Users _userPage, bool rememberMe)
         {
             var _user = _context.Users.FirstOrDefault(m => m.UserEmail == _userPage.UserEmail);
-            if (_user == null || !BCrypt.Net.BCrypt.Verify(_userPage.UserPassword, _user.UserPassword))
+            if (_user == null  )
             {
                 ViewBag.LoginStatus = 0;
                 return View();
