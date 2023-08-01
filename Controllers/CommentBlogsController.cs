@@ -6,98 +6,93 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ArtGalleryOnline.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ArtGalleryOnline.Controllers
 {
-    
-    public class ManageUsersController : Controller
+    public class CommentBlogsController : Controller
     {
         private readonly ArtgalleryDbContext _context;
 
-        public ManageUsersController(ArtgalleryDbContext context)
+        public CommentBlogsController(ArtgalleryDbContext context)
         {
             _context = context;
         }
 
-        // GET: ManageUsers
+        // GET: CommentBlogs
         public async Task<IActionResult> Index()
         {
-              return _context.Users != null ? 
-                          View(await _context.Users.ToListAsync()) :
-                          Problem("Entity set 'ArtgalleryDbContext.Users'  is null.");
+            var artgalleryDbContext = _context.CommentBlog.Include(c => c.Blog);
+            return View(await artgalleryDbContext.ToListAsync());
         }
 
-        // GET: ManageUsers/Details/5
+        // GET: CommentBlogs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Users == null)
+            if (id == null || _context.CommentBlog == null)
             {
                 return NotFound();
             }
 
-            var users = await _context.Users
-                .FirstOrDefaultAsync(m => m.UserId == id);
-            if (users == null)
+            var commentBlog = await _context.CommentBlog
+                .Include(c => c.Blog)
+                .FirstOrDefaultAsync(m => m.CommentBlogId == id);
+            if (commentBlog == null)
             {
                 return NotFound();
             }
 
-            return View(users);
+            return View(commentBlog);
         }
 
-        // GET: ManageUsers/Create
+        // GET: CommentBlogs/Create
         public IActionResult Create()
         {
+            ViewData["BlogId"] = new SelectList(_context.Blog, "BlogId", "Description");
             return View();
         }
 
-        // POST: ManageUsers/Create
+        // POST: CommentBlogs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,UserName,UserFullName,UserEmail,UserGender,UserAge,UserPhoneNum,UserAddress,UserPassword,UserRole")] Users users)
+        public async Task<IActionResult> Create([Bind("CommentBlogId,BlogId,Name,Email,DatePosted,Message")] CommentBlog commentBlog)
         {
             if (ModelState.IsValid)
             {
-                // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
-                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(users.UserPassword);
-
-                // Gán mật khẩu đã được mã hóa vào thuộc tính UserPassword
-                users.UserPassword = hashedPassword;
-                _context.Add(users);
+                _context.Add(commentBlog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(users);
+            ViewData["BlogId"] = new SelectList(_context.Blog, "BlogId", "Description", commentBlog.BlogId);
+            return View(commentBlog);
         }
 
-
-        // GET: ManageUsers/Edit/5
+        // GET: CommentBlogs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Users == null)
+            if (id == null || _context.CommentBlog == null)
             {
                 return NotFound();
             }
 
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
+            var commentBlog = await _context.CommentBlog.FindAsync(id);
+            if (commentBlog == null)
             {
                 return NotFound();
             }
-            return View(users);
+            ViewData["BlogId"] = new SelectList(_context.Blog, "BlogId", "Description", commentBlog.BlogId);
+            return View(commentBlog);
         }
 
-        // POST: ManageUsers/Edit/5
+        // POST: CommentBlogs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,UserName,UserFullName,UserEmail,UserGender,UserAge,UserPhoneNum,UserAddress,UserPassword,UserRole")] Users users)
+        public async Task<IActionResult> Edit(int id, [Bind("CommentBlogId,BlogId,Name,Email,DatePosted,Message")] CommentBlog commentBlog)
         {
-            if (id != users.UserId)
+            if (id != commentBlog.CommentBlogId)
             {
                 return NotFound();
             }
@@ -106,12 +101,12 @@ namespace ArtGalleryOnline.Controllers
             {
                 try
                 {
-                    _context.Update(users);
+                    _context.Update(commentBlog);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsersExists(users.UserId))
+                    if (!CommentBlogExists(commentBlog.CommentBlogId))
                     {
                         return NotFound();
                     }
@@ -122,49 +117,51 @@ namespace ArtGalleryOnline.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(users);
+            ViewData["BlogId"] = new SelectList(_context.Blog, "BlogId", "Description", commentBlog.BlogId);
+            return View(commentBlog);
         }
 
-        // GET: ManageUsers/Delete/5
+        // GET: CommentBlogs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Users == null)
+            if (id == null || _context.CommentBlog == null)
             {
                 return NotFound();
             }
 
-            var users = await _context.Users
-                .FirstOrDefaultAsync(m => m.UserId == id);
-            if (users == null)
+            var commentBlog = await _context.CommentBlog
+                .Include(c => c.Blog)
+                .FirstOrDefaultAsync(m => m.CommentBlogId == id);
+            if (commentBlog == null)
             {
                 return NotFound();
             }
 
-            return View(users);
+            return View(commentBlog);
         }
 
-        // POST: ManageUsers/Delete/5
+        // POST: CommentBlogs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Users == null)
+            if (_context.CommentBlog == null)
             {
-                return Problem("Entity set 'ArtgalleryDbContext.Users'  is null.");
+                return Problem("Entity set 'ArtgalleryDbContext.CommentBlog'  is null.");
             }
-            var users = await _context.Users.FindAsync(id);
-            if (users != null)
+            var commentBlog = await _context.CommentBlog.FindAsync(id);
+            if (commentBlog != null)
             {
-                _context.Users.Remove(users);
+                _context.CommentBlog.Remove(commentBlog);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsersExists(int id)
+        private bool CommentBlogExists(int id)
         {
-          return (_context.Users?.Any(e => e.UserId == id)).GetValueOrDefault();
+          return (_context.CommentBlog?.Any(e => e.CommentBlogId == id)).GetValueOrDefault();
         }
     }
 }
