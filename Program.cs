@@ -19,7 +19,7 @@ builder.Services.AddSingleton(emailConfiguration);
 
 
 // Add services to the container.
-builder.Services.AddDbContext<ArtgalleryDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("mycon")));
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();

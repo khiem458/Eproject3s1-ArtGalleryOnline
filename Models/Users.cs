@@ -44,5 +44,6 @@ namespace ArtGalleryOnline.Models
         public ICollection<UserNotification>? UserNotifications { get; set; } = new List<UserNotification>();
         public ICollection<Interest>? Interests { get; set; } = new List<Interest>();
         public bool RememberMe { get; set; } = false;
+        public bool IsVerified { get; set; }
     }
 }

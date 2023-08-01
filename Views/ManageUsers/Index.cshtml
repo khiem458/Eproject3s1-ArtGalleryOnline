@@ -70,17 +70,24 @@
                                 <td>
                                     @if (item.UserRole.ToString() != "admin")
                                     {
-                                        <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-primary btn-sm">Edit</a>
-                                        <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-info btn-sm">Details</a>
-                                        <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-danger btn-sm">Delete</a>
-                                        <a asp-action="Verify" asp-route-id="@item.UserId" class="btn btn-danger btn-sm">Verify</a>
-                                    }
-                                    else
-                                    {
-                                        <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-primary btn-sm">Edit</a>
-                                        <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-info btn-sm">Details</a>
+                                        @if (!item.IsVerified)
+                                        {
+                                            <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-primary btn-sm">Edit</a>
+                                            <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-info btn-sm">Details</a>
+                                            <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-danger btn-sm">Delete</a>
+                                            <form asp-action="Verify" asp-route-id="@item.UserId" method="post" class="d-inline">
+                                                <button type="submit" class="btn btn-success btn-sm">Verify</button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-primary btn-sm">Edit</a>
+                                            <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-info btn-sm">Details</a>
+                                            <span class="btn btn-success btn-sm" disabled>Đã xác nhận</span>
+                                        }
                                     }
                                 </td>
+
                             </tr>
                         }
                     </tbody>

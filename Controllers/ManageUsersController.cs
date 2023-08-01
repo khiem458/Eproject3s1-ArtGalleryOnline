@@ -255,19 +255,38 @@ namespace ArtGalleryOnline.Controllers
         }
         public async Task<IActionResult> Verify(int id)
         {
-            var verifyUser= _context.Users.FirstOrDefault(u=>u.UserId==id);
+            var verifyUser = _context.Users.FirstOrDefault(u => u.UserId == id);
+
+            if (verifyUser == null)
+            {
+                return NotFound();
+            }
+
+            // Kiểm tra xem tài khoản đã được xác nhận trước đó chưa.
+            if (verifyUser.IsVerified)
+            {
+                // Nếu đã xác nhận rồi, bạn có thể thực hiện hành động khác hoặc trả về thông báo.
+                // Ví dụ: Hiển thị thông báo cho người dùng rằng tài khoản đã được xác nhận trước đó.
+                return View("VerifiedAccountMessage");
+            }
+
+            // Gửi email xác nhận (nội dung email có thể tuỳ chỉnh).
             var getRandomToken = GenerateRandomToken();
             var generateMessage = new EmailMessage(new string[] { verifyUser.UserEmail }, "Verification Message from MANAGER",
                 $"<div><a href='http://localhost:5015/Login/Index'>Follow this link to Access Login</a><br/><p>Password: {getRandomToken}</p></div>");
             SendEmail(generateMessage);
 
+            // Cập nhật mật khẩu ngẫu nhiên và đánh dấu tài khoản đã xác nhận.
             verifyUser.UserPassword = getRandomToken;
+            verifyUser.IsVerified = true;
             _context.Users.Update(verifyUser);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
-       
+
+
 
         private bool UsersExists(int id)
         {
