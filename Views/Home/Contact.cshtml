@@ -1,4 +1,4 @@
-﻿@model Contact
+﻿@model ArtGalleryOnline.Models.Contact
 @{
     ViewData["Title"] = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -96,7 +96,7 @@
 <br />
 <br />
 <br />
-<form asp-action="Contact" method="post">
+<form asp-controller="Home" asp-action="Create" method="post">
     <div class="form-container">
         <div class="form-left">
             <h2>Contact Us</h2>

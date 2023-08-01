@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ArtGalleryOnline.Models.Contact>
+
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<style>
+    /* Adjust the height of table rows */
+    table.table tbody tr {
+        height: 80px; /* You can adjust the height as needed */
+    }
+
+        /* Vertically align buttons in the table cell */
+        table.table tbody tr td {
+            vertical-align: middle;
+        }
+
+            /* Limit the description cell width and add ellipsis for overflow */
+            table.table tbody tr td:nth-child(4) {
+                max-width: 200px; /* You can adjust the width as needed */
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /* Ensure the image stays within the cell */
+            table.table tbody tr td img {
+                max-width: 100px;
+                max-height: 100px;
+            }
+</style>
+<div class="card mb-4">
+    <div class="card-header">
+        <h1 class="card-title text-center">Contact</h1>
+        <div class="text-right">
+            <p>
+                <a asp-action="Create" class="btn btn-primary">Create New</a>
+            </p>
+        </div>
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ContactName" class="btn btn-primary">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ContactName"  class="btn btn-secondary">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ContactName" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>
