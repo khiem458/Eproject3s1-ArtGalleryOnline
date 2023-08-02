@@ -227,7 +227,7 @@ namespace ArtGalleryOnline.Controllers
                 {
                     name = item.ArtWork.ArtName,
                     currency = "USD",
-                    price =item.ArtWork.ArtPrice.ToString(), // Format the price to 2 decimal places
+                    price = item.ArtWork.ArtPrice.ToString(), // Format the price to 2 decimal places
                     quantity = item.Quantity.ToString(),
                     sku = item.ArtWork.ArtId.ToString(),
                 });
@@ -277,6 +277,7 @@ namespace ArtGalleryOnline.Controllers
                 transactions = transactionList,
                 redirect_urls = redirUrls
             };
+
             //mua thanh cong xoa gio hang
             HttpContext.Session.Remove("cart");
             // Create a payment using a APIContext  
