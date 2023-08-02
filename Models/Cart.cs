@@ -17,7 +17,8 @@ namespace ArtGalleryOnline.Models
                 CartItems.Add(new CartItem
                 {
                     ArtWork = artWork,
-                    Quantity = quantity
+                    Quantity = quantity,
+
                 });
             }
             else

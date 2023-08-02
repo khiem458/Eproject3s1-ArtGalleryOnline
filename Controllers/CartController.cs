@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using PayPal.Api;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using static ArtGalleryOnline.Models.Cart;
 
 namespace ArtGalleryOnline.Controllers
 {
@@ -212,7 +213,8 @@ namespace ArtGalleryOnline.Controllers
         }
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
-            Cart cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            Cart cart = HttpContext.Session.GetJson<Cart>("cart");
+
             //create itemlist and add item objects to it  
             var itemList = new ItemList()
             {
@@ -223,14 +225,14 @@ namespace ArtGalleryOnline.Controllers
             {
                 itemList.items.Add(new Item()
                 {
-                    name = "Item Name",
+                    name = item.ArtWork.ArtName,
                     currency = "USD",
-                    price = "1",
-                    quantity = "1",
-                    sku = "sku",
+                    price =item.ArtWork.ArtPrice.ToString(), // Format the price to 2 decimal places
+                    quantity = item.Quantity.ToString(),
+                    sku = item.ArtWork.ArtId.ToString(),
                 });
             }
-
+            var subtotal = cart.ComputeTotalValues();
             var payer = new Payer()
             {
                 payment_method = "paypal"
@@ -241,19 +243,22 @@ namespace ArtGalleryOnline.Controllers
                 cancel_url = redirectUrl + "&Cancel=true",
                 return_url = redirectUrl
             };
+            var total = subtotal + 10 + 10;
             // Adding Tax, shipping and Subtotal details  
             var details = new Details()
             {
-                tax = "1",
-                shipping = "1",
-                subtotal = "1"
+                tax = "10",
+                shipping = "10",
+                subtotal = cart.ComputeTotalValues().ToString()
             };
+
             //Final amount with details  
             var amount = new Amount()
             {
                 currency = "USD",
-                total = "3", // Total must be equal to sum of tax, shipping and subtotal.  
+                total = total.ToString(), // Total must be equal to sum of tax, shipping and subtotal.  
                 details = details
+
             };
             var transactionList = new List<Transaction>();
             // Adding description about the transaction  
@@ -272,6 +277,8 @@ namespace ArtGalleryOnline.Controllers
                 transactions = transactionList,
                 redirect_urls = redirUrls
             };
+            //mua thanh cong xoa gio hang
+            HttpContext.Session.Remove("cart");
             // Create a payment using a APIContext  
             return this.payment.Create(apiContext);
         }

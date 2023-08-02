@@ -9,7 +9,6 @@ using ArtGalleryOnline.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
-using BCrypt.Net;
 using Microsoft.AspNetCore.Identity;
 
 namespace ArtGalleryOnline.Controllers
