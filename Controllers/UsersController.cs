@@ -106,40 +106,24 @@ namespace ArtGalleryOnline.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,UserName,UserFullName,UserEmail,UserGender,UserAge,UserPhoneNum,UserAddress,UserPassword,UserRole")] Users users)
+
+        
+        public async Task<IActionResult> IndexEdit(int? id)
         {
-            if (id != users.UserId)
+            if (id == null || _context.Users == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            var users = await _context.Users.FindAsync(id);
+            if (users == null)
             {
-                try
-                {
-                    _context.Update(users);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UsersExists(users.UserId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
             return View(users);
         }
+            
+
 
         // GET: Users/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -109,7 +109,7 @@
                                     <li>
                                         <a href="#"><i class="fas fa-user"></i></a>
                                         <ul class="dropdown">
-                                            <li><a asp-controller="Users" asp-action="Details" asp-route-id="">Profile</a></li>
+                                            <li> @(await Component.InvokeAsync("EditUsers"))</li>
                                             <li><a href="/Login/Logout">Logout</a></li>
 
                                         </ul>
