@@ -1,7 +1,7 @@
 ﻿@model ArtGalleryOnline.Models.Orders
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Details";
 }
 
 <style>
@@ -161,9 +161,9 @@
                     </ul>
                 </div>
                 <div class=" info-section">
-                    <h1 class="text-center">Delete Order</h1>
-                    <h3>Are you sure you want to delete this?</h3>
-                    <div>                       
+                    <h1 class="text-center">Order Details</h1>
+                    <div>
+                      
                         <dl class="row">
                             <dt class="col-sm-2">
                                 @Html.DisplayNameFor(model => model.OrderDate)
@@ -226,12 +226,6 @@
                                 @Html.DisplayFor(model => model.User.UserEmail)
                             </dd>
                         </dl>
-
-                        <form asp-action="Delete">
-                            <input type="hidden" asp-for="OrderId" />
-                            <input type="submit" value="Delete" class="btn btn-danger" /> |
-                            <a asp-action="Index">Back to List</a>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -239,6 +233,10 @@
         </div>
     </div>
 </section>
+<div>
+
+    <a asp-action="Index">Back to List</a>
+</div>
 <script>
     // Sử dụng JavaScript để thêm sự kiện click vào các mục <li> trong tabs-cskh
     const tabsCskhItems = document.querySelectorAll('.tabs-cskh li');
@@ -254,5 +252,6 @@
         });
     });
 </script>
+
 
 

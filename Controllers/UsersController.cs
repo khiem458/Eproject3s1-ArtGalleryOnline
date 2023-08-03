@@ -66,6 +66,83 @@ namespace ArtGalleryOnline.Controllers
 
             return View("UserDetails",users);
         }
+
+        //bắt đầu order
+        public async Task<IActionResult> OrderUser(int? id)
+        {
+            if (id == null || _context.Orders == null)
+            {
+                return NotFound();
+            }
+
+            var orders = await _context.Orders
+                .Include(o => o.User)
+                .FirstOrDefaultAsync(m => m.OrderId == id);
+            if (orders == null)
+            {
+                return NotFound();
+            }
+
+            return View("OrderUser", orders);
+        }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || _context.Orders == null)
+            {
+                return NotFound();
+            }
+
+            var orders = await _context.Orders
+                .Include(o => o.User)
+                .FirstOrDefaultAsync(m => m.OrderId == id);
+            if (orders == null)
+            {
+                return NotFound();
+            }
+
+            return View(orders);
+        }
+        // GET: Orders/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context.Orders == null)
+            {
+                return NotFound();
+            }
+
+            var orders = await _context.Orders
+                .Include(o => o.User)
+                .FirstOrDefaultAsync(m => m.OrderId == id);
+            if (orders == null)
+            {
+                return NotFound();
+            }
+
+            return View(orders);
+        }
+
+        // POST: Orders/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            if (_context.Orders == null)
+            {
+                return Problem("Entity set 'ArtgalleryDbContext.Orders'  is null.");
+            }
+            var orders = await _context.Orders.FindAsync(id);
+            if (orders != null)
+            {
+                _context.Orders.Remove(orders);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        //hêt Order
+
+
         public IActionResult Store(string searchString)
         {
             if (!String.IsNullOrEmpty(searchString))
@@ -157,46 +234,8 @@ namespace ArtGalleryOnline.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(users);
-        }
-
-
-        // GET: Users/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Users == null)
-            {
-                return NotFound();
-            }
-
-            var users = await _context.Users
-                .FirstOrDefaultAsync(m => m.UserId == id);
-            if (users == null)
-            {
-                return NotFound();
-            }
-
-            return View(users);
-        }
-
-        // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Users == null)
-            {
-                return Problem("Entity set 'ArtgalleryDbContext.Users'  is null.");
-            }
-            var users = await _context.Users.FindAsync(id);
-            if (users != null)
-            {
-                _context.Users.Remove(users);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
+        }     
+       
         private bool UsersExists(int id)
         {
             return (_context.Users?.Any(e => e.UserId == id)).GetValueOrDefault();
