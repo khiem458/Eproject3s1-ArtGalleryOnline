@@ -18,7 +18,7 @@ namespace ArtGalleryOnline.Controllers
 
         public IViewComponentResult Invoke()
         {
-            var EditUser = _context.Users.ToList();
+            var EditUser = _context.Users.FirstOrDefault();
             return View("EditUsers",EditUser);          
         }
         private Users GetCurrentUser()

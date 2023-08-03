@@ -45,5 +45,6 @@ namespace ArtGalleryOnline.Models
         public ICollection<Interest>? Interests { get; set; } = new List<Interest>();
         public bool RememberMe { get; set; } = false;
         public bool IsVerified { get; set; }
+        public bool IsLoggedIn { get; set; } // Thuộc tính đánh dấu trạng thái đăng nhập của người dùng
     }
 }

@@ -3,8 +3,8 @@
 *@
 @{
 }
-@model IEnumerable<ArtGalleryOnline.Models.Users>
- @foreach (var item in Model)
-        {
-        <a href="~/Users/IndexEdit?id=@item.UserId">@item.UserName</a>
-        }
+@model ArtGalleryOnline.Models.Users
+ 
+        
+        <a href="~/Users/IndexEdit?id=@Model.UserId">@Model.UserName</a>
+        
