@@ -50,7 +50,7 @@ namespace ArtGalleryOnline.Controllers
 
 
         // GET: Users/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> UserDetails(int? id)
         {
             if (id == null || _context.Users == null)
             {
@@ -64,7 +64,7 @@ namespace ArtGalleryOnline.Controllers
                 return NotFound();
             }
 
-            return View(users);
+            return View("UserDetails",users);
         }
         public IActionResult Store(string searchString)
         {
@@ -107,8 +107,9 @@ namespace ArtGalleryOnline.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        
-        public async Task<IActionResult> IndexEdit(int? id)
+
+        // GET: Users1/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Users == null)
             {
@@ -122,7 +123,41 @@ namespace ArtGalleryOnline.Controllers
             }
             return View(users);
         }
-            
+
+        // POST: Users1/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,UserName,UserFullName,UserEmail,UserGender,UserAge,UserPhoneNum,UserAddress,UserPassword,UserRole,RememberMe,IsVerified")] Users users)
+        {
+            if (id != users.UserId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(users);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UsersExists(users.UserId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(users);
+        }
 
 
         // GET: Users/Delete/5

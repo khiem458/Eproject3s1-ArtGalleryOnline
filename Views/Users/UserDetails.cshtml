@@ -1,11 +1,10 @@
 ﻿@model ArtGalleryOnline.Models.Users
 
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "UserDetails";
 }
 
-<h1>Details</h1>
+<h1>UserDetails</h1>
 
 <div>
     <h4>Users</h4>
@@ -64,6 +63,24 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.UserRole)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RememberMe)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RememberMe)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsVerified)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsVerified)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsLoggedIn)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsLoggedIn)
         </dd>
     </dl>
 </div>
