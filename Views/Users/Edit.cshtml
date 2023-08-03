@@ -2,85 +2,249 @@
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h1>Edit</h1>
 
-<h4>Users</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="UserId" />
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
+<style>
+    .wcskh-info .avatar{
+        width:190px;
+        height:190px;
+        overflow:hidden;
+        border-radius:20px;
+        padding:5px;
+        background-color:#fff;
+        border: solid 1px #ddd;
+        grid-area:avatar;
+    }
+
+    .wcskh-info .name{
+        height:60px;
+        line-height:60px;
+        grid-area: name;
+    }
+     .wcskh-info .name h3{
+         font-size:1.8em;
+         color:#fff;
+         line-height:inherit;
+         float:left;
+     }
+    .wcskh-info .avatar img{
+        width:100%;
+        height:auto;
+        border-radius:inherit;
+    }
+
+    .wcskh-content{
+        background-color: #fff;
+        border: solid 1px #eee;
+        margin-top: 35px;
+        display: grid;
+        min-height: 500px;
+        grid-template-columns: 1fr 2fr; /* Chia thành hai cột với tỷ lệ 1:2 */
+        grid-gap: 20px; /* Khoảng cách giữa hai cột */
+        padding: 20px;
+    }
+     
+
+    .tabs-cskh {
+        background-color: #222;
+        box-shadow: 5px 0px 20px 0px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+    }
+
+        .tabs-cskh ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tabs-cskh li {
+            margin-bottom: 10px;
+        }
+
+        .tabs-cskh a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 5px;
+        }
+
+            .tabs-cskh a:hover {
+                background-color: #444;
+            }
+
+    .info-section {
+        background-color: #fff;
+        border: solid 1px #eee;
+        padding: 20px;
+    }
+
+        .info-section h1 {
+            margin-top: 0;
+        }
+
+        .info-section dl dt {
+            font-weight: bold;
+        }
+
+        .info-section dl dd {
+            margin-bottom: 10px;
+        }
+
+    .btn-group {
+        margin-top: 20px;
+    }
+    *{
+        outline:none;
+    }
+    div{
+        display:block;
+    }
+
+    .tabs-cskh li:hover {
+        background-color: #555;
+    }
+
+    .tabs-cskh a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        padding: 5px;
+    }
+
+    .tabs-cskh .active {
+        background-color: orange; /* Màu cam khi mục được click */
+    }
+        .tabs-cskh a:hover {
+            background-color: #444;
+        }
+
+</style>
+
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/code-mg/hinh16.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="page-title">Shop</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="~/Home"><i class="icon_house_alt"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="UserFullName" class="control-label"></label>
-                <input asp-for="UserFullName" class="form-control" />
-                <span asp-validation-for="UserFullName" class="text-danger"></span>
+        </div>
+    </div>
+</section>
+<section id="sec-body">
+<div class="container">
+    <div class="wcskh">
+            <div class="wcskh-content row">
+                <div class=" tabs-cskh">
+                <ul>
+                     <li  class="active">
+                        <a href="">Upload User</a>
+                    </li>
+                    <li>
+                        <a href="">Manager User</a>
+                    </li>
+                    <li>
+                        <a href="">Purchase history</a>
+                    </li>
+                    <li>
+                        <a href="">Register Author</a>
+                    </li>
+                    
+                </ul>
             </div>
-            <div class="form-group">
-                <label asp-for="UserEmail" class="control-label"></label>
-                <input asp-for="UserEmail" class="form-control" />
-                <span asp-validation-for="UserEmail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserGender" class="control-label"></label>
-                <input asp-for="UserGender" class="form-control" />
-                <span asp-validation-for="UserGender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserAge" class="control-label"></label>
-                <input asp-for="UserAge" class="form-control" />
-                <span asp-validation-for="UserAge" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserPhoneNum" class="control-label"></label>
-                <input asp-for="UserPhoneNum" class="form-control" />
-                <span asp-validation-for="UserPhoneNum" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserAddress" class="control-label"></label>
-                <input asp-for="UserAddress" class="form-control" />
-                <span asp-validation-for="UserAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserPassword" class="control-label"></label>
-                <input asp-for="UserPassword" class="form-control" />
-                <span asp-validation-for="UserPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserRole" class="control-label"></label>
-                <select asp-for="UserRole" class="form-control"></select>
-                <span asp-validation-for="UserRole" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsVerified" /> @Html.DisplayNameFor(model => model.IsVerified)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsLoggedIn" /> @Html.DisplayNameFor(model => model.IsLoggedIn)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class=" info-section">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <h1 class="text-center">Personal information</h1>
+                            <form asp-action="Edit">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="UserId" />
+                                <div class="form-group">
+                                    <label asp-for="UserName" class="control-label"></label>
+                                    <input asp-for="UserName" class="form-control" />
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserFullName" class="control-label"></label>
+                                    <input asp-for="UserFullName" class="form-control" />
+                                    <span asp-validation-for="UserFullName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserEmail" class="control-label"></label>
+                                    <input asp-for="UserEmail" class="form-control" />
+                                    <span asp-validation-for="UserEmail" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserGender" class="control-label"></label>
+                                    <input asp-for="UserGender" class="form-control" />
+                                    <span asp-validation-for="UserGender" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserAge" class="control-label"></label>
+                                    <input asp-for="UserAge" class="form-control" />
+                                    <span asp-validation-for="UserAge" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserPhoneNum" class="control-label"></label>
+                                    <input asp-for="UserPhoneNum" class="form-control" />
+                                    <span asp-validation-for="UserPhoneNum" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserAddress" class="control-label"></label>
+                                    <input asp-for="UserAddress" class="form-control" />
+                                    <span asp-validation-for="UserAddress" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserPassword" class="control-label"></label>
+                                    <input asp-for="UserPassword" class="form-control" />
+                                    <span asp-validation-for="UserPassword" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserRole" class="control-label"></label>
+                                    <select asp-for="UserRole" class="form-control"></select>
+                                    <span asp-validation-for="UserRole" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group text-center">
+                                    <!-- Đưa nút vào giữa -->
+                                    <input type="submit" value="update information" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                   
+                </div>
+        </div>
+       
     </div>
 </div>
-
+</section>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>
+<script>
+    // Sử dụng JavaScript để thêm sự kiện click vào các mục <li> trong tabs-cskh
+    const tabsCskhItems = document.querySelectorAll('.tabs-cskh li');
+    tabsCskhItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Xóa lớp active của tất cả các mục <li> trong tabs-cskh
+            tabsCskhItems.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Thêm lớp active cho mục được click
+            item.classList.add('active');
+        });
+    });
+</script>
+
 
