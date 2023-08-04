@@ -1,52 +1,45 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+    
 <head>
-
-    <style>
-        .success-message {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-        }
-
-            .success-message::before {
-                content: "";
-                display: block;
-                width: 600px;
-                height: 337px;
-                background-image: url('https://www.bing.com/images/blob?bcid=r154.02sa-gFLMmsB77sMiecpBIn.....7U'); /* Replace with the actual path to your cat image */
-                background-size: cover;
-                position: absolute;
-                bottom: -120px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-        .success-text {
-            color: white;
-            padding: 10px;
-            text-align: center;
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    </style>
+    <head>
+        <link rel="stylesheet" href="/css/CheckoutSuccess.css">
+    </head>
 </head>
 
 <body>
-
+    <ul>
+        <li>T</li>
+        <li>H</li>
+        <li>A</li>
+        <li>N</li>
+        <li>K</li>
+        <li>Y</li>
+        <li>O</li>
+        <li>U</li> <br />
+        <li>F</li>
+        <li>O</li>
+        <li>R</li> <br />
+        <li>B</li>
+        <li>U</li>
+        <li>Y</li>
+        <li>O</li>
+        <li>U</li>
+        <li>R</li>
+        <li>P</li>
+        <li>R</li>
+        <li>O</li>
+        <li>D</li>
+        <li>U</li>
+        <li>C</li>
+        <li>T</li>
+    </ul>
     @RenderBody()
-    <div class="success-message">
-        <div class="success-text">
-            <h3>Successful purchase</h3>
-            <p>Your purchase was successful! Thank you for your order.</p>
-        </div>
-    </div>
 
+
+    <div class="success-message" style="display: none;"></div>
+
+    <!-- Your JavaScript libraries and scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -55,13 +48,13 @@
 
     <script>
         $(document).ready(function () {
+            // Show the hidden element (this is optional but can be useful for debugging)
             $('.success-message').fadeIn(1000);
+
+            // Wait for 5 seconds and then redirect to the home page
             setTimeout(function () {
-                $('.success-message').fadeOut(1000, function () {
-                    // Redirect to the home page after the message is hidden
-                    window.location.href = '/Users/Index';
-                });
-            }, 5000);
+                window.location.href = '/Users/Index';
+            }, 5500);
         });
     </script>
 </body>
