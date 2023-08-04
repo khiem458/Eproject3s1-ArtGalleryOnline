@@ -13,6 +13,11 @@
 }
 
 <style>
+    body {
+        background-image: url(/ManagerUser/images/bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     .wcskh-info .avatar{
         width:190px;
         height:190px;
@@ -42,8 +47,8 @@
     }
 
     .wcskh-content{
-        background-color: #fff;
-        border: solid 1px #eee;
+       
+       
         margin-top: 35px;
         display: grid;
         min-height: 500px;
@@ -54,7 +59,7 @@
      
 
     .tabs-cskh {
-        background-color: #222;
+       
         box-shadow: 5px 0px 20px 0px rgba(0, 0, 0, 0.1);
         padding: 10px;
     }
@@ -81,8 +86,8 @@
             }
 
     .info-section {
-        background-color: #fff;
-        border: solid 1px #eee;
+       
+        
         padding: 20px;
     }
 
@@ -146,7 +151,7 @@
     </div>
 </section>
 
-    <section id="sec-body" class="ftco-section">
+ <section id="sec-body" class="ftco-section">
 <div class="container">
     <div class="wcskh">
             <div class="wcskh-content row">
@@ -160,18 +165,15 @@
                         </li>
                         <li>
                             @(await Component.InvokeAsync("OrderUser"))
-                        </li>
-                       
-                    
+                        </li>                                       
                 </ul>
             </div>
                 <div class=" info-section">
-                    <body class="img js-fullheight" style="background-image: url(/ManagerUser/images/bg.jpg);">
                         <div class="row justify-content-center" >
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-md-8">
                                 <div class="login-wrap p-0" >
                                     <h3 class="mb-4 text-center">Have an account?</h3>
-                                    <form asp-action="Edit">
+                                    <form asp-action="Edit" class="signin-form">
                                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                         <input type="hidden" asp-for="UserId" />
                                         <div class="form-group">
@@ -208,18 +210,7 @@
                                             <label asp-for="UserAddress" class="control-label"></label>
                                             <input asp-for="UserAddress" class="form-control" />
                                             <span asp-validation-for="UserAddress" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label asp-for="UserPassword" class="control-label"></label>
-                                            <input asp-for="UserPassword" class="form-control" />
-                                            <span asp-validation-for="UserPassword" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label asp-for="UserRole" class="control-label"></label>
-                                            <select asp-for="UserRole" class="form-control"></select>
-                                            <span asp-validation-for="UserRole" class="text-danger"></span>
-                                        </div>
-
+                                        </div>                                      
                                         <div class="form-group text-center">
                                             <!-- Đưa nút vào giữa -->
                                             <input type="submit" value="update information" class="btn btn-primary" />
@@ -228,8 +219,7 @@
 
                                 </div>
                             </div>
-                        </div>
-                    </body>
+                        </div>                                 
                 </div>
         </div>
        

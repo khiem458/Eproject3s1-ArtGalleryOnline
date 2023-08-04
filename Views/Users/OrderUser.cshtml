@@ -2,9 +2,16 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
    
 }
 <style>
+    body {
+        background-image: url(/ManagerUser/images/bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
     .wcskh-info .avatar {
         width: 190px;
         height: 190px;
@@ -36,8 +43,6 @@
     }
 
     .wcskh-content {
-        background-color: #fff;
-        border: solid 1px #eee;
         margin-top: 35px;
         display: grid;
         min-height: 500px;
@@ -48,7 +53,6 @@
 
 
     .tabs-cskh {
-        background-color: #222;
         box-shadow: 5px 0px 20px 0px rgba(0, 0, 0, 0.1);
         padding: 10px;
     }
@@ -75,13 +79,16 @@
             }
 
     .info-section {
-        background-color: #fff;
-        border: solid 1px #eee;
         padding: 20px;
     }
 
         .info-section h1 {
             margin-top: 0;
+            color: #ff0000; /* Màu đỏ (#ff0000) */
+            font-size: 24px; /* Cỡ chữ 24px */
+            font-weight: normal; /* Kiểu chữ bình thường */
+            text-align: center; /* Căn giữa văn bản */
+            font-family: Arial, sans-serif; /* Kiểu chữ Arial hoặc các kiểu chữ không có chân chống (sans-serif) */
         }
 
         .info-section dl dt {
@@ -121,6 +128,17 @@
 
     .tabs-cskh a:hover {
         background-color: #444;
+    }
+
+    /* Ẩn danh sách con mặc định */
+    ul.menu .dropdown {
+        display: none;
+    }
+
+    /* Hiển thị danh sách con khi hover vào mục cha "Author" */
+    ul.menu li:hover .dropdown {
+        display: block;
+        /* Các thuộc tính CSS khác bạn muốn áp dụng khi hiển thị danh sách con */
     }
 
 </style>
