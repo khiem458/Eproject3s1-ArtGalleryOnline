@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ArtGalleryOnline.Controllers
 {
     [Authorize(Roles = "user")]
+   
     public class UsersController : Controller
     {
         private readonly ArtgalleryDbContext _context;

@@ -67,6 +67,8 @@ namespace ArtGalleryOnline.Controllers
 
             return View("AddToCart", HttpContext.Session.GetJson<Cart>("cart"));
         }
+        [Authorize]
+        
         public IActionResult CheckOut()
         {
             
