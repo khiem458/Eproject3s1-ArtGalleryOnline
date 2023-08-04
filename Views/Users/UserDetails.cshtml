@@ -118,6 +118,17 @@
             background-color: #444;
         }
 
+    /* Ẩn danh sách con mặc định */
+    ul.menu .dropdown {
+        display: none;
+    }
+
+    /* Hiển thị danh sách con khi hover vào mục cha "Author" */
+    ul.menu li:hover .dropdown {
+        display: block;
+        /* Các thuộc tính CSS khác bạn muốn áp dụng khi hiển thị danh sách con */
+    }
+
 </style>
 
 <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/code-mg/hinh16.jpg);">
@@ -142,18 +153,24 @@
     <div class="wcskh">
             <div class="wcskh-content row">
                 <div class=" tabs-cskh">
-                <ul>
-                    <li class="active">
-                        <a href="">Manager User</a>
-                    </li>
-                    <li>
-                            @(await Component.InvokeAsync("OrderUser"))
-                    </li>
-                    <li>
-                        <a href="">Register Author</a>
-                    </li>
-                    
-                </ul>
+                    <ul class="menu">
+                        <li class="active">
+                                @(await Component.InvokeAsync("EditUsers"))
+                        </li>
+                        <li>
+                                @(await Component.InvokeAsync("OrderUser"))
+                        </li>
+                       
+                            <li>
+                                <a href="#">Author</a>
+                                <ul class="dropdown">
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Index">- Home</a></li>
+                                    <li><a asp-area="" asp-controller="#" asp-action="#">- 500 Page</a></li>
+                                </ul>
+                            </li>
+                        
+                    </ul>
+                   
             </div>
                 <div class=" info-section">
                     <h1 class="text-center">Personal information</h1>
@@ -180,8 +197,10 @@
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.IsLoggedIn)</dd>
                     </dl>
                     <div class="btn-group">
-                        <a asp-action="Edit" asp-route-id="@Model?.UserId" class="btn btn-primary">Edit</a>
-                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        <a asp-action="Edit" asp-route-id="@Model?.UserId" class="btn btn-primary">Edit</a> | 
+                       
+                        <a asp-action="RegisterAuthor" asp-route-id="@Model?.UserId" class="btn btn-primary">RegisterAuthor</a> |
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a> 
                     </div>
                 </div>
         </div>
