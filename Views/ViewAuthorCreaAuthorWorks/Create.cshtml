@@ -1,39 +1,42 @@
-﻿@model ArtGalleryOnline.Models.Users
+﻿@model ArtGalleryOnline.Models.AuthorArtWork
 
 @{
-    ViewData["Title"] = "UserDetails";
+    ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+
 <style>
-    .wcskh-info .avatar{
-        width:190px;
-        height:190px;
-        overflow:hidden;
-        border-radius:20px;
-        padding:5px;
-        background-color:#fff;
+    .wcskh-info .avatar {
+        width: 190px;
+        height: 190px;
+        overflow: hidden;
+        border-radius: 20px;
+        padding: 5px;
+        background-color: #fff;
         border: solid 1px #ddd;
-        grid-area:avatar;
+        grid-area: avatar;
     }
 
-    .wcskh-info .name{
-        height:60px;
-        line-height:60px;
+    .wcskh-info .name {
+        height: 60px;
+        line-height: 60px;
         grid-area: name;
     }
-     .wcskh-info .name h3{
-         font-size:1.8em;
-         color:#fff;
-         line-height:inherit;
-         float:left;
-     }
-    .wcskh-info .avatar img{
-        width:100%;
-        height:auto;
-        border-radius:inherit;
+
+        .wcskh-info .name h3 {
+            font-size: 1.8em;
+            color: #fff;
+            line-height: inherit;
+            float: left;
+        }
+
+    .wcskh-info .avatar img {
+        width: 100%;
+        height: auto;
+        border-radius: inherit;
     }
 
-    .wcskh-content{
+    .wcskh-content {
         background-color: #fff;
         border: solid 1px #eee;
         margin-top: 35px;
@@ -43,7 +46,7 @@
         grid-gap: 20px; /* Khoảng cách giữa hai cột */
         padding: 20px;
     }
-     
+
 
     .tabs-cskh {
         background-color: #222;
@@ -93,11 +96,13 @@
     .btn-group {
         margin-top: 20px;
     }
-    *{
-        outline:none;
+
+    * {
+        outline: none;
     }
-    div{
-        display:block;
+
+    div {
+        display: block;
     }
 
     .tabs-cskh li:hover {
@@ -114,9 +119,10 @@
     .tabs-cskh .active {
         background-color: orange; /* Màu cam khi mục được click */
     }
-        .tabs-cskh a:hover {
-            background-color: #444;
-        }
+
+    .tabs-cskh a:hover {
+        background-color: #444;
+    }
 
     /* Ẩn danh sách con mặc định */
     ul.menu .dropdown {
@@ -149,66 +155,58 @@
     </div>
 </section>
 <section id="sec-body">
-<div class="container">
-    <div class="wcskh">
+    <div class="container">
+        <div class="wcskh">
             <div class="wcskh-content row">
                 <div class=" tabs-cskh">
                     <ul class="menu">
                         <li class="active">
-                                @(await Component.InvokeAsync("EditUsers"))
+                            @(await Component.InvokeAsync("EditUsers"))
                         </li>
                         <li>
-                                @(await Component.InvokeAsync("OrderUser"))
+                            @(await Component.InvokeAsync("OrderUser"))
                         </li>
-                       
-                            <li>
-                                <a href="#">Author</a>
-                                <ul class="dropdown">
+
+                        <li>
+                            <a href="#">Author</a>
+                            <ul class="dropdown">
                                 <li><a asp-area="" asp-controller="ViewAuthorCreateCategory" asp-action="Create">- Category</a></li>
                                 <li><a asp-area="" asp-controller="ViewAuthorCreaAuthorWorks" asp-action="Create">- Author</a></li>
                                 <li><a asp-area="" asp-controller="ViewAuthorCreateWork" asp-action="Create">- Work</a></li>
-                                
-                                </ul>
-                            </li>
-                        
+
+                            </ul>
+                        </li>
+
                     </ul>
-                   
-            </div>
+
+                </div>
                 <div class=" info-section">
                     <h1 class="text-center">Personal information</h1>
-                    <dl class="row">
-                        <dt class="col-sm-4">Username:</dt>
-                        <dd class="col-sm-8">@Html.DisplayFor(model => model.UserName)</dd>
-                        <dt class="col-sm-4">Full Name:</dt>
-                        <dd class="col-sm-8">@Html.DisplayFor(model => model.UserFullName)</dd>
-                        <dt class="col-sm-4">Email:</dt>
-                        <dd class="col-sm-8">@Html.DisplayFor(model => model.UserEmail)</dd>
-                        <dt class="col-sm-4">Gender:</dt>
-                        <dd class="col-sm-8">@Html.DisplayFor(model => model.UserGender)</dd>
-                        <dt class="col-sm-4">Age:</dt>
-                        <dd class="col-sm-8">@Html.DisplayFor(model => model.UserAge)</dd>
-                        <dt class="col-sm-4">Phone:</dt>
-                        <dd class="col-sm-8">@Html.DisplayFor(model => model.UserPhoneNum)</dd>
-                        <dt class="col-sm-4">Address:</dt>
-                        <dd class="col-sm-8">@Html.DisplayFor(model => model.UserAddress)</dd>
-                        <dt class="col-sm-4">Role:</dt>
-                        <dd class="col-sm-8">@Html.DisplayFor(model => model.UserRole)</dd>
-                        <dt class="col-sm-4">Is Verified:</dt>
-                        <dd class="col-sm-8">@Html.DisplayFor(model => model.IsVerified)</dd>
-                        <dt class="col-sm-4">Is Logged In:</dt>
-                        <dd class="col-sm-8">@Html.DisplayFor(model => model.IsLoggedIn)</dd>
-                    </dl>
-                    <div class="btn-group">
-                        <a asp-action="Edit" asp-route-id="@Model?.UserId" class="btn btn-primary">Edit</a> | 
-                       
-                        <a asp-action="RegisterAuthor" asp-route-id="@Model?.UserId" class="btn btn-primary">RegisterAuthor</a> |
-                        <a asp-action="Index" class="btn btn-secondary">Back to List</a> 
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <form asp-action="Create">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="Artist" class="control-label"></label>
+                                    <input asp-for="Artist" class="form-control" />
+                                    <span asp-validation-for="Artist" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="AuthDesciption" class="control-label"></label>
+                                    <input asp-for="AuthDesciption" class="form-control" />
+                                    <span asp-validation-for="AuthDesciption" class="text-danger"></span>
+                                </div>
+                                <div class="form-group text-center">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
+            </div>
+
         </div>
-       
     </div>
-</div>
 </section>
 <script>
     // Sử dụng JavaScript để thêm sự kiện click vào các mục <li> trong tabs-cskh
@@ -225,3 +223,7 @@
         });
     });
 </script>
+
+
+
+

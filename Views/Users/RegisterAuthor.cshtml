@@ -1,41 +1,45 @@
 ﻿@model ArtGalleryOnline.Models.Users
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "RegisterAuthor";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
+
 }
 
 
+   
 <style>
-    .wcskh-info .avatar{
-        width:190px;
-        height:190px;
-        overflow:hidden;
-        border-radius:20px;
-        padding:5px;
-        background-color:#fff;
+    .wcskh-info .avatar {
+        width: 190px;
+        height: 190px;
+        overflow: hidden;
+        border-radius: 20px;
+        padding: 5px;
+        background-color: #fff;
         border: solid 1px #ddd;
-        grid-area:avatar;
+        grid-area: avatar;
     }
 
-    .wcskh-info .name{
-        height:60px;
-        line-height:60px;
+    .wcskh-info .name {
+        height: 60px;
+        line-height: 60px;
         grid-area: name;
     }
-     .wcskh-info .name h3{
-         font-size:1.8em;
-         color:#fff;
-         line-height:inherit;
-         float:left;
-     }
-    .wcskh-info .avatar img{
-        width:100%;
-        height:auto;
-        border-radius:inherit;
+
+        .wcskh-info .name h3 {
+            font-size: 1.8em;
+            color: #fff;
+            line-height: inherit;
+            float: left;
+        }
+
+    .wcskh-info .avatar img {
+        width: 100%;
+        height: auto;
+        border-radius: inherit;
     }
 
-    .wcskh-content{
+    .wcskh-content {
         background-color: #fff;
         border: solid 1px #eee;
         margin-top: 35px;
@@ -45,7 +49,7 @@
         grid-gap: 20px; /* Khoảng cách giữa hai cột */
         padding: 20px;
     }
-     
+
 
     .tabs-cskh {
         background-color: #222;
@@ -95,11 +99,13 @@
     .btn-group {
         margin-top: 20px;
     }
-    *{
-        outline:none;
+
+    * {
+        outline: none;
     }
-    div{
-        display:block;
+
+    div {
+        display: block;
     }
 
     .tabs-cskh li:hover {
@@ -116,9 +122,10 @@
     .tabs-cskh .active {
         background-color: orange; /* Màu cam khi mục được click */
     }
-        .tabs-cskh a:hover {
-            background-color: #444;
-        }
+
+    .tabs-cskh a:hover {
+        background-color: #444;
+    }
 
 </style>
 
@@ -140,28 +147,26 @@
     </div>
 </section>
 <section id="sec-body">
-<div class="container">
-    <div class="wcskh">
+    <div class="container">
+        <div class="wcskh">
             <div class="wcskh-content row">
                 <div class=" tabs-cskh">
-                <ul>
-                     <li  class="active">
-                        <a href="">Upload User</a>
-                    </li>
-                        <li>
+                    <ul>
+                        <li >
                             @(await Component.InvokeAsync("EditUsers"))
                         </li>
                         <li>
                             @(await Component.InvokeAsync("OrderUser"))
                         </li>
-                       
-                    
-                </ul>
-            </div>
+                        
+
+                    </ul>
+                </div>
                 <div class=" info-section">
+                    <h1 class="text-center">Register Author</h1>
                     <div class="row justify-content-center">
                         <div class="col-md-8">
-                            <h1 class="text-center">Personal information</h1>
+                            
                             <form asp-action="Edit">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <input type="hidden" asp-for="UserId" />
@@ -208,27 +213,24 @@
                                 <div class="form-group">
                                     <label asp-for="UserRole" class="control-label"></label>
                                     <select asp-for="UserRole" class="form-control"></select>
+                                        <option value="author" selected>Author</option>
                                     <span asp-validation-for="UserRole" class="text-danger"></span>
                                 </div>
 
                                 <div class="form-group text-center">
                                     <!-- Đưa nút vào giữa -->
-                                    <input type="submit" value="update information" class="btn btn-primary" />
+                                    <input type="submit" value="Register Author" class="btn btn-primary" />
                                 </div>
                             </form>
                         </div>
                     </div>
 
-                   
                 </div>
+            </div>
+
         </div>
-       
     </div>
-</div>
 </section>
-<div>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-</div>
 <script>
     // Sử dụng JavaScript để thêm sự kiện click vào các mục <li> trong tabs-cskh
     const tabsCskhItems = document.querySelectorAll('.tabs-cskh li');
@@ -244,5 +246,7 @@
         });
     });
 </script>
+
+
 
 

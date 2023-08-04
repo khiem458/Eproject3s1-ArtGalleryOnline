@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ArtGalleryOnline.Controllers
 {
     [Authorize(Roles = "user")]
+   
     public class UsersController : Controller
     {
         private readonly ArtgalleryDbContext _context;
@@ -234,8 +235,59 @@ namespace ArtGalleryOnline.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(users);
-        }     
-       
+        }
+        //Register Author
+
+
+        public async Task<IActionResult> RegisterAuthor(int? id)
+        {
+            if (id == null || _context.Users == null)
+            {
+                return NotFound();
+            }
+
+            var users = await _context.Users.FindAsync(id);
+            if (users == null)
+            {
+                return NotFound();
+            }
+            return View(users);
+        }
+
+        // POST: Users1/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterAuthor(int id, [Bind("UserId,UserName,UserFullName,UserEmail,UserGender,UserAge,UserPhoneNum,UserAddress,UserPassword,UserRole,RememberMe,IsVerified")] Users users)
+        {
+            if (id != users.UserId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(users);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UsersExists(users.UserId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(users);
+        }
         private bool UsersExists(int id)
         {
             return (_context.Users?.Any(e => e.UserId == id)).GetValueOrDefault();

@@ -148,15 +148,13 @@
             <div class="wcskh-content row">
                 <div class=" tabs-cskh">
                     <ul>
-                        <li class="active">
-                            <a href="">Manager User</a>
+                        <li >
+                            @(await Component.InvokeAsync("EditUsers"))
                         </li>
-                        <li>
+                        <li class="active">
                             @(await Component.InvokeAsync("OrderUser"))
                         </li>
-                        <li>
-                            <a href="">Register Author</a>
-                        </li>
+                        
 
                     </ul>
                 </div>

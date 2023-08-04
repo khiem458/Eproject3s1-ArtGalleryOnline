@@ -7,6 +7,18 @@
         background-color: black;
         color: white;
     }
+    .custom-paypal-button {
+        width: 260px;
+        height: 50px;
+        border-radius: 1rem;
+        background-color: #ffc40c;
+    }
+
+        .custom-paypal-button img {
+            max-width: 50%;
+            max-height: 200%;
+            margin-bottom:1px;
+        }
 </style>
 @model ArtGalleryOnline.Models.Orders
 
@@ -55,14 +67,15 @@
                     <div class="form-group">
                         <label>Hinh thuc thanh toan</label>
                         <select class="form-control" name="TypePayment">
-                            <option value="1" selected>COD</option>
-                            <option value="2">Chuyen Khoan</option>
+                            <option value="1" selected>COD</option>                           
                         </select>
                     </div>
-                  <div>
-                        <button><a href="~/Cart/PaymentWithPayPal?">Thanh toan bang paypal</a></button>
-                  </div>
+
+                  
               
+
+                    
+
             </div>
         </div>
         <div class="col-lg-4">
@@ -77,34 +90,28 @@
                     <h4 class="font-weight-semi-bold m-0">Payment</h4>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                            <label class="custom-control-label" for="paypal">Paypal</label>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3"><a href="~/Cart/PaymentWithPayPal?">CheckOut Paypal</a></button>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                            <label class="custom-control-label" for="directcheck">Direct Check</label>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                            <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
-                        </div>
-                    </div>
                 </div>
-                <div class="card-footer border-secondary bg-transparent">
-                    <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
-                </div>
+                    <div class="card-footer border-secondary bg-transparent">
+                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
+                        <br />
+                    </div>
+                    <div class="card-footer border-secondary bg-transparent">
+                        <a href="@Url.Action("PaymentWithPaypal", "Cart")" class="btn btn-lg btn-warning btn-block custom-paypal-button">
+                            <img src="/img/core-img/PayPal_horizontally_Logo_2014.png" alt="PayPal Checkout" />
+                        </a>
+                    </div>
+
             </div>
         </div>
               
     </div>
 </div>
 
+
 <!-- Checkout End -->
 }
+
 
