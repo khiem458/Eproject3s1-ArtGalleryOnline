@@ -69,8 +69,10 @@ namespace ArtGalleryOnline.Controllers
         }
         public IActionResult CheckOut()
         {
+            
             return View();
         }
+
         public IActionResult CheckOutSuccess()
         {
             return View();
