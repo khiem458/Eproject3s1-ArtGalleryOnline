@@ -37,27 +37,8 @@
             box-shadow: 0 10px 15px black; /* Điều chỉnh thuộc tính của bóng theo ý muốn */
         }
 
-    .underline {
-        width: 200px; /* Điều chỉnh chiều rộng của đường dưới */
-        height: 2px; /* Điều chỉnh chiều cao của đường dưới */
-        background-color: white; /* Màu sắc của đường dưới */
-        margin-top: 10px; /* Khoảng cách từ chữ "Blog" đến đường dưới */
-        margin-bottom: 100px; /* Khoảng cách từ đường dưới đến phần kế tiếp */
-        margin-left: auto; /* Căn chỉnh sang trái */
-        margin-right: auto; /* Căn chỉnh sang phải */
-    }
 
-    .text-center {
-        
-        position: relative; /* Cho phép căn chỉnh tương đối cho đường dưới */
-    }
-
-    .aligncenter{
-        font-size:60px;
-        color: white;
-        margin-top: 20px
-    }
-
+    
     .blog-section {
         display: flex;
         justify-content: flex-end;
@@ -92,51 +73,87 @@
         display: inline-block;
     }
     
-
-    .bx-controls-direction a:hover {
-        background-color: #555;
-    }
-
-    .image-slider {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    .bxslider {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-        .bxslider li {
-            display: none;
-        }
-
-        .bxslider img {
-            width: 100%;
-            height: auto;
-        }
-    /* Các nút điều hướng */
-    .slider-controls {
+    .entry-details {
         display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding-left: 37px;
     }
 
-    .slider-prev,
-    .slider-next {
-        padding: 5px 10px;
-        background-color: #333;
-        color: #fff;
-        cursor: pointer;
+    .entry-title {
+        margin-bottom: 10px;
+
     }
 
-        .slider-prev:hover,
-        .slider-next:hover {
-            background-color: #555;
+    .entry-title h3 {
+        font-size: 50px; /* Chỉnh kích thước phù hợp */
+            color: #dcd7cf;
+             text-decoration: none;
+            font-family: Arial, sans-serif;
+    }
+    .entry-body {
+        margin-bottom: 20px;
+    }
+
+    .type1.dt-sc-button.small {
+        align-self: center;
+    }
+
+    .type1.dt-sc-button.small {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #e74c3c ;
+        color: #d7cece;
+        text-decoration: none;
+        transition: background-color 0.3s, transform 0.3s;
+        border-radius: 10px;
+    }
+
+    .type1.dt-sc-button.small:hover {
+        background-color: #8d6666;
+        transform: scale(1.1);
+    }
+
+    .entry-thumb img {
+        transition: transform 0.3s ease;
+    }
+
+        .entry-thumb img:hover {
+            transform: scale(1.1);
         }
 
+    /*About me*/
+    .about-section {
+        display: flex;
+        justify-content: center; /* Căn giữa div theo chiều ngang */
+        align-items: center; /* Căn giữa div theo chiều dọc */
+        padding: 40px;
+    }
 
+        .about-section .dt-sc-one-half.column {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+    .giua {
+        text-align: center; /* Căn giữa nội dung theo chiều ngang */
+        padding-bottom:25px;
+    }
+
+    .alititle {
+        border-bottom: 2px solid #333;
+        padding-bottom: 10px;
+        font-size: 70px;
+        color: white;
+    }
+
+    .botitle{
+        color: #dcd7cf;
+        text-decoration: none;
+    }
 </style>
 <!-- Welcome Area Start -->
 <section class="welcome-area">
@@ -159,7 +176,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Single Slide -->
         <div class="single-welcome-slide bg-img bg-overlay" style="background-image: url(img/bg-img/face-art.jpg);">
             <div class="container h-100">
@@ -293,9 +309,9 @@
             <!-- Single Gallery Item -->
             <div class="col-12 col-sm-6 col-lg-3 single_gallery_item human mb-30 wow fadeInUp" data-wow-delay="300ms">
                 <div class="single-portfolio-content">
-                    <img src="/img/bg-img/37.jpg" alt="">
+                    <img src="~/img/code-mg/hinh31.jpeg" />
                     <div class="hover-content">
-                        <a href="/img/bg-img/37.jpg" class="portfolio-img">+</a>
+                        <a href="/img/code-mg/hinh31.jpg" class="portfolio-img">+</a>
                     </div>
                 </div>
             </div>
@@ -303,62 +319,47 @@
             <!-- Single Gallery Item -->
             <div class="col-12 col-sm-6 col-lg-3 single_gallery_item country mb-30 wow fadeInUp" data-wow-delay="500ms">
                 <div class="single-portfolio-content">
-                    <img src="/img/bg-img/5.jpg" alt="">
+                    <img src="~/img/code-mg/hinh30.jpg" />
                     <div class="hover-content">
-                        <a href="/img/bg-img/5.jpg" class="portfolio-img">+</a>
+                        <a href="/img/code-mg/hinh30.jpg" class="portfolio-img">+</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 text-center wow fadeInUp" data-wow-delay="700ms">
-                <a href="#" class="btn alime-btn btn-2 mt-15">View More</a>
-            </div>
-        </div>
+        
     </div>
 </div>
 <div class="alime-portfolio-area section-padding-80 clearfix">
     <div class="container-fluid">
         <section id="primary" class="content-full-width">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="aligncenter"> Blog </h2>
-                    <div class="underline"></div>
-                </div>
+            <div class="giua">
+                <h2 class="alititle"> Blog </h2>
+                    
             </div>
             <div class="fullwidth-section">
                 <div class="blog-section">
                     <article class="blog-entry">
                         <div class="entry-thumb">
-                            <div class="bx-wrapper" style="max-width: 100%;">
-                                <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 387px;">
-                                    <div class="bx-wrapper" style="max-width: 100%;">
-                                        <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 387px;">
-                                            <div class="image-slider">
-                                                <ul class="bxslider" style="width: auto; position: relative;">
-                                                    <li style="float: none; list-style: none; position: absolute; width: 787px; z-index: 0; display: none;"> <img src="~/img/code-mg/hinh13.jpg" /> </li>
-                                                    <li style="float: none; list-style: none; position: absolute; width: 787px; z-index: 0; display: none;"> <img src="~/img/code-mg/hinh18.jpg" /> </li>
-                                                    <li style="float: none; list-style: none; position: absolute; width: 787px; z-index: 50; display: block;"> <img src="~/img/code-mg/img-5.jpg" /> </li>
-                                                    <li style="float: none; list-style: none; position: absolute; width: 787px; z-index: 0; display: none;"> <img src="~/img/code-mg/img-8.jpg" /> </li>
-                                                    <!-- Thêm các li khác tương tự -->
-                                                </ul>
-                                                
-                                            </div>
-
-                                           
+                            <div style="max-width: 100%;">
+                                <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 388px;">
+                                    <div  style="max-width: 100%;">
+                                        <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 388px;">
+                                            <ul class="blog-slider" style="width: auto; position: relative;">
+                                                <li style="float: none; list-style: none; position: absolute; width: 788px; z-index: 50; display: block;"><img src="~/img/code-mg/img-5.jpg" />  </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                </div><div class="bx-controls bx-has-controls-direction"><div class="bx-controls-direction"><a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a></div></div>
+                                </div>
                             </div>
                         </div>
                         <div class="entry-details">
                             <div class="entry-title">
-                                <h3><a href="/Home/Blog">Acrylic</a></h3>
+                                <h3>Acrylic</h3>
                             </div>
                             <div class="entry-body">
                                 <p><b>Acrylic painting</b>, technique in which pigments are mixed with hot, liquid wax. After all of the colours have been applied to the painting surface, a heating element is passed over them until the individual brush or spatula marks fuse into a uniform film. </p>
                             </div>
-                            <a class="type1 dt-sc-button small" href="/Home/Blog">View more<i class="fa fa-angle-right"></i></a>
+                            <a class="type1 dt-sc-button small" href="/Home/Blog">View More<i class="fa fa-angle-right"></i></a>
                         </div>
                     </article>
                 </div>
@@ -366,59 +367,58 @@
                     <article class="blog-entry type2">
                         <div class="entry-details">
                             <div class="entry-title">
-                                <h3><a href="blog-detail.html">Encaustic</a></h3>
+                                <h3>Encaustic</h3>
                             </div>
                             <div class="entry-body">
                                 <p><b>Encaustic painting</b>, technique in which pigments are mixed with hot, liquid wax. After all of the colours have been applied to the painting surface, a heating element is passed over them until the individual brush or spatula marks fuse into a uniform film. </p>
                             </div>
-                            <a class="type1 dt-sc-button small" href="gallery-detail-with-lhs.html">View Gallery<i class="fa fa-angle-right"></i></a>
+                            <a class="type1 dt-sc-button small" href="/Home/Blog">View More<i class="fa fa-angle-right"></i></a>
                         </div>
                         <div class="entry-thumb">
-                            <div class="bx-wrapper" style="max-width: 100%;">
-                                <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 387px;">
-                                    <div class="bx-wrapper" style="max-width: 100%;">
-                                        <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 387px;">
+                            <div  style="max-width: 100%;">
+                                <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 388px;">
+                                    <div  style="max-width: 100%;">
+                                        <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 388px;">
                                             <ul class="blog-slider" style="width: auto; position: relative;">
-                                                <li style="float: none; list-style: none; position: absolute; width: 787px; z-index: 0; display: none;"> <img src="images/blog-images/blog-img5.jpg" alt="" title=""> </li>
-                                                <li style="float: none; list-style: none; position: absolute; width: 787px; z-index: 0; display: none;"> <img src="images/blog-images/blog-img6.jpg" alt="" title=""> </li>
-                                                <li style="float: none; list-style: none; position: absolute; width: 787px; z-index: 0; display: none;"> <img src="images/blog-images/blog-img7.jpg" alt="" title=""> </li>
-                                                <li style="float: none; list-style: none; position: absolute; width: 787px; z-index: 50; display: block;"> <img src="images/blog-images/blog-img8.jpg" alt="" title=""> </li>
+                                                <li style="float: none; list-style: none; position: absolute; width: 788px; z-index: 50; display: block;"> <img src="~/img/code-mg/img-8.jpg" /> </li>
                                             </ul>
-                                        </div><div class="bx-controls bx-has-controls-direction"><div class="bx-controls-direction"><a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a></div></div>
+                                        </div>
                                     </div>
-                                </div><div class="bx-controls bx-has-controls-direction"><div class="bx-controls-direction"><a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a></div></div>
+                                </div>
                             </div>
                         </div>
                     </article>
                 </div>
-               
-               
             </div>
         </section>
 
     </div>
 
 </div>
-<script>
-    $(document).ready(function () {
-        $('.bxslider').bxSlider({
-            auto: true, // Chạy tự động
-            speed: 1000, // Tốc độ chuyển đổi (ms)
-            pause: 5000, // Thời gian tạm dừng giữa các hình (ms)
-            mode: 'fade', // Hiệu ứng chuyển đổi ('horizontal', 'vertical', 'fade')
-            controls: true, // Hiển thị nút prev và next
-            pager: true, // Hiển thị thanh điều hướng
-        });
-        $('.slider-prev').click(function () {
-            slider.goToPrevSlide();
-            return false;
-        });
+<div class="alime-portfolio-area section-padding-80 clearfix">
+    <div class="fullwidth-sections">
+        <div class="containe">
+            <div class="giua">
+                <h2 class="alititle"> About me</h2>
+            </div>
+            <div class="about-section">
+                <div class="dt-sc-one-half column first">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/OVDM4S1O_5E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="dt-sc-one-half column">
+                    <h3 class="botitle"> A Little Intro</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+                    <h3 class="botitle" >My Exhibitions</h3>
+                    <p>Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, Lorem ipsum dolor quis nostrud exercitation ullamco</p>
+                    <h3 class="botitle">Newsletter</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
+                    <a class="type1 dt-sc-button small" href="/Home/About">About<i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        $('.slider-next').click(function () {
-            slider.goToNextSlide();
-            return false;
-        });
-    });
-</script>
 
+
+</div>
 
