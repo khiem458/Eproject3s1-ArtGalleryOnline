@@ -4,7 +4,13 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+@{
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/ManagerUser/css/style.css">
+}
 
 <style>
     .wcskh-info .avatar{
@@ -139,7 +145,8 @@
         </div>
     </div>
 </section>
-<section id="sec-body">
+
+    <section id="sec-body" class="ftco-section">
 <div class="container">
     <div class="wcskh">
             <div class="wcskh-content row">
@@ -159,73 +166,78 @@
                 </ul>
             </div>
                 <div class=" info-section">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <h1 class="text-center">Personal information</h1>
-                            <form asp-action="Edit">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <input type="hidden" asp-for="UserId" />
-                                <div class="form-group">
-                                    <label asp-for="UserName" class="control-label"></label>
-                                    <input asp-for="UserName" class="form-control" />
-                                    <span asp-validation-for="UserName" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="UserFullName" class="control-label"></label>
-                                    <input asp-for="UserFullName" class="form-control" />
-                                    <span asp-validation-for="UserFullName" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="UserEmail" class="control-label"></label>
-                                    <input asp-for="UserEmail" class="form-control" />
-                                    <span asp-validation-for="UserEmail" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="UserGender" class="control-label"></label>
-                                    <input asp-for="UserGender" class="form-control" />
-                                    <span asp-validation-for="UserGender" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="UserAge" class="control-label"></label>
-                                    <input asp-for="UserAge" class="form-control" />
-                                    <span asp-validation-for="UserAge" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="UserPhoneNum" class="control-label"></label>
-                                    <input asp-for="UserPhoneNum" class="form-control" />
-                                    <span asp-validation-for="UserPhoneNum" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="UserAddress" class="control-label"></label>
-                                    <input asp-for="UserAddress" class="form-control" />
-                                    <span asp-validation-for="UserAddress" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="UserPassword" class="control-label"></label>
-                                    <input asp-for="UserPassword" class="form-control" />
-                                    <span asp-validation-for="UserPassword" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="UserRole" class="control-label"></label>
-                                    <select asp-for="UserRole" class="form-control"></select>
-                                    <span asp-validation-for="UserRole" class="text-danger"></span>
-                                </div>
+                    <body class="img js-fullheight" style="background-image: url(/ManagerUser/images/bg.jpg);">
+                        <div class="row justify-content-center" >
+                            <div class="col-md-6 col-lg-4">
+                                <div class="login-wrap p-0" >
+                                    <h3 class="mb-4 text-center">Have an account?</h3>
+                                    <form asp-action="Edit">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <input type="hidden" asp-for="UserId" />
+                                        <div class="form-group">
+                                            <label asp-for="UserName" class="control-label"></label>
+                                            <input asp-for="UserName" class="form-control" />
+                                            <span asp-validation-for="UserName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="UserFullName" class="control-label"></label>
+                                            <input asp-for="UserFullName" class="form-control" />
+                                            <span asp-validation-for="UserFullName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="UserEmail" class="control-label"></label>
+                                            <input asp-for="UserEmail" class="form-control" />
+                                            <span asp-validation-for="UserEmail" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="UserGender" class="control-label"></label>
+                                            <input asp-for="UserGender" class="form-control" />
+                                            <span asp-validation-for="UserGender" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="UserAge" class="control-label"></label>
+                                            <input asp-for="UserAge" class="form-control" />
+                                            <span asp-validation-for="UserAge" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="UserPhoneNum" class="control-label"></label>
+                                            <input asp-for="UserPhoneNum" class="form-control" />
+                                            <span asp-validation-for="UserPhoneNum" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="UserAddress" class="control-label"></label>
+                                            <input asp-for="UserAddress" class="form-control" />
+                                            <span asp-validation-for="UserAddress" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="UserPassword" class="control-label"></label>
+                                            <input asp-for="UserPassword" class="form-control" />
+                                            <span asp-validation-for="UserPassword" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="UserRole" class="control-label"></label>
+                                            <select asp-for="UserRole" class="form-control"></select>
+                                            <span asp-validation-for="UserRole" class="text-danger"></span>
+                                        </div>
 
-                                <div class="form-group text-center">
-                                    <!-- Đưa nút vào giữa -->
-                                    <input type="submit" value="update information" class="btn btn-primary" />
+                                        <div class="form-group text-center">
+                                            <!-- Đưa nút vào giữa -->
+                                            <input type="submit" value="update information" class="btn btn-primary" />
+                                        </div>
+                                    </form>
+
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-
-                   
+                    </body>
                 </div>
         </div>
        
     </div>
 </div>
 </section>
+
+
 <div>
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>
@@ -244,5 +256,7 @@
         });
     });
 </script>
-
-
+<script src="/ManagerUser/js/jquery.min.js"></script>
+<script src="/ManagerUser/js/popper.js"></script>
+<script src="/ManagerUser/js/bootstrap.min.js"></script>
+<script src="/ManagerUser/js/main.js"></script>
