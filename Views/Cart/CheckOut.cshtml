@@ -7,6 +7,18 @@
         background-color: black;
         color: white;
     }
+    .custom-paypal-button {
+        width: 260px;
+        height: 50px;
+        border-radius: 1rem;
+        background-color: #ffc40c;
+    }
+
+        .custom-paypal-button img {
+            max-width: 50%;
+            max-height: 200%;
+            margin-bottom:1px;
+        }
 </style>
 @model ArtGalleryOnline.Models.Orders
 
@@ -55,12 +67,15 @@
                     <div class="form-group">
                         <label>Hinh thuc thanh toan</label>
                         <select class="form-control" name="TypePayment">
-                            <option value="1" selected>COD</option>
-                            <option value="2">Chuyen Khoan</option>
+                            <option value="1" selected>COD</option>                           
                         </select>
                     </div>
+<<<<<<< Updated upstream
                   
               
+=======
+                    
+>>>>>>> Stashed changes
             </div>
         </div>
         <div class="col-lg-4">
@@ -79,15 +94,24 @@
                             <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3"><a href="~/Cart/PaymentWithPayPal?">CheckOut Paypal</a></button>
                         </div>
                 </div>
-                <div class="card-footer border-secondary bg-transparent">
-                    <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
-                </div>
+                    <div class="card-footer border-secondary bg-transparent">
+                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
+                        <br />
+                    </div>
+                    <div class="card-footer border-secondary bg-transparent">
+                        <a href="@Url.Action("PaymentWithPaypal", "Cart")" class="btn btn-lg btn-warning btn-block custom-paypal-button">
+                            <img src="/img/core-img/PayPal_horizontally_Logo_2014.png" alt="PayPal Checkout" />
+                        </a>
+                    </div>
+
             </div>
         </div>
               
     </div>
 </div>
 
+
 <!-- Checkout End -->
 }
+
 
