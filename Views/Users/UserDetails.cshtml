@@ -80,6 +80,11 @@
 
         .info-section h1 {
             margin-top: 0;
+            color: #ff0000; /* Màu đỏ (#ff0000) */
+            font-size: 24px; /* Cỡ chữ 24px */
+            font-weight: normal; /* Kiểu chữ bình thường */
+            text-align: center; /* Căn giữa văn bản */
+            font-family: Arial, sans-serif; /* Kiểu chữ Arial hoặc các kiểu chữ không có chân chống (sans-serif) */
         }
 
         .info-section dl dt {
@@ -131,16 +136,16 @@
 
 </style>
 
-<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/code-mg/hinh16.jpg);">
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/code-mg/hinh20.jpg);">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="breadcrumb-content text-center">
-                    <h2 class="page-title">Shop</h2>
+                    <h2 class="page-title">Manager Of @Model.UserName</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a href="~/Home"><i class="icon_house_alt"></i> Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                            <li class="breadcrumb-item active" aria-current="page">@Model.UserName</li>
                         </ol>
                     </nav>
                 </div>
@@ -176,7 +181,7 @@
             </div>
                 <div class=" info-section">
                     <h1 class="text-center">Personal information</h1>
-                    <dl class="row">
+                    <dl class="row justify-content-center">
                         <dt class="col-sm-4">Username:</dt>
                         <dd class="col-sm-8">@Html.DisplayFor(model => model.UserName)</dd>
                         <dt class="col-sm-4">Full Name:</dt>
