@@ -7,41 +7,76 @@
 
 
 <style>
-    /* Adjust the height of table rows */
-    table.table tbody tr {
-        height: 80px; /* You can adjust the height as needed */
+    /* CSS for black background */
+    .container.mt-4 {
+        padding: 20px; /* You can adjust the padding as needed */
     }
 
-        /* Vertically align buttons in the table cell */
-        table.table tbody tr td {
-            vertical-align: middle;
+    /* Additional styles for the card */
+    .card {
+        border: none; /* Remove the card border */
+    }
+
+    /* Styles for the card header */
+    .card-header {
+        background-color: #343a40; /* Set header background color */
+        color: white; /* Set header text color */
+        padding: 10px 15px; /* Add some padding */
+        border-bottom: none; /* Remove the bottom border */
+    }
+
+    /* Styles for the card title */
+    .card-title {
+        margin: 0; /* Remove margin for the title */
+        font-size: 24px; /* Set the font size */
+    }
+
+    /* Styles for the "Create New" button */
+    .text-right .btn-primary {
+        background-color: #007bff; /* Set button background color */
+        border-color: #007bff; /* Set button border color */
+    }
+
+    /* Styles for the table */
+    .table {
+        background-color: #f8f9fa; /* Set table background color */
+    }
+
+        /* Styles for the table headers */
+        .table th {
+            background-color: #343a40; /* Set header background color */
+            color: white; /* Set header text color */
         }
 
-            /* Limit the description cell width and add ellipsis for overflow */
-            table.table tbody tr td:nth-child(4) {
-                max-width: 200px; /* You can adjust the width as needed */
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
+        /* Styles for the table rows */
+        .table tr {
+            background-color: white; /* Set row background color */
+        }
 
-            /* Ensure the image stays within the cell */
-            table.table tbody tr td img {
-                max-width: 100px;
-                max-height: 100px;
-            }
+    /* Styles for the buttons in table cells */
+    .btn-primary.btn-sm, .btn-info.btn-sm, .btn-danger.btn-sm, .btn-success.btn-sm {
+        margin-right: 5px; /* Add some space between buttons */
+    }
+
+    /* Disable the "Đã xác nhận" button */
+    .btn-success[disabled] {
+        opacity: 0.6;
+    }
 </style>
-<div class="card mb-4">
-    <div class="card-header">
-        <h1 class="card-title text-center">Contact</h1>
-        <div class="text-right">
-            <p>
-                <a asp-action="Create" class="btn btn-primary">Create New</a>
-            </p>
+
+<div class="container mt-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <h1 class="card-title ">Manager Contact</h1>
+            <div class="text-right">
+                <p>
+                    <a asp-action="Create" class="btn btn-primary">Create New</a>
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="card-body">
-        <table id="datatablesSimple" class="table">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="datatablesSimple" class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -83,5 +118,7 @@
 }
     </tbody>
 </table>
+</div>
+</div>
 </div>
 </div>
