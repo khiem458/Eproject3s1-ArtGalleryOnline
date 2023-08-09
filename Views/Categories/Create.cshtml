@@ -5,15 +5,12 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="card mb-4">
-    <div class="card-body">
-        <h1 class="card-title text-center">Create</h1>
-        <h4 class="card-subtitle mb-2 text-muted text-center">Category</h4>
-        <hr />
-        <div class="row justify-content-center">
+<div class=" info-section">
+    <h1>Create</h1>
+    <div class="row justify-content-center">
             
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="col-md-8">
+                <form asp-action="Create" class="signin-form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CategoryName" class="control-label"></label>
@@ -27,7 +24,7 @@
             </div>
                     
 
-            <div class="form-group">
+            <div class="form-group text-center">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -36,6 +33,5 @@
 
 <div>
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-</div>
 </div>
 </div>

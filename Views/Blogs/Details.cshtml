@@ -22,12 +22,14 @@
 
     /* ... Các phần CSS khác ... */
 </style>
-<h1>Details</h1>
+<div class="card mb-4">
+    <div class="card-body">
+        <h1 class="card-title ">Details</h1>
 
-<div>
-    <h4>Blog</h4>
-    <hr />
-    <dl class="row">
+        <div>
+            <h4 class="card-title ">Blogs Details</h4>
+            <hr />
+            <dl class="row justify-content-center">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
         </dt>
@@ -63,4 +65,6 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.BlogId">Edit</a> |
     <a asp-action="Index">Back to List</a>
+</div>
+</div>
 </div>

@@ -29,17 +29,19 @@
                 max-height: 100px;
             }
 </style>
-<div class="card mb-4">
-    <div class="card-header">
-        <h1 class="card-title text-center">Index</h1>
-        <div class="text-right">
-            <p>
-                <a asp-action="Create" class="btn btn-primary">Create New</a>
-            </p>
+<div class="container mt-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <h1 class="card-title ">Manager Blog</h1>
+            <div class="text-right">
+                <p>
+                    <a asp-action="Create" class="btn btn-primary">Create New</a>
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="card-body">
-        <table id="datatablesSimple" class="table">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="datatablesSimple" class="table table-striped">
             <thead>
                 <tr>
                     <th>
@@ -90,4 +92,6 @@
         </table> 
     </div>
 
+</div>
+</div>
 </div>
