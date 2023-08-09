@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ArtGalleryOnline.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ArtGalleryOnline.Controllers
 {
-    public class ViewAuthorCreateCategoryController : Controller
+	[Authorize(Roles = "author")]
+	public class ViewAuthorCreateCategoryController : Controller
     {
         private readonly ArtgalleryDbContext _context;
 
