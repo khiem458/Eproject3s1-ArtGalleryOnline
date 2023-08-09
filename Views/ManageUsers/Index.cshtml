@@ -4,34 +4,74 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<style>
-    /* CSS cho màu nền đen */
-    .card-header {
-        background-color: #000000; /* Mã màu HEX cho màu đen */
-        color: #ffffff; /* Mã màu HEX cho màu chữ trắng */
-    }
-    .card-body{
-       /* Replace 'wooden-background.jpg' with the actual path to your wooden background image */
-        background-size: cover;
-        background-repeat: no-repeat;
 
+
+
+
+<style>
+    /* CSS for black background */
+    .container.mt-4 {
+       
+        padding: 20px; /* You can adjust the padding as needed */
     }
-     .table-responsive{
-         border-radius:5px;
-        
-     }
-    
-    
-    /* CSS cho màu chữ trắng */
-    .card-header h1.card-title {
-        color: #ffffff;
+
+    /* Additional styles for the card */
+    .card {
+        border: none; /* Remove the card border */
+    }
+
+    /* Styles for the card header */
+    .card-header {
+        background-color: #343a40; /* Set header background color */
+        color: white; /* Set header text color */
+        padding: 10px 15px; /* Add some padding */
+        border-bottom: none; /* Remove the bottom border */
+    }
+
+    /* Styles for the card title */
+    .card-title {
+        margin: 0; /* Remove margin for the title */
+        font-size: 24px; /* Set the font size */
+    }
+
+    /* Styles for the "Create New" button */
+    .text-right .btn-primary {
+        background-color: #007bff; /* Set button background color */
+        border-color: #007bff; /* Set button border color */
+    }
+
+    /* Styles for the table */
+    .table {
+        background-color: #f8f9fa; /* Set table background color */
+    }
+
+        /* Styles for the table headers */
+        .table th {
+            background-color: #343a40; /* Set header background color */
+            color: white; /* Set header text color */
+        }
+
+        /* Styles for the table rows */
+        .table tr {
+            background-color: white; /* Set row background color */
+        }
+
+    /* Styles for the buttons in table cells */
+    .btn-primary.btn-sm, .btn-info.btn-sm, .btn-danger.btn-sm, .btn-success.btn-sm {
+        margin-right: 5px; /* Add some space between buttons */
+    }
+
+    /* Disable the "Đã xác nhận" button */
+    .btn-success[disabled] {
+        opacity: 0.6;
     }
 </style>
+
 
 <div class="container mt-4">
     <div class="card mb-4">
         <div class="card-header">
-            <h1 class="card-title text-center">Index</h1>
+            <h1 class="card-title ">Manager User</h1>
             <div class="text-right">
                 <p>
                     <a asp-action="Create" class="btn btn-primary">Create New</a>
@@ -43,14 +83,11 @@
                 <table id="datatablesSimple" class="table table-striped">
                     <thead>
                         <tr>
+                           
                             <th>@Html.DisplayNameFor(model => model.UserName)</th>
-                            <th>@Html.DisplayNameFor(model => model.UserFullName)</th>
-                            <th>@Html.DisplayNameFor(model => model.UserEmail)</th>
-                            <th>@Html.DisplayNameFor(model => model.UserGender)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserEmail)</th>                          
                             <th>@Html.DisplayNameFor(model => model.UserAge)</th>
-                            <th>@Html.DisplayNameFor(model => model.UserPhoneNum)</th>
-                            <th>@Html.DisplayNameFor(model => model.UserAddress)</th>
-                            <th>@Html.DisplayNameFor(model => model.UserPassword)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserPhoneNum)</th>                         
                             <th>@Html.DisplayNameFor(model => model.UserRole)</th>
                             <th></th>
                         </tr>
@@ -59,14 +96,11 @@
                         @foreach (var item in Model)
                         {
                             <tr>
+                               
                                 <td>@Html.DisplayFor(modelItem => item.UserName)</td>
-                                <td>@Html.DisplayFor(modelItem => item.UserFullName)</td>
-                                <td>@Html.DisplayFor(modelItem => item.UserEmail)</td>
-                                <td>@Html.DisplayFor(modelItem => item.UserGender)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UserEmail)</td>                              
                                 <td>@Html.DisplayFor(modelItem => item.UserAge)</td>
-                                <td>@Html.DisplayFor(modelItem => item.UserPhoneNum)</td>
-                                <td>@Html.DisplayFor(modelItem => item.UserAddress)</td>
-                                <td>@Html.DisplayFor(modelItem => item.UserPassword)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UserPhoneNum)</td>                             
                                 <td>@Html.DisplayFor(modelItem => item.UserRole)</td>
                                 <td>
                                     @if (item.UserRole.ToString() != "admin")

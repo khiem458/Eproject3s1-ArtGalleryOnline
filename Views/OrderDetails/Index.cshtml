@@ -4,30 +4,89 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<style>
+    /* CSS for black background */
+    .container.mt-4 {
+        padding: 20px; /* You can adjust the padding as needed */
+    }
 
-<h1>Index</h1>
+    /* Additional styles for the card */
+    .card {
+        border: none; /* Remove the card border */
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Orders)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>          
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArtWork)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
+    /* Styles for the card header */
+    .card-header {
+        background-color: #343a40; /* Set header background color */
+        color: white; /* Set header text color */
+        padding: 10px 15px; /* Add some padding */
+        border-bottom: none; /* Remove the bottom border */
+    }
+
+    /* Styles for the card title */
+    .card-title {
+        margin: 0; /* Remove margin for the title */
+        font-size: 24px; /* Set the font size */
+    }
+
+    /* Styles for the "Create New" button */
+    .text-right .btn-primary {
+        background-color: #007bff; /* Set button background color */
+        border-color: #007bff; /* Set button border color */
+    }
+
+    /* Styles for the table */
+    .table {
+        background-color: #f8f9fa; /* Set table background color */
+    }
+
+        /* Styles for the table headers */
+        .table th {
+            background-color: #343a40; /* Set header background color */
+            color: white; /* Set header text color */
+        }
+
+        /* Styles for the table rows */
+        .table tr {
+            background-color: white; /* Set row background color */
+        }
+
+    /* Styles for the buttons in table cells */
+    .btn-primary.btn-sm, .btn-info.btn-sm, .btn-danger.btn-sm, .btn-success.btn-sm {
+        margin-right: 5px; /* Add some space between buttons */
+    }
+
+    /* Disable the "Đã xác nhận" button */
+    .btn-success[disabled] {
+        opacity: 0.6;
+    }
+</style>
+<div class="container mt-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <h1 class="card-title ">Manager Order Details</h1>
+            
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="datatablesSimple" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Orders)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Price)
+                            </th>          
+                            <th>
+                                @Html.DisplayNameFor(model => model.Quantity)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ArtWork)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
@@ -53,3 +112,7 @@
 }
     </tbody>
 </table>
+</div>
+</div>
+</div>
+</div>
