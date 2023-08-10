@@ -14,7 +14,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.15" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
 
     <PackageReference Include="PayPal" Version="1.9.1" />
 
@@ -134,6 +134,13 @@
     <None Include="wwwroot\ManagerUser\scss\bootstrap\_utilities.scss" />
     <None Include="wwwroot\ManagerUser\scss\bootstrap\_variables.scss" />
     <None Include="wwwroot\ManagerUser\scss\style.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

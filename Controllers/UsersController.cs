@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ArtGalleryOnline.Controllers
 {
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "user,author")]
    
     public class UsersController : Controller
     {
@@ -259,7 +259,7 @@ namespace ArtGalleryOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterAuthor(int id, [Bind("UserId,UserName,UserFullName,UserEmail,UserGender,UserAge,UserPhoneNum,UserAddress,UserPassword,UserRole,RememberMe,IsVerified")] Users users)
+        public async Task<IActionResult> RegisterAuthor(int? id, [Bind("UserId,UserName,UserFullName,UserEmail,UserGender,UserAge,UserPhoneNum,UserAddress,UserPassword,UserRole,RememberMe,IsVerified")] Users users)
         {
             if (id != users.UserId)
             {
