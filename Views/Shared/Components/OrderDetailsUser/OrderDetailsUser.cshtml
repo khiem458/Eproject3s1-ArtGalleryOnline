@@ -1,0 +1,9 @@
+﻿@model IEnumerable<ArtGalleryOnline.Models.OrderDetail>
+@{
+    ViewData["Title"] = "OrderDetailsUser";
+}
+@foreach (var item in Model)
+{
+    <a href="~/OrderDetails/Index?id=@item?.OrderDetailId">Purchase History</a>
+
+}

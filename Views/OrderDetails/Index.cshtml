@@ -2,117 +2,261 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+
+
+
+
 <style>
-    /* CSS for black background */
-    .container.mt-4 {
-        padding: 20px; /* You can adjust the padding as needed */
+    body {
+        background-image: url(/ManagerUser/images/bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
-    /* Additional styles for the card */
-    .card {
-        border: none; /* Remove the card border */
+    .wcskh-info .avatar {
+        width: 190px;
+        height: 190px;
+        overflow: hidden;
+        border-radius: 20px;
+        padding: 5px;
+        background-color: #fff;
+        border: solid 1px #ddd;
+        grid-area: avatar;
     }
 
-    /* Styles for the card header */
-    .card-header {
-        background-color: #343a40; /* Set header background color */
-        color: white; /* Set header text color */
-        padding: 10px 15px; /* Add some padding */
-        border-bottom: none; /* Remove the bottom border */
+    .wcskh-info .name {
+        height: 60px;
+        line-height: 60px;
+        grid-area: name;
     }
 
-    /* Styles for the card title */
-    .card-title {
-        margin: 0; /* Remove margin for the title */
-        font-size: 24px; /* Set the font size */
-    }
-
-    /* Styles for the "Create New" button */
-    .text-right .btn-primary {
-        background-color: #007bff; /* Set button background color */
-        border-color: #007bff; /* Set button border color */
-    }
-
-    /* Styles for the table */
-    .table {
-        background-color: #f8f9fa; /* Set table background color */
-    }
-
-        /* Styles for the table headers */
-        .table th {
-            background-color: #343a40; /* Set header background color */
-            color: white; /* Set header text color */
+        .wcskh-info .name h3 {
+            font-size: 1.8em;
+            color: #fff;
+            line-height: inherit;
+            float: left;
         }
 
-        /* Styles for the table rows */
-        .table tr {
-            background-color: white; /* Set row background color */
+    .wcskh-info .avatar img {
+        width: 100%;
+        height: auto;
+        border-radius: inherit;
+    }
+
+    .wcskh-content {
+        margin-top: 35px;
+        display: grid;
+        min-height: 500px;
+        grid-template-columns: 1fr 2fr; /* Chia thành hai cột với tỷ lệ 1:2 */
+        grid-gap: 20px; /* Khoảng cách giữa hai cột */
+        padding: 20px;
+    }
+
+
+    .tabs-cskh {
+        box-shadow: 5px 0px 20px 0px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+    }
+
+        .tabs-cskh ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
 
-    /* Styles for the buttons in table cells */
-    .btn-primary.btn-sm, .btn-info.btn-sm, .btn-danger.btn-sm, .btn-success.btn-sm {
-        margin-right: 5px; /* Add some space between buttons */
+        .tabs-cskh li {
+            margin-bottom: 10px;
+        }
+
+        .tabs-cskh a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 5px;
+        }
+
+            .tabs-cskh a:hover {
+                background-color: #444;
+            }
+
+    .info-section {
+        padding: 20px;
     }
 
-    /* Disable the "Đã xác nhận" button */
-    .btn-success[disabled] {
-        opacity: 0.6;
+        .info-section h1 {
+            margin-top: 0;
+            color: #ff0000; /* Màu đỏ (#ff0000) */
+            font-size: 24px; /* Cỡ chữ 24px */
+            font-weight: normal; /* Kiểu chữ bình thường */
+            text-align: center; /* Căn giữa văn bản */
+            font-family: Arial, sans-serif; /* Kiểu chữ Arial hoặc các kiểu chữ không có chân chống (sans-serif) */
+        }
+
+        .info-section dl dt {
+            font-weight: bold;
+        }
+
+        .info-section dl dd {
+            margin-bottom: 10px;
+        }
+
+    .btn-group {
+        margin-top: 20px;
     }
+
+    * {
+        outline: none;
+    }
+
+    div {
+        display: block;
+    }
+
+    .tabs-cskh li:hover {
+        background-color: #555;
+    }
+
+    .tabs-cskh a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        padding: 5px;
+    }
+
+    .tabs-cskh .active {
+        background-color: orange; /* Màu cam khi mục được click */
+    }
+
+    .tabs-cskh a:hover {
+        background-color: #444;
+    }
+
+    /* Ẩn danh sách con mặc định */
+    ul.menu .dropdown {
+        display: none;
+    }
+
+    /* Hiển thị danh sách con khi hover vào mục cha "Author" */
+    ul.menu li:hover .dropdown {
+        display: block;
+        /* Các thuộc tính CSS khác bạn muốn áp dụng khi hiển thị danh sách con */
+    }
+
 </style>
-<div class="container mt-4">
-    <div class="card mb-4">
-        <div class="card-header">
-            <h1 class="card-title ">Manager Order Details</h1>
-            
+
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/code-mg/hinh47.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="page-title">List Order</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="~/Home"><i class="icon_house_alt"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">List Order</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="datatablesSimple" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Orders)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Price)
-                            </th>          
-                            <th>
-                                @Html.DisplayNameFor(model => model.Quantity)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ArtWork)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Orders.OrderId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-          
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtWork.ArtDescription)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OrderDetailId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrderDetailId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderDetailId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
+    </div>
+</section>
+<section id="sec-body">
+    <div class="container">
+        <div class="wcskh">
+            <div class="wcskh-content row">
+                <div class=" tabs-cskh">
+                    <ul class="menu">
+                        <li>
+                            @(await Component.InvokeAsync("EditUsers"))
+                        </li>
+                        <li class="active">
+                            @(await Component.InvokeAsync("OrderDetailsUser"))
+                        </li>
+
+                        <li>
+                            <a href="#">Author</a>
+                            <ul class="dropdown">
+                                <li><a asp-area="" asp-controller="ViewAuthorCreateCategory" asp-action="Create">- Category</a></li>
+                                <li><a asp-area="" asp-controller="ViewAuthorCreaAuthorWorks" asp-action="Create">- Author</a></li>
+                                <li><a asp-area="" asp-controller="ViewAuthorCreateWork" asp-action="Create">- Work</a></li>
+
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class=" info-section">
+                    <h1 class="text-center">Personal information</h1>
+                    <div class="table-responsive">
+                        <table id="datatablesSimple" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ArtWork)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Orders)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Quantity)
+                                    </th>
+                                    <th>
+                                        Total
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="~/@item.ArtWork.ArtImage" alt="ArtImage" style="width:100px; height:auto;" />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Orders.OrderId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Quantity)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Orders.TotalAmount)
+                                        </td>
+
+
+
+                                        <td>
+
+                                            <a asp-action="Details" asp-route-id="@item.OrderDetailId" class="btn btn-info btn-sm">Details</a>
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // Sử dụng JavaScript để thêm sự kiện click vào các mục <li> trong tabs-cskh
+    const tabsCskhItems = document.querySelectorAll('.tabs-cskh li');
+    tabsCskhItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Xóa lớp active của tất cả các mục <li> trong tabs-cskh
+            tabsCskhItems.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Thêm lớp active cho mục được click
+            item.classList.add('active');
+        });
+    });
+</script>
