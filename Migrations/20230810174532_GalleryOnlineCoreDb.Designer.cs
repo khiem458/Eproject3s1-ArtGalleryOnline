@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGalleryOnline.Migrations
 {
     [DbContext(typeof(ArtgalleryDbContext))]
-    [Migration("20230801182356_Verify")]
-    partial class Verify
+    [Migration("20230810174532_GalleryOnlineCoreDb")]
+    partial class GalleryOnlineCoreDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,12 +34,10 @@ namespace ArtGalleryOnline.Migrations
 
                     b.Property<string>("ArtDescription")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ArtImage")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ArtName")
                         .IsRequired()
@@ -409,6 +407,9 @@ namespace ArtGalleryOnline.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
+
+                    b.Property<bool>("IsLoggedIn")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsVerified")
                         .HasColumnType("bit");

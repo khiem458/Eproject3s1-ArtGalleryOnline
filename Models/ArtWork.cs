@@ -18,9 +18,9 @@ namespace ArtGalleryOnline.Models
         [StringLength(50)]
         public string? ArtName { get; set; }
         [Required]
-        [StringLength(50)]
+     
         public string? ArtDescription { get; set; }
-        [StringLength(50)]
+        
         public string? ArtImage { get; set; }
         [Required(ErrorMessage = "ArtPrice is required.")]
         [Range(0, double.MaxValue, ErrorMessage = "ArtPrice must be a positive number.")]
