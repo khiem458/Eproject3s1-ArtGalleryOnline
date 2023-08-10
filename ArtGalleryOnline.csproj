@@ -136,4 +136,11 @@
     <None Include="wwwroot\ManagerUser\scss\style.scss" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
