@@ -37,7 +37,7 @@
                         @foreach (var item in Model?.CartItems) {
                             <tr>
                                 <td class="align-middle"><img src="@item.ArtWork.ArtImage" alt="" style="width: 50px;" >@item.ArtWork.ArtName </td>
-                                <td class="align-middle" style="color:azure">$@item.ArtWork.ArtPrice</td>
+                                <td class="align-middle" >$@item.ArtWork.ArtPrice</td>
                                 <td class="align-middle" style="color:azure">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
                                         <div class="input-group-btn">
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="align-middle" style="color:azure">
+                                <td class="align-middle" >
                                     $@(
                             item.ArtWork.ArtPrice * item.Quantity
                             )</td>
