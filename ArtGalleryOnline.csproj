@@ -32,6 +32,13 @@
 
   <ItemGroup>
     <None Include="C:\Users\AnhLinh\Documents\GitHub\Eproject3s2-ArtGalleryOnline\Models\.editorconfig" />
+    <None Include="wwwroot\img\kinh\kinh1.webp" />
+    <None Include="wwwroot\img\kinh\kinh2.webp" />
+    <None Include="wwwroot\img\kinh\kinh8.webp" />
+    <None Include="wwwroot\img\tuong\tuong1.webp" />
+    <None Include="wwwroot\img\tuong\tuong2.webp" />
+    <None Include="wwwroot\img\tuong\tuong5.webp" />
+    <None Include="wwwroot\img\tuong\tuong7.webp" />
     <None Include="wwwroot\ManagerUser\css\.DS_Store" />
     <None Include="wwwroot\ManagerUser\css\bootstrap\.DS_Store" />
     <None Include="wwwroot\ManagerUser\css\bootstrap\mixins\.DS_Store" />

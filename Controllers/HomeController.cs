@@ -50,7 +50,15 @@ namespace ArtGalleryOnline.Controllers
         {
             return View();
         }
-        public IActionResult Blog()
+        public IActionResult GalleryStatue()
+        {
+            return View();
+        }
+    public IActionResult Terrible()
+    {
+        return View();
+    }
+    public IActionResult Blog()
         {
             var Blog = _context.Blog.Include(b => b.AuthorArtWork);
             return View(Blog.ToList());
