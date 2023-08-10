@@ -1,0 +1,194 @@
+﻿@{
+    ViewData["Title"] = "GalleryStatue";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    body {
+        background-color: black; /* Replace 'wooden-background.jpg' with the actual path to your wooden background image */
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    /* Thêm bóng đậm vào khung hình */
+    .alime-portfolio-area .single_gallery_item {
+        box-shadow: 0 20px 15px rgba(0, 0, 0, 0);
+    }
+
+        /* Tạo viền màu trắng cho khung ngoài */
+        .alime-portfolio-area .single_gallery_item .single-portfolio-content {
+            border: 20px solid #fff;
+        }
+
+            /* Tạo khoảng cách giữa khung ảnh và viền trắng */
+            .alime-portfolio-area .single_gallery_item .single-portfolio-content img {
+                margin: 5px;
+            }
+
+</style>
+<!-- Breadcrumb Area Start -->
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/code-mg/hinh47.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="page-title">Gallery</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="icon_house_alt"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+<!-- Gallery Area Start -->
+<div class="alime-portfolio-area section-padding-80 clearfix">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- Projects Menu -->
+                <div class="alime-projects-menu wow fadeInUp" data-wow-delay="100ms">
+                    <div class="portfolio-menu text-center">
+                        <button class="btn active" data-filter="*">All</button>
+                        <button class="btn" data-filter=".human">Human</button>
+                        <button class="btn" data-filter=".nature">Nature</button>
+                        <button class="btn" data-filter=".country">Country</button>
+                        <button class="btn" data-filter=".video">Video</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row alime-portfolio">
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item nature mb-30 wow fadeInUp" data-wow-delay="100ms">
+                <div class="single-portfolio-content">
+                    <img src="/img/tuong/tuong1.webp" alt="">
+                    <div class="hover-content">
+                        <a href="/img/tuong/tuong1.webp" class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item video human mb-30 wow fadeInUp" data-wow-delay="300ms">
+                <div class="single-portfolio-content">
+                    <img src="/img/tuong/tuong2.webp" alt="">
+                    <div class="hover-content">
+                        <a href="/img/tuong/tuong2.jpeg" class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item country mb-30 wow fadeInUp" data-wow-delay="500ms">
+                <div class="single-portfolio-content">
+                    <img src="/img/tuong/tuong4.jpeg" alt="">
+                    <div class="hover-content">
+                        <a href="/img/tuong/tuong4.jpeg" class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item human mb-30 wow fadeInUp" data-wow-delay="700ms">
+                <div class="single-portfolio-content">
+                    <img src="/img/tuong/tuong3.jpeg" alt="">
+                    <div class="hover-content">
+                        <a href="/img/tuong/tuong3.jpeg" class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item nature mb-30 wow fadeInUp" data-wow-delay="100ms">
+                <div class="single-portfolio-content">
+                    <img src="/img/tuong/tuong5.webp" alt="">
+                    <div class="hover-content">
+                        <a href="/img/tuong/tuong5.webp" class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item video country mb-30 wow fadeInUp" data-wow-delay="300ms">
+                <div class="single-portfolio-content">
+                    <img src="/img/tuong/tuong6.jpeg" alt="">
+                    <div class="hover-content">
+                        <a href="/img/tuong/tuong6.jpeg" class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item human mb-30 wow fadeInUp" data-wow-delay="500ms">
+                <div class="single-portfolio-content">
+                    <img src="/img/tuong/tuong7.jpeg" alt="">
+                    <div class="hover-content">
+                        <a href="/img/tuong/tuong7.jpeg" class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item nature mb-30 wow fadeInUp" data-wow-delay="700ms">
+                <div class="single-portfolio-content">
+                    <img src="/img/tuong/tuong7.webp" alt="">
+                    <div class="hover-content">
+                        <a href="/img/tuong/tuong7.webp" class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item video country mb-30 wow fadeInUp" data-wow-delay="100ms">
+                <div class="single-portfolio-content">
+                    <img src="/img/tuong/tuong8.jpeg" alt="">
+                    <div class="hover-content">
+                        <a href="/img/tuong/tuong8.jpeg" class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item human mb-30 wow fadeInUp" data-wow-delay="300ms">
+                <div class="single-portfolio-content">
+                    <img src="/img/tuong/tuong9.jpeg" alt="">
+                    <div class="hover-content">
+                        <a href="/img/tuong/tuong9.jpeg" class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item country mb-30 wow fadeInUp" data-wow-delay="500ms">
+                <div class="single-portfolio-content">
+                    <img src="/img/tuong/tuong10.jpeg" alt="">
+                    <div class="hover-content">
+                        <a href="/img/tuong/tuong10.jpeg" class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item country mb-30 wow fadeInUp" data-wow-delay="700ms">
+                <div class="single-portfolio-content">
+                    <img src="/img/tuong/hinh11.jpeg" alt="">
+                    <div class="hover-content">
+                        <a href="/img/tuong/hinh11.jpeg" class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 text-center wow fadeInUp" data-wow-delay="800ms">
+                <a href="#" class="btn alime-btn btn-2 mt-15">View More</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Gallery Area End -->
