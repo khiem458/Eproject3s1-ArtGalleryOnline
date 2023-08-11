@@ -36,6 +36,26 @@
         border-color: #007bff; /* Set button border color */
     }
 
+
+
+    /* Vertically align buttons in the table cell */
+    table.table tbody tr td {
+        vertical-align: middle;
+    }
+
+        /* Limit the description cell width and add ellipsis for overflow */
+        table.table tbody tr td:nth-child(5) {
+            max-width: 200px; /* You can adjust the width as needed */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Ensure the image stays within the cell */
+        table.table tbody tr td img {
+            max-width: 100px;
+            max-height: 100px;
+        }
     /* Styles for the table */
     .table {
         background-color: #f8f9fa; /* Set table background color */

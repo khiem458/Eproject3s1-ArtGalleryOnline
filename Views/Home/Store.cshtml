@@ -7,31 +7,49 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
     body {
+        background-size: cover;
+        background-repeat: no-repeat;
         background-color: black;
-        color: white;
+    }
+
+    .alime-blog-area .row .col-12,
+    .alime-blog-area .row .col-sm-6,
+    .alime-blog-area .row .col-lg-4 {
+        flex-basis: 33.33%;
+        max-width: 33.33%;
     }
 
 
-    .post-content a:hover {
-        text-decoration: none;
+    /* Tạo khoảng cách giữa các cột */
+    .alime-blog-area .row .col-12,
+    .alime-blog-area .row .col-sm-6,
+    .alime-blog-area .row .col-lg-4 {
+        padding: 15px;
     }
 
-    /* Đóng khung ảnh hình bình hành */
-    #pd_card {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .alime-portfolio-area {
-        border: 0px solid white; /* Add a black border around the outer container */
-        padding: 20px; /* Optional: Add some padding inside the outer container */
-    }
-
+    /* Thêm khung cho phần tử single-post-area */
     .single-post-area {
-        border: 20px solid white; /* Add a white border around each item */
-        padding: 10px; /* Optional: Add some padding inside each item */
+        border: 1px solid #ccc;
+        padding: 20px;
     }
 
+    #pd_card img {
+        width: 100%; /* Định rõ chiều rộng hình ảnh là 100% của card */
+        height: 300px; /* Giữ tỷ lệ khung hình ban đầu */
+        border-radius: 10px;
+    }
+
+    .single-post-area::after {
+        position: absolute;
+        width: 100%;
+        height: 342px;
+        border-radius: 5px;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.1);
+        content: '';
+        z-index: 1;
+    }
 </style>
 <!-- Welcome Area Start -->
 <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(/img/code-mg/hinh47.jpg);">
@@ -68,8 +86,9 @@
             <div class="row  ">
                 @foreach (var item in Model)
                 {
-                    <div class=" col-sm-4">
-                        <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms" id="pd_card">
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <!-- Single Blog Area -->
+                        <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms" id="pd_card">
                             <!-- Post Thumbnail -->
                             <a href="~/DetailsView/ArtWorkDetails?id=@item.ArtId" class="post-thumbnail"><img src="~/@item.ArtImage" alt=""></a>
                             <!-- Post Catagory -->
