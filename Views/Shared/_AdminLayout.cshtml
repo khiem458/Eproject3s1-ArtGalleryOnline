@@ -172,6 +172,11 @@
         .signin-form select.form-control {
             color: black;
         }
+        /* Đổi màu nền của dropdown list khi mở ra */
+        select.form-control:focus {
+            background-color: black;
+            color: white;
+        }
 
     </style>
 
@@ -222,10 +227,7 @@
                             ManageOders
                         </a>
                        
-                        <a class="nav-link" href="/OrderDetails">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            ManageDetails Oders
-                        </a>
+                        
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>

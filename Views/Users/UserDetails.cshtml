@@ -50,9 +50,10 @@
      
 
     .tabs-cskh {
-        
+        background-color: black;
         box-shadow: 5px 0px 20px 0px rgba(0, 0, 0, 0.1);
         padding: 10px;
+        border-radius: 5px;
     }
 
         .tabs-cskh ul {
@@ -77,8 +78,9 @@
             }
 
     .info-section {
-       
+        background-color: #f0f0f1;
         padding: 20px;
+        border-radius:5px;
     }
 
         .info-section h1 {
@@ -109,7 +111,8 @@
     }
 
     .tabs-cskh li:hover {
-        background-color: #555;
+        background-color: #f34613;
+        color: black;
     }
 
     .tabs-cskh a {
@@ -123,7 +126,8 @@
         background-color: orange; /* Màu cam khi mục được click */
     }
         .tabs-cskh a:hover {
-            background-color: #444;
+        background-color: #f34613;
+        color: black;
         }
 
     /* Ẩn danh sách con mặc định */
@@ -135,6 +139,12 @@
     ul.menu li:hover .dropdown {
         display: block;
         /* Các thuộc tính CSS khác bạn muốn áp dụng khi hiển thị danh sách con */
+    }
+
+    .col-sm-8 {
+       
+       
+        font-size: 25px;
     }
 
 </style>
@@ -209,7 +219,7 @@
                     <div class="btn-group">
                         <a asp-action="Edit" asp-route-id="@Model?.UserId" class="btn btn-primary">Edit</a> | 
                        
-                        <a asp-action="Edit" asp-route-id="@Model?.UserId" class="btn btn-primary">RegisterAuthor</a> |
+                        <a asp-action="RegisterAuthor" asp-route-id="@Model?.UserId" class="btn btn-primary">RegisterAuthor</a> |
                         <a asp-action="Index" class="btn btn-secondary">Back to List</a> 
                     </div>
                 </div>

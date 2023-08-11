@@ -61,17 +61,28 @@ namespace ArtGalleryOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ArtId,ArtName,ArtDescription,ArtImage,ArtPrice,StockQuantity,AuthId,CategoryId")] ArtWork artWork)
+        public async Task<IActionResult> Create([Bind("ArtId,ArtName,ArtDescription,ArtImage,ArtPrice,StockQuantity,AuthId,CategoryId")] ArtWork artWork,IFormFile artImage)
         {
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileName(artImage.FileName);
+                string file_path = Path.Combine(Directory.GetCurrentDirectory(),
+                    @"wwwroot/Images", fileName);
+                using (var stream = new FileStream(file_path, FileMode.Create))
+                {
+                    await artImage.CopyToAsync(stream);
+                }
+                artWork.ArtImage = "Images/" + fileName;
+
                 _context.Add(artWork);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                // Thêm thông báo thành công vào TempData
+                TempData["SuccessMessage"] = "Artwork created successfully.";
+                return View();
             }
             ViewData["AuthId"] = new SelectList(_context.AuthorArtWork, "AuthId", "Artist", artWork.AuthId);
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryDescription", artWork.CategoryId);
-            return View(artWork);
+            return View("Index",artWork);
         }
 
         // GET: ViewAuthorCreateWork/Edit/5

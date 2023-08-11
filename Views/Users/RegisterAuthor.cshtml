@@ -204,11 +204,16 @@
                     </ul>
                 </div>
                 <div class=" info-section">
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                    }
+
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="login-wrap p-0">
-                                <h3 class="mb-4 text-center">Edit User</h3>
-                                <form asp-action="Edit" class="signin-form">
+                                <h3 class="mb-4 text-center">Register Author</h3>
+                                <form asp-action="RegisterAuthor" class="signin-form">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <input type="hidden" asp-for="UserId" />
                                     <div class="form-group">
