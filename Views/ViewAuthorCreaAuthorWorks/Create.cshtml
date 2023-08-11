@@ -146,6 +146,26 @@
         display: block;
         /* Các thuộc tính CSS khác bạn muốn áp dụng khi hiển thị danh sách con */
     }
+   
+    /* Targeting the labels in the form and setting text color to black */
+    .signin-form label.control-label {
+        color: black;
+    }
+
+    /* Targeting the text inputs in the form and setting text color to black */
+    .signin-form input.form-control {
+        color: black;
+    }
+
+    /* Targeting the text in the validation spans and setting text color to black */
+    .signin-form span.text-danger {
+        color: black;
+    }
+
+    /* Targeting the text in the select option and setting text color to black */
+    .signin-form select.form-control {
+        color: black;
+    }
 
 </style>
 
@@ -194,6 +214,13 @@
                 </div>
                 <div class=" info-section">
                     <h1 class="">Author</h1>
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["SuccessMessage"]
+                        </div>
+                    }
+
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <form asp-action="Create" class="signin-form">

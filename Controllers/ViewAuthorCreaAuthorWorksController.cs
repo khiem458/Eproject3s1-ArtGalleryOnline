@@ -64,7 +64,8 @@ namespace ArtGalleryOnline.Controllers
             {
                 _context.Add(authorArtWork);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                TempData["SuccessMessage"] = "Created successfully.";
+                return View();
             }
             return View(authorArtWork);
         }
