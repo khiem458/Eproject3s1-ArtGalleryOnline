@@ -68,10 +68,10 @@ namespace ArtGalleryOnline.Controllers
             return View("AddToCart", HttpContext.Session.GetJson<Cart>("cart"));
         }
         [Authorize]
-        
+
         public IActionResult CheckOut()
         {
-            
+
             return View();
         }
 
@@ -200,6 +200,7 @@ namespace ArtGalleryOnline.Controllers
                 return View("CheckOut");
             }
             // On successful payment, show the success page to the user.  
+
             return View("CheckOutSuccess");
         }
         private PayPal.Api.Payment payment;
@@ -219,6 +220,8 @@ namespace ArtGalleryOnline.Controllers
         {
             Cart cart = HttpContext.Session.GetJson<Cart>("cart");
 
+            
+
             //create itemlist and add item objects to it  
             var itemList = new ItemList()
             {
@@ -236,6 +239,9 @@ namespace ArtGalleryOnline.Controllers
                     sku = item.ArtWork.ArtId.ToString(),
                 });
             }
+
+            // ... (rest of the code)
+
             var subtotal = cart.ComputeTotalValues();
             var payer = new Payer()
             {
@@ -262,8 +268,8 @@ namespace ArtGalleryOnline.Controllers
                 currency = "USD",
                 total = total.ToString(), // Total must be equal to sum of tax, shipping and subtotal.  
                 details = details
-
             };
+
             var transactionList = new List<Transaction>();
             // Adding description about the transaction  
             var paypalOrderId = DateTime.Now.Ticks;
@@ -274,6 +280,7 @@ namespace ArtGalleryOnline.Controllers
                 amount = amount,
                 item_list = itemList
             });
+
             this.payment = new Payment()
             {
                 intent = "sale",
