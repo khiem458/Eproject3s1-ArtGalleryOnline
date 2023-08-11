@@ -218,7 +218,7 @@
 
                        
                             <div class="col-md-8">
-                            <form asp-action="Create" class="signin-form">
+                            <form asp-action="Create" class="signin-form" enctype="multipart/form-data">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
                                         <label asp-for="ArtName" class="control-label"></label>
@@ -230,11 +230,11 @@
                                         <input asp-for="ArtDescription" class="form-control" />
                                         <span asp-validation-for="ArtDescription" class="text-danger"></span>
                                     </div>
-                                    <div class="form-group">
-                                        <label asp-for="ArtImage" class="control-label"></label>
-                                        <input asp-for="ArtImage" class="form-control" />
-                                        <span asp-validation-for="ArtImage" class="text-danger"></span>
-                                    </div>
+                                <div class="form-group">
+                                    <label asp-for="ArtImage" class="control-label">Art Image</label>
+                                    <input asp-for="ArtImage" type="file" class="form-control" />
+                                    <span asp-validation-for="ArtImage" class="text-danger"></span>
+                                </div>
                                     <div class="form-group">
                                         <label asp-for="ArtPrice" class="control-label"></label>
                                         <input asp-for="ArtPrice" class="form-control" />

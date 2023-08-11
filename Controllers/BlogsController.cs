@@ -102,7 +102,7 @@ namespace ArtGalleryOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BlogId,Title,Image,Date,Description,AuthId")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("BlogId,Title,Image,Date,Description,AuthId")] Blog blog, IFormFile Image)
         {
             if (id != blog.BlogId)
             {
@@ -113,8 +113,27 @@ namespace ArtGalleryOnline.Controllers
             {
                 try
                 {
+                    if (Image != null)
+                    {
+                        string fileName = Path.GetFileName(Image.FileName);
+                        string file_path = Path.Combine(Directory.GetCurrentDirectory(),
+                            @"wwwroot/Images", fileName);
+                        using (var stream = new FileStream(file_path, FileMode.Create))
+                        {
+                            await Image.CopyToAsync(stream);
+                        }
+                        blog.Image = "Images/" + fileName;
+                    }
+                    else
+                    {
+                        // Nếu người dùng không chọn hình ảnh mới, giữ nguyên ảnh cũ
+                        var existingArtWork = await _context.Blog.AsNoTracking().FirstOrDefaultAsync(a => a.BlogId == id);
+                        blog.Image = existingArtWork.Image;
+                    }
+
                     _context.Update(blog);
                     await _context.SaveChangesAsync();
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {

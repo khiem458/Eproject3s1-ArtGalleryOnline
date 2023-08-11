@@ -3,7 +3,7 @@
     ViewData["Title"] = "Store";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
     body {
@@ -73,7 +73,7 @@
                             <!-- Post Thumbnail -->
                             <a href="~/DetailsView/ArtWorkDetails?id=@item.ArtId" class="post-thumbnail"><img src="~/@item.ArtImage" alt=""></a>
                             <!-- Post Catagory -->
-                            <a href="~/DetailsView/ArtWorkDetails?id=@item.ArtId " class="btn post-catagory">Add</a>
+                            <a href="#" class="btn post-catagory cartWidget" id="cartWidget">Add</a>
                             <!-- Post Conetent -->
                             <div class="post-content">
                                 <div class="post-meta">
@@ -94,3 +94,17 @@
         </div>
     </div>
 </div>
+<script>
+    // Attach an event listener to elements with the class "cartWidget"
+    var cartWidgets = document.querySelectorAll(".cartWidget");
+    cartWidgets.forEach(function (widget) {
+        widget.addEventListener("click", function () {
+            // Display SweetAlert dialog
+            Swal.fire({
+                title: 'Sorry!',
+                text: 'You Must Login First Before Buying',
+                icon: 'info'
+            });
+        });
+    });
+</script>
