@@ -195,6 +195,13 @@
         </div>
     </div>
 </section>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success text-center" style=" color:red;">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
 <section id="sec-body">
     <div class="container">
         <div class="wcskh">
@@ -224,12 +231,7 @@
                 <div class=" info-section">
                     <h1 class="text-center">Category</h1>
                     <div class="row justify-content-center">
-                        @if (TempData["SuccessMessage"] != null)
-                        {
-                            <div class="alert alert-success">
-                                @TempData["SuccessMessage"]
-                            </div>
-                        }
+                       
 
                             <div class="col-md-8">
                             <form asp-action="Create" class="signin-form">

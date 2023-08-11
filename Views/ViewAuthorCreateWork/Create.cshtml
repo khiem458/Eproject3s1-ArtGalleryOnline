@@ -186,6 +186,13 @@
         </div>
     </div>
 </section>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success text-center" style=" color:red;">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
 <section id="sec-body">
     <div class="container">
         <div class="wcskh">
