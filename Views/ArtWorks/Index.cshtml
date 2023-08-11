@@ -22,7 +22,13 @@
         padding: 10px 15px; /* Add some padding */
         border-bottom: none; /* Remove the bottom border */
     }
-
+    /* Limit the description cell width and add ellipsis for overflow */
+    table.table tbody tr td:nth-child(4) {
+        max-width: 200px; /* You can adjust the width as needed */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     /* Styles for the card title */
     .card-title {
         margin: 0; /* Remove margin for the title */
@@ -60,6 +66,14 @@
     .btn-success[disabled] {
         opacity: 0.6;
     }
+    /* Limit the description cell width and add ellipsis for overflow */
+    .table tbody tr td:nth-child(2) {
+        max-width: 200px; /* You can adjust the width as needed */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
 </style>
 <div class="container mt-4">
     <div class="card mb-4">
