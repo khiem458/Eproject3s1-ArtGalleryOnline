@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Favicon -->
     <link rel="icon" href="/img/core-img/Logo3.jpg">
 
@@ -28,6 +28,19 @@
         .custom-image{
             height:320px
         }
+
+        .button-outline {
+            border: 1px solid white;
+            color: white;
+            border-radius: 5px;
+            transition: border-color 1s color 1s ease;
+        }
+
+            /* Button hover style */
+            .button-outline:hover {
+                border-color: #f74d4c;
+                color: #f74d4c
+            }
     </style>
 </head>
 
@@ -115,8 +128,10 @@
 
                                         </ul>
                                     </li>
-                                    <li>
-                                        @(await Component.InvokeAsync("CartWidget"))
+                                    <li id="cartWidget">
+                                        <a href="#">
+                                            <i class="fas fa-shopping-cart "></i>                                           
+                                        </a>
                                     </li>
                                 </ul>
 
@@ -255,20 +270,17 @@
     <script src="/js/alime.bundle.js"></script>
     <!-- Active -->
     <script src="/js/default-assets/active.js"></script>
-    <style>
-        .button-outline {
-            border: 1px solid white; 
-            color: white; 
-            border-radius: 5px; 
-            transition: border-color 1s color 1s ease;          
-        }
-
-            /* Button hover style */
-            .button-outline:hover {
-                border-color: #f74d4c; 
-                color: #f74d4c
-            }
-    </style>
+    <script>
+        // Attach an event listener to the li element
+        document.getElementById("cartWidget").addEventListener("click", function () {
+            // Display SweetAlert dialog
+            Swal.fire({
+                title: 'Sorry!',
+                text: 'You Must Login First Before Buying',
+                icon: 'info'
+            });
+        });
+    </script>
 </body>
 
 </html>
